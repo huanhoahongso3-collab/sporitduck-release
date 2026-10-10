@@ -25,6 +25,10 @@
         <!-- Settings activity opened from LSPosed / LSPatch manager -->
         <activity android:exported="true" android:name="dhp.vkn.tpl.sporitduck.ModuleSettingsActivity" android:label="dhpOS Sporitduck Settings">
             <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.APPLICATION_PREFERENCES"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
@@ -32,10 +36,6 @@
         <activity android:exported="false" android:name="dhp.vkn.tpl.sporitduck.SettingsActivity" android:theme="@style/Theme.Spotifuck.Settings"/>
         <meta-data android:name="com.google.android.gms.car.application" android:resource="@xml/automotive_app_desc"/>
         <activity android:alwaysRetainTaskState="true" android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize" android:exported="true" android:label="dhpOS Sporitduck" android:launchMode="singleInstance" android:name="dhp.vkn.tpl.sporitduck.MainActivity" android:supportsPictureInPicture="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <service android:enabled="true" android:exported="true" android:foregroundServiceType="mediaPlayback" android:name="dhp.vkn.tpl.sporitduck.WebService">
             <intent-filter>
