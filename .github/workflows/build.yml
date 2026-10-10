@@ -24,7 +24,7 @@ jobs:
 
       - name: Install build-tools
         run: |
-          sdkmanager --install "build-tools;35.0.0"
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --install "build-tools;35.0.0"
 
       - name: Download apktool
         run: |
