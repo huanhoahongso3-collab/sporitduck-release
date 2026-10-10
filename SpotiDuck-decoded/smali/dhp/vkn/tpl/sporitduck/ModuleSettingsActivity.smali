@@ -3,7 +3,6 @@
 .implements Landroid/view/View$OnClickListener;
 
 .field private prefs:Landroid/content/SharedPreferences;
-.field private btnModule:Landroid/widget/Button;
 .field private btnAdBlock:Landroid/widget/Button;
 .field private btnWebPlayer:Landroid/widget/Button;
 .field private btnClear:Landroid/widget/Button;
@@ -30,11 +29,11 @@
     move-result-object v0
     iput-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->prefs:Landroid/content/SharedPreferences;
 
-    # Read all three booleans
+    # Read relevant booleans
     const-string v1, "LoggedIn"
     const/4 v2, 0x0
     invoke-interface {v0, v1, v2}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
-    move-result v1    # v1 = loggedIn
+    move-result v1    # v1 = loggedIn (set by SpotiDuck's own auth)
 
     const-string v2, "AdBlockEnabled"
     const/4 v3, 0x0
@@ -64,40 +63,18 @@
     invoke-virtual {v5, v6}, Landroid/widget/TextView;->setTextSize(F)V
     invoke-virtual {v4, v5}, Landroid/view/ViewGroup;->addView(Landroid/view/View;)V
 
-    # Status line
+    # Login status (read-only, managed by SpotiDuck's own auth)
     new-instance v5, Landroid/widget/TextView;
     invoke-direct {v5, p0}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
     if-eqz v1, :status_off
-    const-string v6, "Module: Active ✓"
+    const-string v6, "SpotiDuck: Logged in ✓  —  module active"
     goto :status_set
     :status_off
-    const-string v6, "Module: Inactive"
+    const-string v6, "SpotiDuck: Not logged in  —  log in via SpotiDuck first"
     :status_set
     invoke-virtual {v5, v6}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
     const v6, 0x41800000    # 16.0f
     invoke-virtual {v5, v6}, Landroid/widget/TextView;->setTextSize(F)V
-    invoke-virtual {v4, v5}, Landroid/view/ViewGroup;->addView(Landroid/view/View;)V
-
-    # --- Section: Module toggle ---
-    new-instance v5, Landroid/widget/TextView;
-    invoke-direct {v5, p0}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
-    const-string v6, "\nModule"
-    invoke-virtual {v5, v6}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
-    const v6, 0x41800000
-    invoke-virtual {v5, v6}, Landroid/widget/TextView;->setTextSize(F)V
-    invoke-virtual {v4, v5}, Landroid/view/ViewGroup;->addView(Landroid/view/View;)V
-
-    new-instance v5, Landroid/widget/Button;
-    invoke-direct {v5, p0}, Landroid/widget/Button;-><init>(Landroid/content/Context;)V
-    if-eqz v1, :btn_mod_enable
-    const-string v6, "Disable Module"
-    goto :btn_mod_set
-    :btn_mod_enable
-    const-string v6, "Enable Module (Log In)"
-    :btn_mod_set
-    invoke-virtual {v5, v6}, Landroid/widget/Button;->setText(Ljava/lang/CharSequence;)V
-    invoke-virtual {v5, p0}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
-    iput-object v5, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->btnModule:Landroid/widget/Button;
     invoke-virtual {v4, v5}, Landroid/view/ViewGroup;->addView(Landroid/view/View;)V
 
     # --- Section: DNS Ad Blocker toggle ---
@@ -188,9 +165,6 @@
     .registers 8
 
     # Dispatch to the right handler by comparing button references
-    iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->btnModule:Landroid/widget/Button;
-    if-eq p1, v0, :handle_module
-
     iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->btnAdBlock:Landroid/widget/Button;
     if-eq p1, v0, :handle_adblock
 
@@ -200,41 +174,6 @@
     iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->btnClear:Landroid/widget/Button;
     if-eq p1, v0, :handle_clear
 
-    return-void
-
-    # ---- Toggle LoggedIn ----
-    :handle_module
-    iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->prefs:Landroid/content/SharedPreferences;
-    const-string v1, "LoggedIn"
-    const/4 v2, 0x0
-    invoke-interface {v0, v1, v2}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
-    move-result v1
-
-    # v4 = !v1  (avoid xor-int on Z-typed register — causes ART VerifyError)
-    if-nez v1, :mod_toggle_false
-    const/4 v4, 0x1
-    goto :mod_toggle_done
-    :mod_toggle_false
-    const/4 v4, 0x0
-    :mod_toggle_done
-
-    invoke-interface {v0}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences$Editor;
-    move-result-object v2
-    const-string v3, "LoggedIn"
-    invoke-interface {v2, v3, v4}, Landroid/content/SharedPreferences$Editor;->putBoolean(Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;
-    invoke-interface {v2}, Landroid/content/SharedPreferences$Editor;->apply()V
-
-    if-nez v1, :mod_was_on
-    const-string v2, "Module enabled! Restart Spotify to activate."
-    goto :mod_toast
-    :mod_was_on
-    const-string v2, "Module disabled."
-    :mod_toast
-    const/4 v3, 0x1
-    invoke-static {p0, v2, v3}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
-    move-result-object v2
-    invoke-virtual {v2}, Landroid/widget/Toast;->show()V
-    invoke-virtual {p0}, Landroid/app/Activity;->recreate()V
     return-void
 
     # ---- Toggle AdBlockEnabled ----
