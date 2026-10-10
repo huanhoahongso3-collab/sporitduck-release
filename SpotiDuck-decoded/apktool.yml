@@ -1,0 +1,21 @@
+version: 2.12.1
+apkFileName: SpotiDuck-v1.2.2-3d2c473.apk
+usesFramework:
+  ids:
+  - 1
+sdkInfo:
+  minSdkVersion: 24
+  targetSdkVersion: 35
+packageInfo:
+  forcedPackageId: 127
+versionInfo:
+  versionCode: 23
+  versionName: 1.2.2
+doNotCompress:
+- arsc
+- mp3
+- png
+- so
+- webp
+- assets/dexopt/baseline.prof
+- assets/dexopt/baseline.profm

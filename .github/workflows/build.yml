@@ -1,0 +1,83 @@
+name: Build & Pre-release
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Set up Android SDK build-tools
+        uses: android-actions/setup-android@v3
+
+      - name: Install latest build-tools
+        run: sdkmanager "build-tools;35.0.0"
+
+      - name: Download apktool
+        run: |
+          mkdir -p output
+          curl -L -o output/apktool.jar \
+            https://github.com/iBotPeaches/Apktool/releases/download/v2.12.1/apktool_2.12.1.jar
+
+      - name: Rebuild APK with apktool
+        run: |
+          java -jar output/apktool.jar b SpotiDuck-decoded \
+            -o output/SpotiDuck-module-unsigned.apk
+
+      - name: Generate debug keystore
+        run: |
+          keytool -genkeypair -v \
+            -keystore output/debug.keystore \
+            -alias androiddebugkey \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -storepass android -keypass android \
+            -dname "CN=Android Debug,O=Android,C=US"
+
+      - name: Sign APK
+        run: |
+          BTOOLS="$ANDROID_HOME/build-tools/35.0.0"
+          "$BTOOLS/apksigner" sign \
+            --ks output/debug.keystore \
+            --ks-pass pass:android \
+            --key-pass pass:android \
+            --ks-key-alias androiddebugkey \
+            --out output/dhpOS-Sporitduck-signed.apk \
+            output/SpotiDuck-module-unsigned.apk
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dhpOS-Sporitduck
+          path: output/dhpOS-Sporitduck-signed.apk
+
+      - name: Create / update pre-release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: prerelease
+          name: "dhpOS Sporitduck (pre-release)"
+          prerelease: true
+          files: output/dhpOS-Sporitduck-signed.apk
+          body: |
+            Auto-built from latest commit on ${{ github.ref_name }}.
+
+            **Install**: LSPosed / LSPatch / NPatch → enable for `com.spotify.music`
+
+            **Features (toggle in module settings):**
+            - Toast on Spotify load (requires Enable in settings)
+            - DNS Ad Blocker — blocks ads/analytics/tracking domains
+            - Web Player Connect — captures device ID for web player session

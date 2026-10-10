@@ -1,0 +1,4 @@
+output/
+tools/debug.keystore
+tools/apktool.jar
+*.apk
