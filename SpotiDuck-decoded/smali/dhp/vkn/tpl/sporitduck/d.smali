@@ -1,4 +1,4 @@
-.class public final Lcom/spotiduck/music/d;
+.class public final Ldhp/vkn/tpl/sporitduck/d;
 .super Landroid/widget/ArrayAdapter;
 .source "r8-map-id-37e276fb91e34a5f1b4d8f51e71abe3719dc52e9eeab3bd3e0cf2cd8d4f7becf"
 
@@ -14,11 +14,11 @@
     .locals 1
 
     .line 1
-    iput-object p1, p0, Lcom/spotiduck/music/d;->a:Le6;
+    iput-object p1, p0, Ldhp/vkn/tpl/sporitduck/d;->a:Le6;
 
     .line 2
     .line 3
-    iput-object p2, p0, Lcom/spotiduck/music/d;->b:Ljava/util/List;
+    iput-object p2, p0, Ldhp/vkn/tpl/sporitduck/d;->b:Ljava/util/List;
 
     .line 4
     .line 5
@@ -50,7 +50,7 @@
 
     .line 5
     .line 6
-    iget-object p2, p0, Lcom/spotiduck/music/d;->a:Le6;
+    iget-object p2, p0, Ldhp/vkn/tpl/sporitduck/d;->a:Le6;
 
     .line 7
     .line 8
@@ -79,7 +79,7 @@
 
     .line 20
     :cond_0
-    iget-object p0, p0, Lcom/spotiduck/music/d;->b:Ljava/util/List;
+    iget-object p0, p0, Ldhp/vkn/tpl/sporitduck/d;->b:Ljava/util/List;
 
     .line 21
     .line 22
@@ -91,7 +91,7 @@
     move-result-object p0
 
     .line 26
-    check-cast p0, Lcom/spotiduck/music/e;
+    check-cast p0, Ldhp/vkn/tpl/sporitduck/e;
 
     .line 27
     .line 28
@@ -112,7 +112,7 @@
 
     .line 36
     .line 37
-    iget p3, p0, Lcom/spotiduck/music/e;->c:I
+    iget p3, p0, Ldhp/vkn/tpl/sporitduck/e;->c:I
 
     .line 38
     .line 39
@@ -138,7 +138,7 @@
 
     .line 50
     .line 51
-    iget-object p0, p0, Lcom/spotiduck/music/e;->b:Ljava/lang/String;
+    iget-object p0, p0, Ldhp/vkn/tpl/sporitduck/e;->b:Ljava/lang/String;
 
     .line 52
     .line 53

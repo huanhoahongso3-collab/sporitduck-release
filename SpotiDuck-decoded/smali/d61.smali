@@ -68,11 +68,11 @@
     move-result-object p1
 
     .line 14
-    sput-object p1, Lcom/spotiduck/music/AppSingleton;->G:Ljava/lang/String;
+    sput-object p1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->G:Ljava/lang/String;
 
     .line 15
     .line 16
-    sget v0, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 17
     .line 18
@@ -101,7 +101,7 @@
     .line 29
     .line 30
     .line 31
-    sget-boolean p1, Lcom/spotiduck/music/WebService;->r:Z
+    sget-boolean p1, Ldhp/vkn/tpl/sporitduck/WebService;->r:Z
 
     .line 32
     .line 33

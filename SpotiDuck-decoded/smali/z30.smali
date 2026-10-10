@@ -93,7 +93,7 @@
 
     .line 28
     .line 29
-    sget p1, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget p1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 30
     .line 31
@@ -165,7 +165,7 @@
 
     .line 63
     .line 64
-    sget p1, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget p1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 65
     .line 66

@@ -1,4 +1,4 @@
-.class public final Lcom/spotiduck/music/LockableHScrollView;
+.class public final Ldhp/vkn/tpl/sporitduck/LockableHScrollView;
 .super Landroid/widget/HorizontalScrollView;
 .source "r8-map-id-37e276fb91e34a5f1b4d8f51e71abe3719dc52e9eeab3bd3e0cf2cd8d4f7becf"
 
@@ -25,7 +25,7 @@
     const/4 p1, 0x1
 
     .line 8
-    iput-boolean p1, p0, Lcom/spotiduck/music/LockableHScrollView;->j:Z
+    iput-boolean p1, p0, Ldhp/vkn/tpl/sporitduck/LockableHScrollView;->j:Z
 
     .line 9
     .line 10
@@ -48,7 +48,7 @@
     .line 2
     .line 3
     .line 4
-    iget-boolean v0, p0, Lcom/spotiduck/music/LockableHScrollView;->j:Z
+    iget-boolean v0, p0, Ldhp/vkn/tpl/sporitduck/LockableHScrollView;->j:Z
 
     .line 5
     .line 6
@@ -83,7 +83,7 @@
     .line 2
     .line 3
     .line 4
-    iget-boolean p1, p0, Lcom/spotiduck/music/LockableHScrollView;->j:Z
+    iget-boolean p1, p0, Ldhp/vkn/tpl/sporitduck/LockableHScrollView;->j:Z
 
     .line 5
     .line 6
@@ -212,7 +212,7 @@
     .line 2
     .line 3
     .line 4
-    iget-boolean v0, p0, Lcom/spotiduck/music/LockableHScrollView;->j:Z
+    iget-boolean v0, p0, Ldhp/vkn/tpl/sporitduck/LockableHScrollView;->j:Z
 
     .line 5
     .line 6
@@ -242,7 +242,7 @@
     .locals 1
 
     .line 1
-    iget-boolean v0, p0, Lcom/spotiduck/music/LockableHScrollView;->j:Z
+    iget-boolean v0, p0, Ldhp/vkn/tpl/sporitduck/LockableHScrollView;->j:Z
 
     .line 2
     .line 3
@@ -263,7 +263,7 @@
     .locals 1
 
     .line 1
-    iget-boolean v0, p0, Lcom/spotiduck/music/LockableHScrollView;->j:Z
+    iget-boolean v0, p0, Ldhp/vkn/tpl/sporitduck/LockableHScrollView;->j:Z
 
     .line 2
     .line 3
@@ -284,7 +284,7 @@
     .locals 0
 
     .line 1
-    iput-boolean p1, p0, Lcom/spotiduck/music/LockableHScrollView;->j:Z
+    iput-boolean p1, p0, Ldhp/vkn/tpl/sporitduck/LockableHScrollView;->j:Z
 
     .line 2
     .line 3

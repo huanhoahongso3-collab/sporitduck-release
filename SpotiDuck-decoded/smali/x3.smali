@@ -93,7 +93,7 @@
 
     .line 15
     :pswitch_0
-    sput-boolean v4, Lcom/spotiduck/music/MainActivity;->i0:Z
+    sput-boolean v4, Ldhp/vkn/tpl/sporitduck/MainActivity;->i0:Z
 
     .line 16
     .line 17
@@ -101,11 +101,11 @@
 
     .line 18
     :pswitch_1
-    sget p0, Lcom/spotiduck/music/MainActivity;->h0:I
+    sget p0, Ldhp/vkn/tpl/sporitduck/MainActivity;->h0:I
 
     .line 19
     .line 20
-    sget-object p0, Lcom/spotiduck/music/AppSingleton;->w:Ll9;
+    sget-object p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->w:Ll9;
 
     .line 21
     .line 22
@@ -123,11 +123,11 @@
 
     .line 28
     :pswitch_2
-    sget p0, Lcom/spotiduck/music/MainActivity;->h0:I
+    sget p0, Ldhp/vkn/tpl/sporitduck/MainActivity;->h0:I
 
     .line 29
     .line 30
-    sget-object p0, Lcom/spotiduck/music/AppSingleton;->w:Ll9;
+    sget-object p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->w:Ll9;
 
     .line 31
     .line 32
@@ -149,11 +149,11 @@
 
     .line 40
     :pswitch_3
-    sget p0, Lcom/spotiduck/music/MainActivity;->h0:I
+    sget p0, Ldhp/vkn/tpl/sporitduck/MainActivity;->h0:I
 
     .line 41
     .line 42
-    sget-object p0, Lcom/spotiduck/music/AppSingleton;->w:Ll9;
+    sget-object p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->w:Ll9;
 
     .line 43
     .line 44
@@ -171,7 +171,7 @@
 
     .line 50
     :pswitch_4
-    sget p0, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 51
     .line 52
@@ -180,7 +180,7 @@
 
     .line 53
     :pswitch_6
-    sget-object p0, Lcom/spotiduck/music/AppSingleton;->t:Ljava/lang/ref/WeakReference;
+    sget-object p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->t:Ljava/lang/ref/WeakReference;
 
     .line 54
     .line 55
@@ -196,7 +196,7 @@
     move-result-object p0
 
     .line 61
-    check-cast p0, Lcom/spotiduck/music/MainActivity;
+    check-cast p0, Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 62
     .line 63
@@ -211,7 +211,7 @@
     const/4 v5, 0x3
 
     .line 68
-    invoke-direct {v2, p0, v5}, Ls4;-><init>(Lcom/spotiduck/music/MainActivity;I)V
+    invoke-direct {v2, p0, v5}, Ls4;-><init>(Ldhp/vkn/tpl/sporitduck/MainActivity;I)V
 
     .line 69
     .line 70
@@ -222,11 +222,11 @@
     .line 73
     .line 74
     :cond_3
-    sput v4, Lcom/spotiduck/music/AppSingleton;->j:I
+    sput v4, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 75
     .line 76
-    sget p0, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 77
     .line 78
@@ -251,7 +251,7 @@
     .line 87
     .line 88
     .line 89
-    sget p0, Lcom/spotiduck/music/AppSingleton;->P:I
+    sget p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->P:I
 
     .line 90
     .line 91
@@ -353,12 +353,12 @@
     .line 134
     :catch_0
     :cond_6
-    sput p0, Lcom/spotiduck/music/AppSingleton;->k:I
+    sput p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->k:I
 
     .line 135
     .line 136
     :cond_7
-    sget-object p0, Lcom/spotiduck/music/AppSingleton;->w:Ll9;
+    sget-object p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->w:Ll9;
 
     .line 137
     .line 138
@@ -409,7 +409,7 @@
 
     .line 160
     :pswitch_7
-    sget-object p0, Lcom/spotiduck/music/AppSingleton;->t:Ljava/lang/ref/WeakReference;
+    sget-object p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->t:Ljava/lang/ref/WeakReference;
 
     .line 161
     .line 162
@@ -425,7 +425,7 @@
     move-result-object p0
 
     .line 168
-    check-cast p0, Lcom/spotiduck/music/MainActivity;
+    check-cast p0, Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 169
     .line 170
@@ -440,7 +440,7 @@
     const/4 v3, 0x2
 
     .line 175
-    invoke-direct {v2, p0, v3}, Ls4;-><init>(Lcom/spotiduck/music/MainActivity;I)V
+    invoke-direct {v2, p0, v3}, Ls4;-><init>(Ldhp/vkn/tpl/sporitduck/MainActivity;I)V
 
     .line 176
     .line 177
@@ -451,23 +451,23 @@
     .line 180
     .line 181
     :cond_9
-    sput v4, Lcom/spotiduck/music/AppSingleton;->k:I
+    sput v4, Ldhp/vkn/tpl/sporitduck/AppSingleton;->k:I
 
     .line 182
     .line 183
-    sget p0, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 184
     .line 185
-    sput-boolean v4, Lcom/spotiduck/music/AppSingleton;->A:Z
+    sput-boolean v4, Ldhp/vkn/tpl/sporitduck/AppSingleton;->A:Z
 
     .line 186
     .line 187
-    sput-boolean v4, Lcom/spotiduck/music/AppSingleton;->l:Z
+    sput-boolean v4, Ldhp/vkn/tpl/sporitduck/AppSingleton;->l:Z
 
     .line 188
     .line 189
-    sput v4, Lcom/spotiduck/music/AppSingleton;->j:I
+    sput v4, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 190
     .line 191
@@ -537,7 +537,7 @@
     move-result-object v1
 
     .line 225
-    const-class v2, Lcom/spotiduck/music/WebService;
+    const-class v2, Ldhp/vkn/tpl/sporitduck/WebService;
 
     .line 226
     .line 227
@@ -560,11 +560,11 @@
 
     .line 237
     :pswitch_8
-    sget p0, Lcom/spotiduck/music/MainActivity;->h0:I
+    sget p0, Ldhp/vkn/tpl/sporitduck/MainActivity;->h0:I
 
     .line 238
     .line 239
-    sget-object p0, Lcom/spotiduck/music/AppSingleton;->t:Ljava/lang/ref/WeakReference;
+    sget-object p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->t:Ljava/lang/ref/WeakReference;
 
     .line 240
     .line 241
@@ -580,7 +580,7 @@
     move-result-object p0
 
     .line 247
-    check-cast p0, Lcom/spotiduck/music/MainActivity;
+    check-cast p0, Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 248
     .line 249
@@ -596,7 +596,7 @@
 
     .line 254
     .line 255
-    invoke-direct {v0, p0, v1}, Ls4;-><init>(Lcom/spotiduck/music/MainActivity;I)V
+    invoke-direct {v0, p0, v1}, Ls4;-><init>(Ldhp/vkn/tpl/sporitduck/MainActivity;I)V
 
     .line 256
     .line 257
@@ -611,7 +611,7 @@
 
     .line 262
     :pswitch_9
-    sget p0, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 263
     .line 264
@@ -627,7 +627,7 @@
 
     .line 269
     .line 270
-    sget-boolean p0, Lcom/spotiduck/music/AppSingleton;->B:Z
+    sget-boolean p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->B:Z
 
     .line 271
     .line 272
@@ -653,7 +653,7 @@
 
     .line 282
     :pswitch_a
-    sget-object p0, Lcom/spotiduck/music/AppSingleton;->w:Ll9;
+    sget-object p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->w:Ll9;
 
     .line 283
     .line 284

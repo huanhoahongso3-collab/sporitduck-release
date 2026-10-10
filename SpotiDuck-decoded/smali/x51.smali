@@ -9,11 +9,11 @@
 # instance fields
 .field public final synthetic j:I
 
-.field public final synthetic k:Lcom/spotiduck/music/SettingsActivity$a;
+.field public final synthetic k:Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/spotiduck/music/SettingsActivity$a;I)V
+.method public synthetic constructor <init>(Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;I)V
     .locals 0
 
     .line 1
@@ -21,7 +21,7 @@
 
     .line 2
     .line 3
-    iput-object p1, p0, Lx51;->k:Lcom/spotiduck/music/SettingsActivity$a;
+    iput-object p1, p0, Lx51;->k:Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;
 
     .line 4
     .line 5
@@ -49,7 +49,7 @@
     const/4 v1, 0x0
 
     .line 5
-    iget-object p0, p0, Lx51;->k:Lcom/spotiduck/music/SettingsActivity$a;
+    iget-object p0, p0, Lx51;->k:Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;
 
     .line 6
     .line 7
@@ -247,7 +247,7 @@
     move-result-object v3
 
     .line 108
-    sget-boolean v4, Lcom/spotiduck/music/AppSingleton;->F:Z
+    sget-boolean v4, Ldhp/vkn/tpl/sporitduck/AppSingleton;->F:Z
 
     .line 109
     .line 110
@@ -256,7 +256,7 @@
     .line 111
     .line 112
     .line 113
-    sget-boolean v4, Lcom/spotiduck/music/AppSingleton;->F:Z
+    sget-boolean v4, Ldhp/vkn/tpl/sporitduck/AppSingleton;->F:Z
 
     .line 114
     .line 115
@@ -283,7 +283,7 @@
     .line 124
     .line 125
     .line 126
-    sget-boolean v4, Lcom/spotiduck/music/AppSingleton;->F:Z
+    sget-boolean v4, Ldhp/vkn/tpl/sporitduck/AppSingleton;->F:Z
 
     .line 127
     .line 128
@@ -392,7 +392,7 @@
 
     .line 184
     :pswitch_1
-    sput-boolean v0, Lcom/spotiduck/music/MainActivity;->k0:Z
+    sput-boolean v0, Ldhp/vkn/tpl/sporitduck/MainActivity;->k0:Z
 
     .line 185
     .line 186

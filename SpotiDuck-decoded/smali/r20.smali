@@ -12,7 +12,7 @@
 
 
 # direct methods
-.method public constructor <init>(Lcom/spotiduck/music/MainActivity;Z)V
+.method public constructor <init>(Ldhp/vkn/tpl/sporitduck/MainActivity;Z)V
     .locals 1
 
     const/4 v0, 0x1
@@ -119,7 +119,7 @@
     .line 7
     .line 8
     .line 9
-    check-cast v2, Lcom/spotiduck/music/MainActivity;
+    check-cast v2, Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 10
     .line 11
@@ -128,7 +128,7 @@
     .line 12
     .line 13
     .line 14
-    sget-boolean p1, Lcom/spotiduck/music/AppSingleton;->m:Z
+    sget-boolean p1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->m:Z
 
     .line 15
     .line 16
@@ -136,7 +136,7 @@
 
     .line 17
     .line 18
-    sget-boolean p1, Lcom/spotiduck/music/AppSingleton;->l:Z
+    sget-boolean p1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->l:Z
 
     .line 19
     .line 20
@@ -153,7 +153,7 @@
     .line 25
     .line 26
     :cond_0
-    iget-object p0, v2, Lcom/spotiduck/music/MainActivity;->H:Landroidx/constraintlayout/widget/ConstraintLayout;
+    iget-object p0, v2, Ldhp/vkn/tpl/sporitduck/MainActivity;->H:Landroidx/constraintlayout/widget/ConstraintLayout;
 
     .line 27
     .line 28
@@ -171,7 +171,7 @@
     .line 34
     .line 35
     :cond_1
-    iget-object p0, v2, Lcom/spotiduck/music/MainActivity;->N:Landroid/widget/FrameLayout;
+    iget-object p0, v2, Ldhp/vkn/tpl/sporitduck/MainActivity;->N:Landroid/widget/FrameLayout;
 
     .line 36
     .line 37

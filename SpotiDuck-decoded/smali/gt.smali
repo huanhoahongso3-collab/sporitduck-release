@@ -72,11 +72,11 @@
 
     .line 17
     :pswitch_0
-    check-cast v0, Lcom/spotiduck/music/SettingsActivity$a;
+    check-cast v0, Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;
 
     .line 18
     .line 19
-    sget-boolean v1, Lcom/spotiduck/music/AppSingleton;->F:Z
+    sget-boolean v1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->F:Z
 
     .line 20
     .line 21
@@ -121,7 +121,7 @@
     move-result-object v0
 
     .line 41
-    sget-object v2, Lcom/spotiduck/music/AppSingleton;->G:Ljava/lang/String;
+    sget-object v2, Ldhp/vkn/tpl/sporitduck/AppSingleton;->G:Ljava/lang/String;
 
     .line 42
     .line 43
@@ -649,7 +649,7 @@
     move-result-object v8
 
     .line 297
-    new-instance v12, Lcom/spotiduck/music/e;
+    new-instance v12, Ldhp/vkn/tpl/sporitduck/e;
 
     .line 298
     .line 299
@@ -666,12 +666,12 @@
     .line 304
     .line 305
     .line 306
-    invoke-direct {v12, v2, v3, v5}, Lcom/spotiduck/music/e;-><init>(Ljava/lang/String;Ljava/lang/String;I)V
+    invoke-direct {v12, v2, v3, v5}, Ldhp/vkn/tpl/sporitduck/e;-><init>(Ljava/lang/String;Ljava/lang/String;I)V
 
     .line 307
     .line 308
     .line 309
-    new-instance v13, Lcom/spotiduck/music/e;
+    new-instance v13, Ldhp/vkn/tpl/sporitduck/e;
 
     .line 310
     .line 311
@@ -688,12 +688,12 @@
     .line 316
     .line 317
     .line 318
-    invoke-direct {v13, v2, v3, v5}, Lcom/spotiduck/music/e;-><init>(Ljava/lang/String;Ljava/lang/String;I)V
+    invoke-direct {v13, v2, v3, v5}, Ldhp/vkn/tpl/sporitduck/e;-><init>(Ljava/lang/String;Ljava/lang/String;I)V
 
     .line 319
     .line 320
     .line 321
-    new-instance v14, Lcom/spotiduck/music/e;
+    new-instance v14, Ldhp/vkn/tpl/sporitduck/e;
 
     .line 322
     .line 323
@@ -710,12 +710,12 @@
     .line 328
     .line 329
     .line 330
-    invoke-direct {v14, v2, v3, v5}, Lcom/spotiduck/music/e;-><init>(Ljava/lang/String;Ljava/lang/String;I)V
+    invoke-direct {v14, v2, v3, v5}, Ldhp/vkn/tpl/sporitduck/e;-><init>(Ljava/lang/String;Ljava/lang/String;I)V
 
     .line 331
     .line 332
     .line 333
-    new-instance v15, Lcom/spotiduck/music/e;
+    new-instance v15, Ldhp/vkn/tpl/sporitduck/e;
 
     .line 334
     .line 335
@@ -732,12 +732,12 @@
     .line 340
     .line 341
     .line 342
-    invoke-direct {v15, v2, v3, v5}, Lcom/spotiduck/music/e;-><init>(Ljava/lang/String;Ljava/lang/String;I)V
+    invoke-direct {v15, v2, v3, v5}, Ldhp/vkn/tpl/sporitduck/e;-><init>(Ljava/lang/String;Ljava/lang/String;I)V
 
     .line 343
     .line 344
     .line 345
-    new-instance v2, Lcom/spotiduck/music/e;
+    new-instance v2, Ldhp/vkn/tpl/sporitduck/e;
 
     .line 346
     .line 347
@@ -754,12 +754,12 @@
     .line 352
     .line 353
     .line 354
-    invoke-direct {v2, v3, v5, v6}, Lcom/spotiduck/music/e;-><init>(Ljava/lang/String;Ljava/lang/String;I)V
+    invoke-direct {v2, v3, v5, v6}, Ldhp/vkn/tpl/sporitduck/e;-><init>(Ljava/lang/String;Ljava/lang/String;I)V
 
     .line 355
     .line 356
     .line 357
-    new-instance v3, Lcom/spotiduck/music/e;
+    new-instance v3, Ldhp/vkn/tpl/sporitduck/e;
 
     .line 358
     .line 359
@@ -776,12 +776,12 @@
     .line 364
     .line 365
     .line 366
-    invoke-direct {v3, v5, v6, v9}, Lcom/spotiduck/music/e;-><init>(Ljava/lang/String;Ljava/lang/String;I)V
+    invoke-direct {v3, v5, v6, v9}, Ldhp/vkn/tpl/sporitduck/e;-><init>(Ljava/lang/String;Ljava/lang/String;I)V
 
     .line 367
     .line 368
     .line 369
-    new-instance v5, Lcom/spotiduck/music/e;
+    new-instance v5, Ldhp/vkn/tpl/sporitduck/e;
 
     .line 370
     .line 371
@@ -794,7 +794,7 @@
     .line 374
     .line 375
     .line 376
-    invoke-direct {v5, v1, v6, v9}, Lcom/spotiduck/music/e;-><init>(Ljava/lang/String;Ljava/lang/String;I)V
+    invoke-direct {v5, v1, v6, v9}, Ldhp/vkn/tpl/sporitduck/e;-><init>(Ljava/lang/String;Ljava/lang/String;I)V
 
     .line 377
     .line 378
@@ -811,7 +811,7 @@
 
     .line 384
     .line 385
-    filled-new-array/range {v12 .. v18}, [Lcom/spotiduck/music/e;
+    filled-new-array/range {v12 .. v18}, [Ldhp/vkn/tpl/sporitduck/e;
 
     .line 386
     .line 387
@@ -827,7 +827,7 @@
     move-result-object v6
 
     .line 393
-    invoke-static {v8, v7, v6}, Lcom/spotiduck/music/SettingsActivity$a;->U(Ljava/util/List;Ljava/util/ArrayList;Ljava/util/List;)V
+    invoke-static {v8, v7, v6}, Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;->U(Ljava/util/List;Ljava/util/ArrayList;Ljava/util/List;)V
 
     .line 394
     .line 395
@@ -1032,7 +1032,7 @@
 
     .line 496
     :pswitch_1
-    check-cast v0, Lcom/spotiduck/music/CustomPrefTitle;
+    check-cast v0, Ldhp/vkn/tpl/sporitduck/CustomPrefTitle;
 
     .line 497
     .line 498

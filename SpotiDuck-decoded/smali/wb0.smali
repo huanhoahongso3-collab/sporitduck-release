@@ -77,7 +77,7 @@
     move-object v6, v1
 
     .line 11
-    check-cast v6, Lcom/spotiduck/music/SettingsActivity$a;
+    check-cast v6, Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;
 
     .line 12
     .line 13
@@ -146,7 +146,7 @@
 
     .line 43
     .line 44
-    invoke-direct/range {v2 .. v7}, Li61;-><init>(ZLandroid/content/Context;Le2;Lcom/spotiduck/music/SettingsActivity$a;Landroidx/preference/Preference;)V
+    invoke-direct/range {v2 .. v7}, Li61;-><init>(ZLandroid/content/Context;Le2;Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;Landroidx/preference/Preference;)V
 
     .line 45
     .line 46

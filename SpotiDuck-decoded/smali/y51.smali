@@ -52,7 +52,7 @@
     .line 6
     .line 7
     .line 8
-    check-cast p0, Lcom/spotiduck/music/MainActivity;
+    check-cast p0, Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 9
     .line 10
@@ -120,25 +120,25 @@
 
     .line 43
     :pswitch_0
-    check-cast p0, Lcom/spotiduck/music/SettingsActivity$a;
+    check-cast p0, Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;
 
     .line 44
     .line 45
     const/4 p1, 0x1
 
     .line 46
-    sput-boolean p1, Lcom/spotiduck/music/MainActivity;->l0:Z
+    sput-boolean p1, Ldhp/vkn/tpl/sporitduck/MainActivity;->l0:Z
 
     .line 47
     .line 48
     const/4 p1, 0x0
 
     .line 49
-    sput-boolean p1, Lcom/spotiduck/music/AppSingleton;->B:Z
+    sput-boolean p1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->B:Z
 
     .line 50
     .line 51
-    sget p2, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget p2, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 52
     .line 53

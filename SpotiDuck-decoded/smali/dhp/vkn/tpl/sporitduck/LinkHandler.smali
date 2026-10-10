@@ -1,4 +1,4 @@
-.class public final Lcom/spotiduck/music/LinkHandler;
+.class public final Ldhp/vkn/tpl/sporitduck/LinkHandler;
 .super Le6;
 .source "r8-map-id-37e276fb91e34a5f1b4d8f51e71abe3719dc52e9eeab3bd3e0cf2cd8d4f7becf"
 
@@ -30,7 +30,7 @@
     .line 7
     .line 8
     .line 9
-    iput-object v0, p0, Lcom/spotiduck/music/LinkHandler;->G:Lkz0;
+    iput-object v0, p0, Ldhp/vkn/tpl/sporitduck/LinkHandler;->G:Lkz0;
 
     .line 10
     .line 11
@@ -237,7 +237,7 @@
 
     .line 95
     .line 96
-    invoke-static {v1}, Lcom/spotiduck/music/LinkHandler;->v(Ljava/lang/String;)Z
+    invoke-static {v1}, Ldhp/vkn/tpl/sporitduck/LinkHandler;->v(Ljava/lang/String;)Z
 
     .line 97
     .line 98
@@ -1670,7 +1670,7 @@
     .line 140
     .line 141
     .line 142
-    invoke-virtual {p0, p1}, Lcom/spotiduck/music/LinkHandler;->u(Ljava/lang/String;)V
+    invoke-virtual {p0, p1}, Ldhp/vkn/tpl/sporitduck/LinkHandler;->u(Ljava/lang/String;)V
 
     .line 143
     .line 144
@@ -1753,7 +1753,7 @@
 
     .line 181
     :cond_7
-    invoke-static {v2}, Lcom/spotiduck/music/LinkHandler;->v(Ljava/lang/String;)Z
+    invoke-static {v2}, Ldhp/vkn/tpl/sporitduck/LinkHandler;->v(Ljava/lang/String;)Z
 
     .line 182
     .line 183
@@ -1795,7 +1795,7 @@
 
     .line 202
     :cond_8
-    invoke-static {v1}, Lcom/spotiduck/music/LinkHandler;->t(Landroid/net/Uri;)Ljava/lang/String;
+    invoke-static {v1}, Ldhp/vkn/tpl/sporitduck/LinkHandler;->t(Landroid/net/Uri;)Ljava/lang/String;
 
     .line 203
     .line 204
@@ -1815,7 +1815,7 @@
 
     .line 210
     :goto_4
-    invoke-virtual {p0, v0}, Lcom/spotiduck/music/LinkHandler;->u(Ljava/lang/String;)V
+    invoke-virtual {p0, v0}, Ldhp/vkn/tpl/sporitduck/LinkHandler;->u(Ljava/lang/String;)V
 
     .line 211
     .line 212
@@ -1825,7 +1825,7 @@
     .line 214
     :cond_a
     :goto_5
-    invoke-static {v0, p1}, Lcom/spotiduck/music/LinkHandler;->w(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v0, p1}, Ldhp/vkn/tpl/sporitduck/LinkHandler;->w(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     .line 215
     .line 216
@@ -1837,7 +1837,7 @@
 
     .line 219
     .line 220
-    invoke-virtual {p0, v1}, Lcom/spotiduck/music/LinkHandler;->u(Ljava/lang/String;)V
+    invoke-virtual {p0, v1}, Ldhp/vkn/tpl/sporitduck/LinkHandler;->u(Ljava/lang/String;)V
 
     .line 221
     .line 222
@@ -1850,7 +1850,7 @@
 
     .line 225
     .line 226
-    invoke-direct {v1, p0, v0, p1}, Lsi0;-><init>(Lcom/spotiduck/music/LinkHandler;Ljava/lang/String;Ljava/lang/String;)V
+    invoke-direct {v1, p0, v0, p1}, Lsi0;-><init>(Ldhp/vkn/tpl/sporitduck/LinkHandler;Ljava/lang/String;Ljava/lang/String;)V
 
     .line 227
     .line 228
@@ -1934,7 +1934,7 @@
     move-result-object p1
 
     .line 25
-    iget-object p0, p0, Lcom/spotiduck/music/LinkHandler;->G:Lkz0;
+    iget-object p0, p0, Ldhp/vkn/tpl/sporitduck/LinkHandler;->G:Lkz0;
 
     .line 26
     .line 27
@@ -1997,7 +1997,7 @@
 
     .line 14
     :cond_0
-    sget-boolean v0, Lcom/spotiduck/music/WebService;->r:Z
+    sget-boolean v0, Ldhp/vkn/tpl/sporitduck/WebService;->r:Z
 
     .line 15
     .line 16
@@ -2005,7 +2005,7 @@
 
     .line 17
     .line 18
-    sget-boolean v0, Lcom/spotiduck/music/AppSingleton;->l:Z
+    sget-boolean v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->l:Z
 
     .line 19
     .line 20
@@ -2013,7 +2013,7 @@
 
     .line 21
     .line 22
-    sget-object v0, Lcom/spotiduck/music/AppSingleton;->w:Ll9;
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->w:Ll9;
 
     .line 23
     .line 24
@@ -2043,7 +2043,7 @@
 
     .line 36
     .line 37
-    const-class v1, Lcom/spotiduck/music/MainActivity;
+    const-class v1, Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 38
     .line 39
@@ -2092,12 +2092,12 @@
 
     .line 63
     .line 64
-    invoke-static {p0}, Lri0;->k(Lcom/spotiduck/music/LinkHandler;)V
+    invoke-static {p0}, Lri0;->k(Ldhp/vkn/tpl/sporitduck/LinkHandler;)V
 
     .line 65
     .line 66
     .line 67
-    invoke-static {p0}, Lri0;->l(Lcom/spotiduck/music/LinkHandler;)V
+    invoke-static {p0}, Lri0;->l(Ldhp/vkn/tpl/sporitduck/LinkHandler;)V
 
     .line 68
     .line 69

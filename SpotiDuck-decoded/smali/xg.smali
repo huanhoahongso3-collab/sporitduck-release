@@ -2108,7 +2108,7 @@
     .locals 2
 
     .line 1
-    sget-object v0, Lcom/spotiduck/music/AppSingleton;->t:Ljava/lang/ref/WeakReference;
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->t:Ljava/lang/ref/WeakReference;
 
     .line 2
     .line 3
@@ -2124,7 +2124,7 @@
     move-result-object v0
 
     .line 9
-    check-cast v0, Lcom/spotiduck/music/MainActivity;
+    check-cast v0, Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 10
     .line 11
@@ -2136,7 +2136,7 @@
 
     .line 14
     .line 15
-    invoke-direct {v1, v0, p0}, Lbl0;-><init>(Lcom/spotiduck/music/MainActivity;Ljava/lang/String;)V
+    invoke-direct {v1, v0, p0}, Lbl0;-><init>(Ldhp/vkn/tpl/sporitduck/MainActivity;Ljava/lang/String;)V
 
     .line 16
     .line 17

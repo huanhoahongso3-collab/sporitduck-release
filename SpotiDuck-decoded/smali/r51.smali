@@ -65,7 +65,7 @@
     .line 9
     .line 10
     .line 11
-    check-cast p0, Lcom/spotiduck/music/MainActivity;
+    check-cast p0, Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 12
     .line 13
@@ -170,11 +170,11 @@
 
     .line 64
     .line 65
-    sput-object p1, Lcom/spotiduck/music/AppSingleton;->b0:Ljava/lang/String;
+    sput-object p1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->b0:Ljava/lang/String;
 
     .line 66
     .line 67
-    sget v1, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget v1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 68
     .line 69
@@ -208,7 +208,7 @@
     .line 83
     .line 84
     .line 85
-    invoke-static {v0}, Lcom/spotiduck/music/SettingsActivity$a;->S(Landroidx/preference/Preference;)V
+    invoke-static {v0}, Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;->S(Landroidx/preference/Preference;)V
 
     .line 86
     .line 87

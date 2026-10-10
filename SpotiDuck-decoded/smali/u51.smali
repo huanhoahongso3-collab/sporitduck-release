@@ -11,13 +11,13 @@
 
 .field public final synthetic k:Landroid/content/Context;
 
-.field public final synthetic l:Lcom/spotiduck/music/SettingsActivity$a;
+.field public final synthetic l:Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;
 
 .field public final synthetic m:Landroidx/preference/Preference;
 
 
 # direct methods
-.method public synthetic constructor <init>(Landroid/widget/EditText;Landroid/content/Context;Lcom/spotiduck/music/SettingsActivity$a;Landroidx/preference/Preference;)V
+.method public synthetic constructor <init>(Landroid/widget/EditText;Landroid/content/Context;Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;Landroidx/preference/Preference;)V
     .locals 0
 
     .line 1
@@ -34,7 +34,7 @@
 
     .line 7
     .line 8
-    iput-object p3, p0, Lu51;->l:Lcom/spotiduck/music/SettingsActivity$a;
+    iput-object p3, p0, Lu51;->l:Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;
 
     .line 9
     .line 10
@@ -91,7 +91,7 @@
     move-result-object v1
 
     .line 21
-    sget v2, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget v2, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 22
     .line 23
@@ -111,7 +111,7 @@
 
     .line 30
     .line 31
-    iget-object v3, v0, Lu51;->l:Lcom/spotiduck/music/SettingsActivity$a;
+    iget-object v3, v0, Lu51;->l:Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;
 
     .line 32
     .line 33
@@ -119,7 +119,7 @@
 
     .line 34
     .line 35
-    invoke-direct {v11, v3, v10, v0}, Lb61;-><init>(Lcom/spotiduck/music/SettingsActivity$a;Landroid/content/Context;Landroidx/preference/Preference;)V
+    invoke-direct {v11, v3, v10, v0}, Lb61;-><init>(Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;Landroid/content/Context;Landroidx/preference/Preference;)V
 
     .line 36
     .line 37

@@ -7,7 +7,7 @@
 
 
 # instance fields
-.field public final synthetic j:Lcom/spotiduck/music/MainActivity;
+.field public final synthetic j:Ldhp/vkn/tpl/sporitduck/MainActivity;
 
 .field public final synthetic k:I
 
@@ -15,7 +15,7 @@
 
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/spotiduck/music/MainActivity;II)V
+.method public synthetic constructor <init>(Ldhp/vkn/tpl/sporitduck/MainActivity;II)V
     .locals 0
 
     .line 1
@@ -24,7 +24,7 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Lp4;->j:Lcom/spotiduck/music/MainActivity;
+    iput-object p1, p0, Lp4;->j:Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 5
     .line 6
@@ -92,22 +92,22 @@
     .line 23
     .line 24
     :goto_0
-    iget-object p0, p0, Lp4;->j:Lcom/spotiduck/music/MainActivity;
+    iget-object p0, p0, Lp4;->j:Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 25
     .line 26
-    iput-object v2, p0, Lcom/spotiduck/music/MainActivity;->b0:Landroid/util/Rational;
+    iput-object v2, p0, Ldhp/vkn/tpl/sporitduck/MainActivity;->b0:Landroid/util/Rational;
 
     .line 27
     .line 28
     const/4 v0, 0x1
 
     .line 29
-    iput-boolean v0, p0, Lcom/spotiduck/music/MainActivity;->c0:Z
+    iput-boolean v0, p0, Ldhp/vkn/tpl/sporitduck/MainActivity;->c0:Z
 
     .line 30
     .line 31
-    iget-object v1, p0, Lcom/spotiduck/music/MainActivity;->G:Landroid/webkit/WebView;
+    iget-object v1, p0, Ldhp/vkn/tpl/sporitduck/MainActivity;->G:Landroid/webkit/WebView;
 
     .line 32
     .line 33
@@ -115,7 +115,7 @@
 
     .line 34
     .line 35
-    sget-object v1, Lcom/spotiduck/music/AppSingleton;->w:Ll9;
+    sget-object v1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->w:Ll9;
 
     .line 36
     .line 37
@@ -124,7 +124,7 @@
 
     .line 38
     .line 39
-    invoke-virtual {p0, v0}, Lcom/spotiduck/music/MainActivity;->v(Z)V
+    invoke-virtual {p0, v0}, Ldhp/vkn/tpl/sporitduck/MainActivity;->v(Z)V
 
     .line 40
     .line 41

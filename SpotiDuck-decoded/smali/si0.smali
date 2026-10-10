@@ -7,7 +7,7 @@
 
 
 # instance fields
-.field public final synthetic j:Lcom/spotiduck/music/LinkHandler;
+.field public final synthetic j:Ldhp/vkn/tpl/sporitduck/LinkHandler;
 
 .field public final synthetic k:Ljava/lang/String;
 
@@ -15,7 +15,7 @@
 
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/spotiduck/music/LinkHandler;Ljava/lang/String;Ljava/lang/String;)V
+.method public synthetic constructor <init>(Ldhp/vkn/tpl/sporitduck/LinkHandler;Ljava/lang/String;Ljava/lang/String;)V
     .locals 0
 
     .line 1
@@ -24,7 +24,7 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Lsi0;->j:Lcom/spotiduck/music/LinkHandler;
+    iput-object p1, p0, Lsi0;->j:Ldhp/vkn/tpl/sporitduck/LinkHandler;
 
     .line 5
     .line 6
@@ -61,7 +61,7 @@
 
     .line 8
     .line 9
-    invoke-static {v2, v3}, Lcom/spotiduck/music/LinkHandler;->w(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    invoke-static {v2, v3}, Ldhp/vkn/tpl/sporitduck/LinkHandler;->w(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 
     .line 10
     .line 11
@@ -69,7 +69,7 @@
     move-result-object v3
 
     .line 13
-    iget-object v4, v0, Lsi0;->j:Lcom/spotiduck/music/LinkHandler;
+    iget-object v4, v0, Lsi0;->j:Ldhp/vkn/tpl/sporitduck/LinkHandler;
 
     .line 14
     .line 15
@@ -1261,7 +1261,7 @@
     .line 568
     .line 569
     :try_start_7
-    invoke-virtual {v4, v14}, Lcom/spotiduck/music/LinkHandler;->s(Ljava/lang/String;)Ljava/lang/String;
+    invoke-virtual {v4, v14}, Ldhp/vkn/tpl/sporitduck/LinkHandler;->s(Ljava/lang/String;)Ljava/lang/String;
 
     .line 570
     .line 571
@@ -1374,7 +1374,7 @@
 
     .line 623
     .line 624
-    invoke-virtual {v4, v3}, Lcom/spotiduck/music/LinkHandler;->s(Ljava/lang/String;)Ljava/lang/String;
+    invoke-virtual {v4, v3}, Ldhp/vkn/tpl/sporitduck/LinkHandler;->s(Ljava/lang/String;)Ljava/lang/String;
 
     .line 625
     .line 626
@@ -1630,7 +1630,7 @@
 
     .line 750
     .line 751
-    invoke-virtual {v4, v0}, Lcom/spotiduck/music/LinkHandler;->s(Ljava/lang/String;)Ljava/lang/String;
+    invoke-virtual {v4, v0}, Ldhp/vkn/tpl/sporitduck/LinkHandler;->s(Ljava/lang/String;)Ljava/lang/String;
 
     .line 752
     .line 753
@@ -1665,7 +1665,7 @@
 
     .line 767
     .line 768
-    invoke-virtual {v4, v5}, Lcom/spotiduck/music/LinkHandler;->s(Ljava/lang/String;)Ljava/lang/String;
+    invoke-virtual {v4, v5}, Ldhp/vkn/tpl/sporitduck/LinkHandler;->s(Ljava/lang/String;)Ljava/lang/String;
 
     .line 769
     .line 770
@@ -1739,7 +1739,7 @@
     .line 806
     .line 807
     :cond_22
-    invoke-virtual {v4, v14}, Lcom/spotiduck/music/LinkHandler;->s(Ljava/lang/String;)Ljava/lang/String;
+    invoke-virtual {v4, v14}, Ldhp/vkn/tpl/sporitduck/LinkHandler;->s(Ljava/lang/String;)Ljava/lang/String;
 
     .line 808
     .line 809
@@ -1852,7 +1852,7 @@
 
     .line 861
     .line 862
-    invoke-virtual {v4, v0}, Lcom/spotiduck/music/LinkHandler;->s(Ljava/lang/String;)Ljava/lang/String;
+    invoke-virtual {v4, v0}, Ldhp/vkn/tpl/sporitduck/LinkHandler;->s(Ljava/lang/String;)Ljava/lang/String;
 
     .line 863
     .line 864
@@ -1873,7 +1873,7 @@
 
     .line 871
     .line 872
-    invoke-virtual {v4, v11}, Lcom/spotiduck/music/LinkHandler;->s(Ljava/lang/String;)Ljava/lang/String;
+    invoke-virtual {v4, v11}, Ldhp/vkn/tpl/sporitduck/LinkHandler;->s(Ljava/lang/String;)Ljava/lang/String;
 
     .line 873
     .line 874
@@ -2097,7 +2097,7 @@
     const/4 v5, 0x1
 
     .line 972
-    invoke-direct {v0, v4, v3, v5}, Lti0;-><init>(Lcom/spotiduck/music/LinkHandler;Ljava/lang/String;I)V
+    invoke-direct {v0, v4, v3, v5}, Lti0;-><init>(Ldhp/vkn/tpl/sporitduck/LinkHandler;Ljava/lang/String;I)V
 
     .line 973
     .line 974

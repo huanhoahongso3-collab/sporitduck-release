@@ -17,13 +17,13 @@
 
 .field public final synthetic n:Lhz0;
 
-.field public final synthetic o:Lcom/spotiduck/music/SettingsActivity$a;
+.field public final synthetic o:Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;
 
 .field public final synthetic p:Landroidx/preference/Preference;
 
 
 # direct methods
-.method public synthetic constructor <init>(Landroid/content/Context;ILe2;Lhz0;Lcom/spotiduck/music/SettingsActivity$a;Landroidx/preference/Preference;)V
+.method public synthetic constructor <init>(Landroid/content/Context;ILe2;Lhz0;Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;Landroidx/preference/Preference;)V
     .locals 1
 
     .line 1
@@ -55,7 +55,7 @@
 
     .line 14
     .line 15
-    iput-object p5, p0, Lt51;->o:Lcom/spotiduck/music/SettingsActivity$a;
+    iput-object p5, p0, Lt51;->o:Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;
 
     .line 16
     .line 17
@@ -66,7 +66,7 @@
     return-void
 .end method
 
-.method public synthetic constructor <init>(Landroid/content/Context;Le2;ILhz0;Lcom/spotiduck/music/SettingsActivity$a;Landroidx/preference/Preference;)V
+.method public synthetic constructor <init>(Landroid/content/Context;Le2;ILhz0;Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;Landroidx/preference/Preference;)V
     .locals 1
 
     .line 20
@@ -84,7 +84,7 @@
 
     iput-object p4, p0, Lt51;->n:Lhz0;
 
-    iput-object p5, p0, Lt51;->o:Lcom/spotiduck/music/SettingsActivity$a;
+    iput-object p5, p0, Lt51;->o:Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;
 
     iput-object p6, p0, Lt51;->p:Landroidx/preference/Preference;
 
@@ -191,7 +191,7 @@
 
     .line 46
     .line 47
-    iget-object v9, p0, Lt51;->o:Lcom/spotiduck/music/SettingsActivity$a;
+    iget-object v9, p0, Lt51;->o:Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;
 
     .line 48
     .line 49
@@ -199,7 +199,7 @@
 
     .line 50
     .line 51
-    invoke-direct/range {v5 .. v11}, La61;-><init>(Ljava/lang/Object;Ljava/lang/Object;Ljava/io/Serializable;Lcom/spotiduck/music/SettingsActivity$a;Landroidx/preference/Preference;I)V
+    invoke-direct/range {v5 .. v11}, La61;-><init>(Ljava/lang/Object;Ljava/lang/Object;Ljava/io/Serializable;Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;Landroidx/preference/Preference;I)V
 
     .line 52
     .line 53
@@ -451,7 +451,7 @@
 
     .line 183
     .line 184
-    iget-object v10, p0, Lt51;->o:Lcom/spotiduck/music/SettingsActivity$a;
+    iget-object v10, p0, Lt51;->o:Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;
 
     .line 185
     .line 186
@@ -459,7 +459,7 @@
 
     .line 187
     .line 188
-    invoke-direct/range {v5 .. v11}, Lg61;-><init>(Landroid/content/Context;Le2;Landroid/widget/EditText;Lhz0;Lcom/spotiduck/music/SettingsActivity$a;Landroidx/preference/Preference;)V
+    invoke-direct/range {v5 .. v11}, Lg61;-><init>(Landroid/content/Context;Le2;Landroid/widget/EditText;Lhz0;Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;Landroidx/preference/Preference;)V
 
     .line 189
     .line 190

@@ -9,13 +9,13 @@
 # instance fields
 .field public final synthetic j:I
 
-.field public final synthetic k:Lcom/spotiduck/music/MainActivity;
+.field public final synthetic k:Ldhp/vkn/tpl/sporitduck/MainActivity;
 
 .field public final synthetic l:Z
 
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/spotiduck/music/MainActivity;ZI)V
+.method public synthetic constructor <init>(Ldhp/vkn/tpl/sporitduck/MainActivity;ZI)V
     .locals 0
 
     .line 1
@@ -23,7 +23,7 @@
 
     .line 2
     .line 3
-    iput-object p1, p0, Lzk0;->k:Lcom/spotiduck/music/MainActivity;
+    iput-object p1, p0, Lzk0;->k:Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 4
     .line 5
@@ -60,7 +60,7 @@
 
     .line 7
     .line 8
-    iget-object p0, p0, Lzk0;->k:Lcom/spotiduck/music/MainActivity;
+    iget-object p0, p0, Lzk0;->k:Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 9
     .line 10
@@ -69,7 +69,7 @@
     .line 11
     .line 12
     .line 13
-    iget-object v0, p0, Lcom/spotiduck/music/MainActivity;->H:Landroidx/constraintlayout/widget/ConstraintLayout;
+    iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/MainActivity;->H:Landroidx/constraintlayout/widget/ConstraintLayout;
 
     .line 14
     .line 15
@@ -95,7 +95,7 @@
     .line 25
     .line 26
     :cond_0
-    iget-object v0, p0, Lcom/spotiduck/music/MainActivity;->H:Landroidx/constraintlayout/widget/ConstraintLayout;
+    iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/MainActivity;->H:Landroidx/constraintlayout/widget/ConstraintLayout;
 
     .line 27
     .line 28
@@ -143,7 +143,7 @@
 
     .line 49
     .line 50
-    invoke-direct {v1, p0, v4}, Lr20;-><init>(Lcom/spotiduck/music/MainActivity;Z)V
+    invoke-direct {v1, p0, v4}, Lr20;-><init>(Ldhp/vkn/tpl/sporitduck/MainActivity;Z)V
 
     .line 51
     .line 52
@@ -170,7 +170,7 @@
 
     .line 63
     :pswitch_0
-    iget-object v0, p0, Lcom/spotiduck/music/MainActivity;->H:Landroidx/constraintlayout/widget/ConstraintLayout;
+    iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/MainActivity;->H:Landroidx/constraintlayout/widget/ConstraintLayout;
 
     .line 64
     .line 65
@@ -196,7 +196,7 @@
     .line 75
     .line 76
     :cond_2
-    iget-object v0, p0, Lcom/spotiduck/music/MainActivity;->H:Landroidx/constraintlayout/widget/ConstraintLayout;
+    iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/MainActivity;->H:Landroidx/constraintlayout/widget/ConstraintLayout;
 
     .line 77
     .line 78
@@ -213,7 +213,7 @@
     .line 83
     .line 84
     :cond_3
-    iget-object v0, p0, Lcom/spotiduck/music/MainActivity;->H:Landroidx/constraintlayout/widget/ConstraintLayout;
+    iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/MainActivity;->H:Landroidx/constraintlayout/widget/ConstraintLayout;
 
     .line 85
     .line 86
@@ -231,7 +231,7 @@
     .line 92
     .line 93
     :cond_4
-    iget-object v0, p0, Lcom/spotiduck/music/MainActivity;->N:Landroid/widget/FrameLayout;
+    iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/MainActivity;->N:Landroid/widget/FrameLayout;
 
     .line 94
     .line 95
@@ -248,7 +248,7 @@
     .line 100
     .line 101
     :cond_5
-    iget-object v0, p0, Lcom/spotiduck/music/MainActivity;->K:Landroid/widget/TextView;
+    iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/MainActivity;->K:Landroid/widget/TextView;
 
     .line 102
     .line 103
@@ -279,7 +279,7 @@
     .line 114
     .line 115
     :cond_7
-    iget-object v0, p0, Lcom/spotiduck/music/MainActivity;->I:Landroid/widget/ImageView;
+    iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/MainActivity;->I:Landroid/widget/ImageView;
 
     .line 116
     .line 117
@@ -305,7 +305,7 @@
     .line 127
     .line 128
     :cond_8
-    iget-object v0, p0, Lcom/spotiduck/music/MainActivity;->I:Landroid/widget/ImageView;
+    iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/MainActivity;->I:Landroid/widget/ImageView;
 
     .line 129
     .line 130
@@ -396,7 +396,7 @@
     mul-float/2addr v0, v4
 
     .line 172
-    iget-object v4, p0, Lcom/spotiduck/music/MainActivity;->J:Landroid/widget/ImageView;
+    iget-object v4, p0, Ldhp/vkn/tpl/sporitduck/MainActivity;->J:Landroid/widget/ImageView;
 
     .line 173
     .line 174
@@ -422,7 +422,7 @@
     .line 184
     .line 185
     :cond_a
-    iget-object v4, p0, Lcom/spotiduck/music/MainActivity;->J:Landroid/widget/ImageView;
+    iget-object v4, p0, Ldhp/vkn/tpl/sporitduck/MainActivity;->J:Landroid/widget/ImageView;
 
     .line 186
     .line 187

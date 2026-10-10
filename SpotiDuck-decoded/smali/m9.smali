@@ -96,7 +96,7 @@
     .line 42
     .line 43
     .line 44
-    sget-object v0, Lcom/spotiduck/music/AppSingleton;->c0:Ljava/lang/String;
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->c0:Ljava/lang/String;
 
     .line 45
     .line 46
@@ -116,7 +116,7 @@
 
     .line 53
     .line 54
-    sget-object v0, Lcom/spotiduck/music/AppSingleton;->d0:Ljava/lang/String;
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->d0:Ljava/lang/String;
 
     .line 55
     .line 56
@@ -132,7 +132,7 @@
 
     .line 61
     .line 62
-    sget v0, Lcom/spotiduck/music/AppSingleton;->e0:I
+    sget v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->e0:I
 
     .line 63
     .line 64
@@ -144,7 +144,7 @@
 
     .line 67
     :cond_2
-    sget-object v0, Lcom/spotiduck/music/AppSingleton;->c0:Ljava/lang/String;
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->c0:Ljava/lang/String;
 
     .line 68
     .line 69
@@ -183,11 +183,11 @@
     .line 83
     .line 84
     .line 85
-    sget-object v2, Lcom/spotiduck/music/AppSingleton;->d0:Ljava/lang/String;
+    sget-object v2, Ldhp/vkn/tpl/sporitduck/AppSingleton;->d0:Ljava/lang/String;
 
     .line 86
     .line 87
-    sget v3, Lcom/spotiduck/music/AppSingleton;->e0:I
+    sget v3, Ldhp/vkn/tpl/sporitduck/AppSingleton;->e0:I
 
     .line 88
     .line 89
@@ -352,7 +352,7 @@
     .locals 5
 
     .line 1
-    sget-object v0, Lcom/spotiduck/music/AppSingleton;->w:Ll9;
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->w:Ll9;
 
     .line 2
     .line 3
@@ -555,18 +555,18 @@
     .line 93
     :catch_1
     :cond_5
-    sput-object v1, Lcom/spotiduck/music/AppSingleton;->w:Ll9;
+    sput-object v1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->w:Ll9;
 
     .line 94
     .line 95
-    sput-object v1, Lcom/spotiduck/music/AppSingleton;->x:Landroid/content/MutableContextWrapper;
+    sput-object v1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->x:Landroid/content/MutableContextWrapper;
 
     .line 96
     .line 97
     const/4 v0, 0x0
 
     .line 98
-    sput-boolean v0, Lcom/spotiduck/music/AppSingleton;->l:Z
+    sput-boolean v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->l:Z
 
     .line 99
     .line 100
@@ -577,7 +577,7 @@
     .locals 1
 
     .line 1
-    sget-object v0, Lcom/spotiduck/music/AppSingleton;->s:Landroid/content/Context;
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->s:Landroid/content/Context;
 
     .line 2
     .line 3
@@ -608,7 +608,7 @@
     .locals 5
 
     .line 1
-    sget-object v0, Lcom/spotiduck/music/AppSingleton;->f0:Ljava/util/concurrent/ConcurrentHashMap;
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->f0:Ljava/util/concurrent/ConcurrentHashMap;
 
     .line 2
     .line 3
@@ -660,7 +660,7 @@
 
     .line 25
     .line 26
-    sget-boolean v1, Lcom/spotiduck/music/AppSingleton;->W:Z
+    sget-boolean v1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->W:Z
 
     .line 27
     .line 28
@@ -848,7 +848,7 @@
 
     .line 113
     .line 114
-    sget-object v3, Lcom/spotiduck/music/AppSingleton;->f0:Ljava/util/concurrent/ConcurrentHashMap;
+    sget-object v3, Ldhp/vkn/tpl/sporitduck/AppSingleton;->f0:Ljava/util/concurrent/ConcurrentHashMap;
 
     .line 115
     .line 116
@@ -953,7 +953,7 @@
     .locals 1
 
     .line 1
-    sget-object v0, Lcom/spotiduck/music/AppSingleton;->u:Landroid/content/SharedPreferences;
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->u:Landroid/content/SharedPreferences;
 
     .line 2
     .line 3
@@ -984,7 +984,7 @@
     .locals 1
 
     .line 1
-    sget-object v0, Lcom/spotiduck/music/AppSingleton;->v:Landroid/content/SharedPreferences$Editor;
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->v:Landroid/content/SharedPreferences$Editor;
 
     .line 2
     .line 3
@@ -1032,7 +1032,7 @@
     .line 7
     .line 8
     :catchall_0
-    sget-object v1, Lcom/spotiduck/music/AppSingleton;->w:Ll9;
+    sget-object v1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->w:Ll9;
 
     .line 9
     .line 10
@@ -1050,7 +1050,7 @@
     .line 15
     .line 16
     .line 17
-    sput-object v1, Lcom/spotiduck/music/AppSingleton;->x:Landroid/content/MutableContextWrapper;
+    sput-object v1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->x:Landroid/content/MutableContextWrapper;
 
     .line 18
     .line 19
@@ -1063,7 +1063,7 @@
     .line 22
     .line 23
     .line 24
-    sput-object p0, Lcom/spotiduck/music/AppSingleton;->w:Ll9;
+    sput-object p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->w:Ll9;
     :try_end_1
     .catchall {:try_start_1 .. :try_end_1} :catchall_1
 
@@ -1112,7 +1112,7 @@
     .line 43
     .line 44
     :try_start_4
-    sget v1, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget v1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 45
     .line 46
@@ -1209,7 +1209,7 @@
     .line 91
     .line 92
     :cond_1
-    sget-boolean v2, Lcom/spotiduck/music/MainActivity;->l0:Z
+    sget-boolean v2, Ldhp/vkn/tpl/sporitduck/MainActivity;->l0:Z
 
     .line 93
     .line 94
@@ -1462,7 +1462,7 @@
     .line 212
     .line 213
     .line 214
-    sget-boolean v0, Lcom/spotiduck/music/AppSingleton;->E:Z
+    sget-boolean v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->E:Z
 
     .line 215
     .line 216
@@ -1501,11 +1501,11 @@
     .line 232
     .line 233
     :goto_2
-    new-instance v0, Lcom/spotiduck/music/AndBridge;
+    new-instance v0, Ldhp/vkn/tpl/sporitduck/AndBridge;
 
     .line 234
     .line 235
-    sget v2, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget v2, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 236
     .line 237
@@ -1517,7 +1517,7 @@
     move-result-object v2
 
     .line 241
-    invoke-direct {v0, v2}, Lcom/spotiduck/music/AndBridge;-><init>(Landroid/content/Context;)V
+    invoke-direct {v0, v2}, Ldhp/vkn/tpl/sporitduck/AndBridge;-><init>(Landroid/content/Context;)V
 
     .line 242
     .line 243
@@ -1577,7 +1577,7 @@
     .line 273
     .line 274
     .line 275
-    sget-boolean v0, Lcom/spotiduck/music/AppSingleton;->l:Z
+    sget-boolean v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->l:Z
 
     .line 276
     .line 277
@@ -1585,7 +1585,7 @@
 
     .line 278
     .line 279
-    sget-boolean v0, Lcom/spotiduck/music/AppSingleton;->B:Z
+    sget-boolean v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->B:Z
 
     .line 280
     .line 281
@@ -1593,7 +1593,7 @@
 
     .line 282
     .line 283
-    sget-boolean v0, Lcom/spotiduck/music/MainActivity;->l0:Z
+    sget-boolean v0, Ldhp/vkn/tpl/sporitduck/MainActivity;->l0:Z
 
     .line 284
     .line 285
@@ -1625,7 +1625,7 @@
     .line 298
     :cond_9
     :goto_3
-    sget-object p0, Lcom/spotiduck/music/AppSingleton;->w:Ll9;
+    sget-object p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->w:Ll9;
 
     .line 299
     .line 300
@@ -1647,7 +1647,7 @@
     const/4 p0, 0x0
 
     .line 307
-    sput-object p0, Lcom/spotiduck/music/AppSingleton;->w:Ll9;
+    sput-object p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->w:Ll9;
 
     .line 308
     .line 309
@@ -1656,7 +1656,7 @@
     .line 310
     :cond_a
     :try_start_a
-    sget-object v0, Lcom/spotiduck/music/AppSingleton;->x:Landroid/content/MutableContextWrapper;
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->x:Landroid/content/MutableContextWrapper;
 
     .line 311
     .line 312
@@ -1674,7 +1674,7 @@
     :catchall_2
     :cond_b
     :goto_4
-    sget-object p0, Lcom/spotiduck/music/AppSingleton;->w:Ll9;
+    sget-object p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->w:Ll9;
 
     .line 318
     .line 319
@@ -1755,7 +1755,7 @@
     move-result-object p0
 
     .line 39
-    sget-object v0, Lcom/spotiduck/music/AppSingleton;->w:Ll9;
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->w:Ll9;
 
     .line 40
     .line 41
@@ -1873,7 +1873,7 @@
 
     .line 1
     :try_start_0
-    sget-object v0, Lcom/spotiduck/music/AppSingleton;->Y:Ljava/util/concurrent/ConcurrentHashMap$KeySetView;
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->Y:Ljava/util/concurrent/ConcurrentHashMap$KeySetView;
 
     .line 2
     .line 3
@@ -2311,7 +2311,7 @@
 
     .line 210
     .line 211
-    sget-object v3, Lcom/spotiduck/music/AppSingleton;->Y:Ljava/util/concurrent/ConcurrentHashMap$KeySetView;
+    sget-object v3, Ldhp/vkn/tpl/sporitduck/AppSingleton;->Y:Ljava/util/concurrent/ConcurrentHashMap$KeySetView;
 
     .line 212
     .line 213
@@ -2359,7 +2359,7 @@
     .line 232
     .line 233
     .line 234
-    sget-object v1, Lcom/spotiduck/music/AppSingleton;->Y:Ljava/util/concurrent/ConcurrentHashMap$KeySetView;
+    sget-object v1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->Y:Ljava/util/concurrent/ConcurrentHashMap$KeySetView;
 
     .line 235
     .line 236
@@ -2521,7 +2521,7 @@
     monitor-exit v0
 
     .line 304
-    sput-object v1, Lcom/spotiduck/music/AppSingleton;->Z:Ln3;
+    sput-object v1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->Z:Ln3;
 
     .line 305
     .line 306
@@ -2593,7 +2593,7 @@
     .locals 3
 
     .line 1
-    sget-object v0, Lcom/spotiduck/music/AppSingleton;->t:Ljava/lang/ref/WeakReference;
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->t:Ljava/lang/ref/WeakReference;
 
     .line 2
     .line 3
@@ -2609,7 +2609,7 @@
     move-result-object v0
 
     .line 9
-    check-cast v0, Lcom/spotiduck/music/MainActivity;
+    check-cast v0, Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 10
     .line 11
@@ -2642,7 +2642,7 @@
     .locals 8
 
     .line 1
-    sget-boolean v0, Lcom/spotiduck/music/AppSingleton;->Q:Z
+    sget-boolean v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->Q:Z
 
     .line 2
     .line 3
@@ -2654,7 +2654,7 @@
     move-result-object v1
 
     .line 7
-    sget-boolean v0, Lcom/spotiduck/music/AppSingleton;->R:Z
+    sget-boolean v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->R:Z
 
     .line 8
     .line 9
@@ -2666,7 +2666,7 @@
     move-result-object v2
 
     .line 13
-    sget-boolean v0, Lcom/spotiduck/music/AppSingleton;->E:Z
+    sget-boolean v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->E:Z
 
     .line 14
     .line 15
@@ -2678,7 +2678,7 @@
     move-result-object v3
 
     .line 19
-    sget-boolean v0, Lcom/spotiduck/music/AppSingleton;->D:Z
+    sget-boolean v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->D:Z
 
     .line 20
     .line 21
@@ -2690,7 +2690,7 @@
     move-result-object v4
 
     .line 25
-    sget-boolean v0, Lcom/spotiduck/music/AppSingleton;->C:Z
+    sget-boolean v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->C:Z
 
     .line 26
     .line 27
@@ -2702,11 +2702,11 @@
     move-result-object v5
 
     .line 31
-    sget-object v6, Lcom/spotiduck/music/AppSingleton;->y:Ljava/lang/String;
+    sget-object v6, Ldhp/vkn/tpl/sporitduck/AppSingleton;->y:Ljava/lang/String;
 
     .line 32
     .line 33
-    sget-boolean v0, Lcom/spotiduck/music/AppSingleton;->S:Z
+    sget-boolean v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->S:Z
 
     .line 34
     .line 35
@@ -2749,7 +2749,7 @@
     move-result-object v0
 
     .line 54
-    sget-object v1, Lcom/spotiduck/music/AppSingleton;->w:Ll9;
+    sget-object v1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->w:Ll9;
 
     .line 55
     .line 56
@@ -2782,7 +2782,7 @@
     .locals 8
 
     .line 1
-    sget v0, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 2
     .line 3
@@ -2794,7 +2794,7 @@
 
     .line 6
     .line 7
-    sget-boolean p1, Lcom/spotiduck/music/WebService;->s:Z
+    sget-boolean p1, Ldhp/vkn/tpl/sporitduck/WebService;->s:Z
 
     .line 8
     .line 9
@@ -2821,11 +2821,11 @@
 
     .line 17
     :goto_0
-    sget-boolean v1, Lcom/spotiduck/music/WebService;->r:Z
+    sget-boolean v1, Ldhp/vkn/tpl/sporitduck/WebService;->r:Z
 
     .line 18
     .line 19
-    sget v1, Lcom/spotiduck/music/AppSingleton;->P:I
+    sget v1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->P:I
 
     .line 20
     .line 21
@@ -2837,12 +2837,12 @@
 
     .line 24
     :cond_2
-    sget v1, Lcom/spotiduck/music/AppSingleton;->k:I
+    sget v1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->k:I
 
     .line 25
     .line 26
     :goto_1
-    sget-boolean v2, Lcom/spotiduck/music/WebService;->r:Z
+    sget-boolean v2, Ldhp/vkn/tpl/sporitduck/WebService;->r:Z
 
     .line 27
     .line 28
@@ -2874,7 +2874,7 @@
 
     .line 40
     .line 41
-    sget-object v0, Lcom/spotiduck/music/AppSingleton;->q:Lx3;
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->q:Lx3;
 
     .line 42
     .line 43
@@ -2883,7 +2883,7 @@
     .line 44
     .line 45
     :cond_4
-    sget-object v0, Lcom/spotiduck/music/AppSingleton;->q:Lx3;
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->q:Lx3;
 
     .line 46
     .line 47
@@ -2891,7 +2891,7 @@
 
     .line 48
     .line 49
-    sget-object v2, Lcom/spotiduck/music/AppSingleton;->o:Landroid/os/Handler;
+    sget-object v2, Ldhp/vkn/tpl/sporitduck/AppSingleton;->o:Landroid/os/Handler;
 
     .line 50
     .line 51
@@ -2913,15 +2913,15 @@
     .line 58
     .line 59
     .line 60
-    sput-object v0, Lcom/spotiduck/music/AppSingleton;->q:Lx3;
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->q:Lx3;
 
     .line 61
     .line 62
-    sget-object v0, Lcom/spotiduck/music/AppSingleton;->o:Landroid/os/Handler;
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->o:Landroid/os/Handler;
 
     .line 63
     .line 64
-    sget-object v2, Lcom/spotiduck/music/AppSingleton;->q:Lx3;
+    sget-object v2, Ldhp/vkn/tpl/sporitduck/AppSingleton;->q:Lx3;
 
     .line 65
     .line 66
@@ -2950,12 +2950,12 @@
 
     .line 76
     .line 77
-    sput v0, Lcom/spotiduck/music/AppSingleton;->k:I
+    sput v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->k:I
 
     .line 78
     .line 79
     :cond_7
-    sget-object v0, Lcom/spotiduck/music/AppSingleton;->q:Lx3;
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->q:Lx3;
 
     .line 80
     .line 81
@@ -2963,7 +2963,7 @@
 
     .line 82
     .line 83
-    sget-object v1, Lcom/spotiduck/music/AppSingleton;->o:Landroid/os/Handler;
+    sget-object v1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->o:Landroid/os/Handler;
 
     .line 84
     .line 85
@@ -2972,13 +2972,13 @@
     .line 86
     .line 87
     .line 88
-    sput-object v3, Lcom/spotiduck/music/AppSingleton;->q:Lx3;
+    sput-object v3, Ldhp/vkn/tpl/sporitduck/AppSingleton;->q:Lx3;
 
     .line 89
     .line 90
     :cond_8
     :goto_3
-    sget-boolean v0, Lcom/spotiduck/music/WebService;->r:Z
+    sget-boolean v0, Ldhp/vkn/tpl/sporitduck/WebService;->r:Z
 
     .line 91
     .line 92
@@ -2986,7 +2986,7 @@
 
     .line 93
     .line 94
-    sget v0, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 95
     .line 96
@@ -3006,7 +3006,7 @@
 
     .line 102
     .line 103
-    sget-object p0, Lcom/spotiduck/music/AppSingleton;->r:Lx3;
+    sget-object p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->r:Lx3;
 
     .line 104
     .line 105
@@ -3015,7 +3015,7 @@
     .line 106
     .line 107
     :cond_a
-    sget-object p0, Lcom/spotiduck/music/AppSingleton;->r:Lx3;
+    sget-object p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->r:Lx3;
 
     .line 108
     .line 109
@@ -3023,7 +3023,7 @@
 
     .line 110
     .line 111
-    sget-object p1, Lcom/spotiduck/music/AppSingleton;->p:Landroid/os/Handler;
+    sget-object p1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->p:Landroid/os/Handler;
 
     .line 112
     .line 113
@@ -3045,15 +3045,15 @@
     .line 120
     .line 121
     .line 122
-    sput-object p0, Lcom/spotiduck/music/AppSingleton;->r:Lx3;
+    sput-object p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->r:Lx3;
 
     .line 123
     .line 124
-    sget-object p0, Lcom/spotiduck/music/AppSingleton;->p:Landroid/os/Handler;
+    sget-object p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->p:Landroid/os/Handler;
 
     .line 125
     .line 126
-    sget-object p1, Lcom/spotiduck/music/AppSingleton;->r:Lx3;
+    sget-object p1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->r:Lx3;
 
     .line 127
     .line 128
@@ -3062,7 +3062,7 @@
     .line 129
     .line 130
     .line 131
-    sget v0, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 132
     .line 133
@@ -3082,7 +3082,7 @@
     .line 139
     :cond_c
     :goto_4
-    sget-object p0, Lcom/spotiduck/music/AppSingleton;->r:Lx3;
+    sget-object p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->r:Lx3;
 
     .line 140
     .line 141
@@ -3090,7 +3090,7 @@
 
     .line 142
     .line 143
-    sget-object p1, Lcom/spotiduck/music/AppSingleton;->p:Landroid/os/Handler;
+    sget-object p1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->p:Landroid/os/Handler;
 
     .line 144
     .line 145
@@ -3099,7 +3099,7 @@
     .line 146
     .line 147
     .line 148
-    sput-object v3, Lcom/spotiduck/music/AppSingleton;->r:Lx3;
+    sput-object v3, Ldhp/vkn/tpl/sporitduck/AppSingleton;->r:Lx3;
 
     .line 149
     .line 150

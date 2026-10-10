@@ -9,11 +9,11 @@
 # instance fields
 .field public final synthetic j:I
 
-.field public final synthetic k:Lcom/spotiduck/music/ExpandablePreferenceCategory;
+.field public final synthetic k:Ldhp/vkn/tpl/sporitduck/ExpandablePreferenceCategory;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/spotiduck/music/ExpandablePreferenceCategory;I)V
+.method public synthetic constructor <init>(Ldhp/vkn/tpl/sporitduck/ExpandablePreferenceCategory;I)V
     .locals 0
 
     .line 1
@@ -21,7 +21,7 @@
 
     .line 2
     .line 3
-    iput-object p1, p0, La20;->k:Lcom/spotiduck/music/ExpandablePreferenceCategory;
+    iput-object p1, p0, La20;->k:Ldhp/vkn/tpl/sporitduck/ExpandablePreferenceCategory;
 
     .line 4
     .line 5
@@ -43,7 +43,7 @@
 
     .line 2
     .line 3
-    iget-object p0, p0, La20;->k:Lcom/spotiduck/music/ExpandablePreferenceCategory;
+    iget-object p0, p0, La20;->k:Ldhp/vkn/tpl/sporitduck/ExpandablePreferenceCategory;
 
     .line 4
     .line 5
@@ -52,7 +52,7 @@
     .line 6
     .line 7
     .line 8
-    iget-boolean p1, p0, Lcom/spotiduck/music/ExpandablePreferenceCategory;->d0:Z
+    iget-boolean p1, p0, Ldhp/vkn/tpl/sporitduck/ExpandablePreferenceCategory;->d0:Z
 
     .line 9
     .line 10
@@ -60,7 +60,7 @@
 
     .line 11
     .line 12
-    invoke-virtual {p0, p1}, Lcom/spotiduck/music/ExpandablePreferenceCategory;->B(Z)V
+    invoke-virtual {p0, p1}, Ldhp/vkn/tpl/sporitduck/ExpandablePreferenceCategory;->B(Z)V
 
     .line 13
     .line 14
@@ -69,7 +69,7 @@
 
     .line 16
     :pswitch_0
-    iget-boolean p1, p0, Lcom/spotiduck/music/ExpandablePreferenceCategory;->d0:Z
+    iget-boolean p1, p0, Ldhp/vkn/tpl/sporitduck/ExpandablePreferenceCategory;->d0:Z
 
     .line 17
     .line 18
@@ -77,7 +77,7 @@
 
     .line 19
     .line 20
-    invoke-virtual {p0, p1}, Lcom/spotiduck/music/ExpandablePreferenceCategory;->B(Z)V
+    invoke-virtual {p0, p1}, Ldhp/vkn/tpl/sporitduck/ExpandablePreferenceCategory;->B(Z)V
 
     .line 21
     .line 22

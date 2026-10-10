@@ -1,8 +1,8 @@
-.class public Lcom/spotiduck/music/XposedInit$SpotifyHook;
+.class public Ldhp/vkn/tpl/sporitduck/XposedInit$SpotifyHook;
 .super Lde/robv/android/xposed/XC_MethodHook;
 
 .annotation system Ldalvik/annotation/EnclosingClass;
-    value = Lcom/spotiduck/music/XposedInit;
+    value = Ldhp/vkn/tpl/sporitduck/XposedInit;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -39,14 +39,14 @@
     invoke-direct {v1, v2}, Landroid/os/Handler;-><init>(Landroid/os/Looper;)V
 
     # Always: post ToastRunner
-    new-instance v2, Lcom/spotiduck/music/XposedInit$ToastRunner;
-    invoke-direct {v2, v0}, Lcom/spotiduck/music/XposedInit$ToastRunner;-><init>(Landroid/app/Application;)V
+    new-instance v2, Ldhp/vkn/tpl/sporitduck/XposedInit$ToastRunner;
+    invoke-direct {v2, v0}, Ldhp/vkn/tpl/sporitduck/XposedInit$ToastRunner;-><init>(Landroid/app/Application;)V
     invoke-virtual {v1, v2}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
 
     # Read prefs to check WebPlayerEnabled
     new-instance v3, Lde/robv/android/xposed/XSharedPreferences;
-    const-string v4, "com.spotiduck.music"
-    const-string v5, "com.spotiduck.music_preferences"
+    const-string v4, "dhp.vkn.tpl.sporitduck"
+    const-string v5, "dhp.vkn.tpl.sporitduck_preferences"
     invoke-direct {v3, v4, v5}, Lde/robv/android/xposed/XSharedPreferences;-><init>(Ljava/lang/String;Ljava/lang/String;)V
     invoke-virtual {v3}, Lde/robv/android/xposed/XSharedPreferences;->reload()V
 
@@ -57,8 +57,8 @@
     if-eqz v4, :done
 
     # If WebPlayerEnabled: post WebPlayerCapture to start hidden WebView
-    new-instance v3, Lcom/spotiduck/music/WebPlayerCapture;
-    invoke-direct {v3, v0}, Lcom/spotiduck/music/WebPlayerCapture;-><init>(Landroid/app/Application;)V
+    new-instance v3, Ldhp/vkn/tpl/sporitduck/WebPlayerCapture;
+    invoke-direct {v3, v0}, Ldhp/vkn/tpl/sporitduck/WebPlayerCapture;-><init>(Landroid/app/Application;)V
     invoke-virtual {v1, v3}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
 
     :done

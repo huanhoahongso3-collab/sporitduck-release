@@ -235,7 +235,7 @@
     throw p0
 .end method
 
-.method public static c(Lcom/spotiduck/music/MainActivity;Ljava/lang/String;Ljava/io/File;)Landroid/net/Uri;
+.method public static c(Ldhp/vkn/tpl/sporitduck/MainActivity;Ljava/lang/String;Ljava/io/File;)Landroid/net/Uri;
     .locals 8
 
     .line 1

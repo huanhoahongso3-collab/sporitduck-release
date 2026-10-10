@@ -4,7 +4,7 @@
 
 
 # direct methods
-.method public static bridge synthetic A(Lcom/spotiduck/music/MainActivity;Landroid/app/PictureInPictureParams;)Z
+.method public static bridge synthetic A(Ldhp/vkn/tpl/sporitduck/MainActivity;Landroid/app/PictureInPictureParams;)Z
     .locals 0
 
     .line 1
@@ -290,7 +290,7 @@
     return-void
 .end method
 
-.method public static bridge synthetic s(Lcom/spotiduck/music/MainActivity;Landroid/app/PictureInPictureParams;)V
+.method public static bridge synthetic s(Ldhp/vkn/tpl/sporitduck/MainActivity;Landroid/app/PictureInPictureParams;)V
     .locals 0
 
     .line 1
@@ -302,7 +302,7 @@
     return-void
 .end method
 
-.method public static bridge synthetic t(Lcom/spotiduck/music/MainActivity;Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)V
+.method public static bridge synthetic t(Ldhp/vkn/tpl/sporitduck/MainActivity;Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)V
     .locals 1
 
     .line 1
@@ -317,7 +317,7 @@
     return-void
 .end method
 
-.method public static bridge synthetic u(Lcom/spotiduck/music/MainActivity;Landroid/content/Intent;)V
+.method public static bridge synthetic u(Ldhp/vkn/tpl/sporitduck/MainActivity;Landroid/content/Intent;)V
     .locals 0
 
     .line 1
@@ -329,7 +329,7 @@
     return-void
 .end method
 
-.method public static bridge synthetic v(Lcom/spotiduck/music/SettingsActivity;Landroid/content/Intent;)V
+.method public static bridge synthetic v(Ldhp/vkn/tpl/sporitduck/SettingsActivity;Landroid/content/Intent;)V
     .locals 0
 
     .line 1
@@ -341,7 +341,7 @@
     return-void
 .end method
 
-.method public static bridge synthetic w(Lcom/spotiduck/music/WebService;Lc7;Landroid/content/IntentFilter;)V
+.method public static bridge synthetic w(Ldhp/vkn/tpl/sporitduck/WebService;Lc7;Landroid/content/IntentFilter;)V
     .locals 1
 
     .line 1

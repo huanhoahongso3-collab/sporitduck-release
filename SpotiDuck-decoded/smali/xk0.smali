@@ -11,11 +11,11 @@
 
 .field public final synthetic k:Landroid/os/Handler;
 
-.field public final synthetic l:Lcom/spotiduck/music/MainActivity;
+.field public final synthetic l:Ldhp/vkn/tpl/sporitduck/MainActivity;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lhz0;Landroid/os/Handler;Lcom/spotiduck/music/MainActivity;)V
+.method public synthetic constructor <init>(Lhz0;Landroid/os/Handler;Ldhp/vkn/tpl/sporitduck/MainActivity;)V
     .locals 0
 
     .line 1
@@ -32,7 +32,7 @@
 
     .line 7
     .line 8
-    iput-object p3, p0, Lxk0;->l:Lcom/spotiduck/music/MainActivity;
+    iput-object p3, p0, Lxk0;->l:Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 9
     .line 10
@@ -45,7 +45,7 @@
     .locals 5
 
     .line 1
-    sget v0, Lcom/spotiduck/music/MainActivity;->h0:I
+    sget v0, Ldhp/vkn/tpl/sporitduck/MainActivity;->h0:I
 
     .line 2
     .line 3
@@ -169,7 +169,7 @@
 
     .line 59
     .line 60
-    iget-object p0, p0, Lxk0;->l:Lcom/spotiduck/music/MainActivity;
+    iget-object p0, p0, Lxk0;->l:Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 61
     .line 62

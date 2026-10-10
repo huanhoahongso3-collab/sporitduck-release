@@ -1,4 +1,4 @@
-.class public final Lcom/spotiduck/music/CustomPrefFooter;
+.class public final Ldhp/vkn/tpl/sporitduck/CustomPrefFooter;
 .super Landroidx/preference/Preference;
 .source "r8-map-id-37e276fb91e34a5f1b4d8f51e71abe3719dc52e9eeab3bd3e0cf2cd8d4f7becf"
 
@@ -74,7 +74,7 @@
 
     .line 20
     .line 21
-    invoke-direct {v2, p0, v1}, Lft;-><init>(Lcom/spotiduck/music/CustomPrefFooter;I)V
+    invoke-direct {v2, p0, v1}, Lft;-><init>(Ldhp/vkn/tpl/sporitduck/CustomPrefFooter;I)V
 
     .line 22
     .line 23
@@ -109,7 +109,7 @@
     const/4 v1, 0x1
 
     .line 39
-    invoke-direct {v0, p0, v1}, Lft;-><init>(Lcom/spotiduck/music/CustomPrefFooter;I)V
+    invoke-direct {v0, p0, v1}, Lft;-><init>(Ldhp/vkn/tpl/sporitduck/CustomPrefFooter;I)V
 
     .line 40
     .line 41

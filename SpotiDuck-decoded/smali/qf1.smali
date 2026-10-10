@@ -9,7 +9,7 @@
 # instance fields
 .field public final synthetic j:I
 
-.field public final synthetic k:Lcom/spotiduck/music/MainActivity;
+.field public final synthetic k:Ldhp/vkn/tpl/sporitduck/MainActivity;
 
 .field public final synthetic l:Landroid/widget/ProgressBar;
 
@@ -23,7 +23,7 @@
 
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/spotiduck/music/MainActivity;Landroid/widget/ProgressBar;ZLandroid/content/res/ColorStateList;Landroid/content/res/ColorStateList;Ljava/io/File;)V
+.method public synthetic constructor <init>(Ldhp/vkn/tpl/sporitduck/MainActivity;Landroid/widget/ProgressBar;ZLandroid/content/res/ColorStateList;Landroid/content/res/ColorStateList;Ljava/io/File;)V
     .locals 1
 
     .line 1
@@ -39,7 +39,7 @@
     .line 5
     .line 6
     .line 7
-    iput-object p1, p0, Lqf1;->k:Lcom/spotiduck/music/MainActivity;
+    iput-object p1, p0, Lqf1;->k:Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 8
     .line 9
@@ -66,13 +66,13 @@
     return-void
 .end method
 
-.method public synthetic constructor <init>(Lcom/spotiduck/music/MainActivity;Ljava/io/Serializable;Landroid/widget/ProgressBar;ZLandroid/content/res/ColorStateList;Landroid/content/res/ColorStateList;I)V
+.method public synthetic constructor <init>(Ldhp/vkn/tpl/sporitduck/MainActivity;Ljava/io/Serializable;Landroid/widget/ProgressBar;ZLandroid/content/res/ColorStateList;Landroid/content/res/ColorStateList;I)V
     .locals 0
 
     .line 20
     iput p7, p0, Lqf1;->j:I
 
-    iput-object p1, p0, Lqf1;->k:Lcom/spotiduck/music/MainActivity;
+    iput-object p1, p0, Lqf1;->k:Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     iput-object p2, p0, Lqf1;->p:Ljava/io/Serializable;
 
@@ -125,7 +125,7 @@
 
     .line 14
     .line 15
-    iget-object p0, p0, Lqf1;->k:Lcom/spotiduck/music/MainActivity;
+    iget-object p0, p0, Lqf1;->k:Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 16
     .line 17
@@ -310,7 +310,7 @@
     .line 110
     .line 111
     .line 112
-    invoke-static {p0, v7}, Lju1;->t(Lcom/spotiduck/music/MainActivity;Ljava/io/File;)V
+    invoke-static {p0, v7}, Lju1;->t(Ldhp/vkn/tpl/sporitduck/MainActivity;Ljava/io/File;)V
 
     .line 113
     .line 114

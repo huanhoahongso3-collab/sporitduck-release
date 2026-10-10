@@ -66,7 +66,7 @@
     .line 10
     .line 11
     .line 12
-    check-cast p0, Lcom/spotiduck/music/SettingsActivity$a;
+    check-cast p0, Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;
 
     .line 13
     .line 14

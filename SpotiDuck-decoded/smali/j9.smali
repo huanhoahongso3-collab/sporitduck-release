@@ -82,7 +82,7 @@
 
     .line 17
     :pswitch_0
-    sget-object p0, Lcom/spotiduck/music/AppSingleton;->t:Ljava/lang/ref/WeakReference;
+    sget-object p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->t:Ljava/lang/ref/WeakReference;
 
     .line 18
     .line 19
@@ -98,7 +98,7 @@
     move-result-object p0
 
     .line 25
-    check-cast p0, Lcom/spotiduck/music/MainActivity;
+    check-cast p0, Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 26
     .line 27
@@ -106,7 +106,7 @@
 
     .line 28
     .line 29
-    iget-object v1, p0, Lcom/spotiduck/music/MainActivity;->d0:Landroid/os/Handler;
+    iget-object v1, p0, Ldhp/vkn/tpl/sporitduck/MainActivity;->d0:Landroid/os/Handler;
 
     .line 30
     .line 31
@@ -118,15 +118,15 @@
     .line 33
     .line 34
     .line 35
-    iput-object v2, p0, Lcom/spotiduck/music/MainActivity;->Z:Landroid/view/View;
+    iput-object v2, p0, Ldhp/vkn/tpl/sporitduck/MainActivity;->Z:Landroid/view/View;
 
     .line 36
     .line 37
-    iput-object v2, p0, Lcom/spotiduck/music/MainActivity;->a0:Landroid/webkit/WebChromeClient$CustomViewCallback;
+    iput-object v2, p0, Ldhp/vkn/tpl/sporitduck/MainActivity;->a0:Landroid/webkit/WebChromeClient$CustomViewCallback;
 
     .line 38
     .line 39
-    invoke-virtual {p0}, Lcom/spotiduck/music/MainActivity;->x()V
+    invoke-virtual {p0}, Ldhp/vkn/tpl/sporitduck/MainActivity;->x()V
 
     .line 40
     .line 41
@@ -158,7 +158,7 @@
 
     .line 54
     .line 55
-    iget-boolean v4, p0, Lcom/spotiduck/music/MainActivity;->c0:Z
+    iget-boolean v4, p0, Ldhp/vkn/tpl/sporitduck/MainActivity;->c0:Z
 
     .line 56
     .line 57
@@ -166,12 +166,12 @@
 
     .line 58
     .line 59
-    invoke-virtual {p0, v2}, Lcom/spotiduck/music/MainActivity;->B(Z)V
+    invoke-virtual {p0, v2}, Ldhp/vkn/tpl/sporitduck/MainActivity;->B(Z)V
 
     .line 60
     .line 61
     .line 62
-    invoke-virtual {p0}, Lcom/spotiduck/music/MainActivity;->H()V
+    invoke-virtual {p0}, Ldhp/vkn/tpl/sporitduck/MainActivity;->H()V
 
     .line 63
     .line 64
@@ -180,7 +180,7 @@
 
     .line 66
     :cond_0
-    iput-boolean v0, p0, Lcom/spotiduck/music/MainActivity;->c0:Z
+    iput-boolean v0, p0, Ldhp/vkn/tpl/sporitduck/MainActivity;->c0:Z
 
     .line 67
     .line 68
@@ -209,11 +209,11 @@
     .line 79
     .line 80
     .line 81
-    iput-object v0, p0, Lcom/spotiduck/music/MainActivity;->b0:Landroid/util/Rational;
+    iput-object v0, p0, Ldhp/vkn/tpl/sporitduck/MainActivity;->b0:Landroid/util/Rational;
 
     .line 82
     .line 83
-    iget-object v0, p0, Lcom/spotiduck/music/MainActivity;->T:Landroid/graphics/Bitmap;
+    iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/MainActivity;->T:Landroid/graphics/Bitmap;
 
     .line 84
     .line 85
@@ -221,7 +221,7 @@
 
     .line 86
     .line 87
-    iget-object v0, p0, Lcom/spotiduck/music/MainActivity;->V:Ljava/lang/String;
+    iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/MainActivity;->V:Ljava/lang/String;
 
     .line 88
     .line 89
@@ -237,7 +237,7 @@
 
     .line 94
     .line 95
-    iget-object v0, p0, Lcom/spotiduck/music/MainActivity;->V:Ljava/lang/String;
+    iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/MainActivity;->V:Ljava/lang/String;
 
     .line 96
     .line 97
@@ -249,7 +249,7 @@
 
     .line 100
     .line 101
-    invoke-direct {v2, v0, p0}, Lbl0;-><init>(Ljava/lang/String;Lcom/spotiduck/music/MainActivity;)V
+    invoke-direct {v2, v0, p0}, Lbl0;-><init>(Ljava/lang/String;Ldhp/vkn/tpl/sporitduck/MainActivity;)V
 
     .line 102
     .line 103
@@ -265,12 +265,12 @@
     .line 109
     .line 110
     :cond_1
-    invoke-virtual {p0}, Lcom/spotiduck/music/MainActivity;->F()V
+    invoke-virtual {p0}, Ldhp/vkn/tpl/sporitduck/MainActivity;->F()V
 
     .line 111
     .line 112
     .line 113
-    invoke-virtual {p0}, Lcom/spotiduck/music/MainActivity;->H()V
+    invoke-virtual {p0}, Ldhp/vkn/tpl/sporitduck/MainActivity;->H()V
 
     .line 114
     .line 115

@@ -67,7 +67,7 @@
     .line 13
     .line 14
     .line 15
-    sget-object v0, Lcom/spotiduck/music/WebService;->F:Ljava/util/concurrent/ConcurrentHashMap;
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/WebService;->F:Ljava/util/concurrent/ConcurrentHashMap;
 
     .line 16
     .line 17
@@ -97,7 +97,7 @@
 
     .line 29
     :pswitch_0
-    sget-object v0, Lcom/spotiduck/music/WebService;->E:Ljava/util/concurrent/ConcurrentHashMap;
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/WebService;->E:Ljava/util/concurrent/ConcurrentHashMap;
 
     .line 30
     .line 31
@@ -127,11 +127,11 @@
 
     .line 43
     :pswitch_1
-    sget v0, Lcom/spotiduck/music/MainActivity;->h0:I
+    sget v0, Ldhp/vkn/tpl/sporitduck/MainActivity;->h0:I
 
     .line 44
     .line 45
-    sget-object v0, Lcom/spotiduck/music/AppSingleton;->w:Ll9;
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->w:Ll9;
 
     .line 46
     .line 47
@@ -176,11 +176,11 @@
 
     .line 68
     :pswitch_2
-    sget v0, Lcom/spotiduck/music/LinkHandler;->H:I
+    sget v0, Ldhp/vkn/tpl/sporitduck/LinkHandler;->H:I
 
     .line 69
     .line 70
-    sget-object v0, Lcom/spotiduck/music/AppSingleton;->w:Ll9;
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->w:Ll9;
 
     .line 71
     .line 72
@@ -225,7 +225,7 @@
 
     .line 93
     :pswitch_3
-    sget-object v0, Lcom/spotiduck/music/AppSingleton;->w:Ll9;
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->w:Ll9;
 
     .line 94
     .line 95
@@ -243,7 +243,7 @@
 
     .line 101
     :pswitch_4
-    sget-object v0, Lcom/spotiduck/music/AppSingleton;->w:Ll9;
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->w:Ll9;
 
     .line 102
     .line 103
@@ -296,7 +296,7 @@
 
     .line 128
     :pswitch_5
-    sget v0, Lcom/spotiduck/music/MainActivity;->h0:I
+    sget v0, Ldhp/vkn/tpl/sporitduck/MainActivity;->h0:I
 
     .line 129
     .line 130
@@ -366,11 +366,11 @@
 
     .line 161
     .line 162
-    sput-object p0, Lcom/spotiduck/music/WebService;->B:Landroid/graphics/Bitmap;
+    sput-object p0, Ldhp/vkn/tpl/sporitduck/WebService;->B:Landroid/graphics/Bitmap;
 
     .line 163
     .line 164
-    sget-boolean p0, Lcom/spotiduck/music/WebService;->r:Z
+    sget-boolean p0, Ldhp/vkn/tpl/sporitduck/WebService;->r:Z
 
     .line 165
     .line 166

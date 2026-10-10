@@ -1,4 +1,4 @@
-.class public Lcom/spotiduck/music/XposedInit;
+.class public Ldhp/vkn/tpl/sporitduck/XposedInit;
 .super Ljava/lang/Object;
 .implements Lde/robv/android/xposed/IXposedHookLoadPackage;
 
@@ -31,8 +31,8 @@
     const/4 v0, 0x1
     new-array v0, v0, [Ljava/lang/Object;
 
-    new-instance v1, Lcom/spotiduck/music/XposedInit$SpotifyHook;
-    invoke-direct {v1}, Lcom/spotiduck/music/XposedInit$SpotifyHook;-><init>()V
+    new-instance v1, Ldhp/vkn/tpl/sporitduck/XposedInit$SpotifyHook;
+    invoke-direct {v1}, Ldhp/vkn/tpl/sporitduck/XposedInit$SpotifyHook;-><init>()V
 
     const/4 v2, 0x0
     aput-object v1, v0, v2
@@ -43,8 +43,8 @@
 
     # --- Read prefs for optional feature flags ---
     new-instance v5, Lde/robv/android/xposed/XSharedPreferences;
-    const-string v6, "com.spotiduck.music"
-    const-string v7, "com.spotiduck.music_preferences"
+    const-string v6, "dhp.vkn.tpl.sporitduck"
+    const-string v7, "dhp.vkn.tpl.sporitduck_preferences"
     invoke-direct {v5, v6, v7}, Lde/robv/android/xposed/XSharedPreferences;-><init>(Ljava/lang/String;Ljava/lang/String;)V
     invoke-virtual {v5}, Lde/robv/android/xposed/XSharedPreferences;->reload()V
 
@@ -59,8 +59,8 @@
     const/4 v7, 0x0           # null = bootstrap ClassLoader
     const-string v8, "getAllByName"
     const-class v9, Ljava/lang/String;
-    new-instance v10, Lcom/spotiduck/music/DnsAdBlock;
-    invoke-direct {v10}, Lcom/spotiduck/music/DnsAdBlock;-><init>()V
+    new-instance v10, Ldhp/vkn/tpl/sporitduck/DnsAdBlock;
+    invoke-direct {v10}, Ldhp/vkn/tpl/sporitduck/DnsAdBlock;-><init>()V
     filled-new-array {v9, v10}, [Ljava/lang/Object;
     move-result-object v9
     invoke-static {v6, v7, v8, v9}, Lde/robv/android/xposed/XposedHelpers;->findAndHookMethod(Ljava/lang/String;Ljava/lang/ClassLoader;Ljava/lang/String;[Ljava/lang/Object;)Lde/robv/android/xposed/XC_MethodHook$Unhook;

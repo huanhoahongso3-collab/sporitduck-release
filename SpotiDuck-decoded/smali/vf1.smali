@@ -9,7 +9,7 @@
 # instance fields
 .field public final synthetic j:Ljava/lang/String;
 
-.field public final synthetic k:Lcom/spotiduck/music/MainActivity;
+.field public final synthetic k:Ldhp/vkn/tpl/sporitduck/MainActivity;
 
 .field public final synthetic l:Ljava/io/File;
 
@@ -25,7 +25,7 @@
 
 
 # direct methods
-.method public synthetic constructor <init>(Ljava/lang/String;Lcom/spotiduck/music/MainActivity;Ljava/io/File;JLandroid/widget/ProgressBar;ZLandroid/content/res/ColorStateList;Landroid/content/res/ColorStateList;)V
+.method public synthetic constructor <init>(Ljava/lang/String;Ldhp/vkn/tpl/sporitduck/MainActivity;Ljava/io/File;JLandroid/widget/ProgressBar;ZLandroid/content/res/ColorStateList;Landroid/content/res/ColorStateList;)V
     .locals 0
 
     .line 1
@@ -38,7 +38,7 @@
 
     .line 5
     .line 6
-    iput-object p2, p0, Lvf1;->k:Lcom/spotiduck/music/MainActivity;
+    iput-object p2, p0, Lvf1;->k:Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 7
     .line 8
@@ -83,7 +83,7 @@
 
     .line 4
     .line 5
-    iget-object v3, v0, Lvf1;->k:Lcom/spotiduck/music/MainActivity;
+    iget-object v3, v0, Lvf1;->k:Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 6
     .line 7
@@ -219,7 +219,7 @@
     const/4 v9, 0x2
 
     .line 74
-    invoke-direct/range {v2 .. v9}, Lqf1;-><init>(Lcom/spotiduck/music/MainActivity;Ljava/io/Serializable;Landroid/widget/ProgressBar;ZLandroid/content/res/ColorStateList;Landroid/content/res/ColorStateList;I)V
+    invoke-direct/range {v2 .. v9}, Lqf1;-><init>(Ldhp/vkn/tpl/sporitduck/MainActivity;Ljava/io/Serializable;Landroid/widget/ProgressBar;ZLandroid/content/res/ColorStateList;Landroid/content/res/ColorStateList;I)V
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_1
     .catchall {:try_start_0 .. :try_end_0} :catchall_1
@@ -491,7 +491,7 @@
 
     .line 191
     .line 192
-    invoke-direct/range {v2 .. v8}, Lqf1;-><init>(Lcom/spotiduck/music/MainActivity;Landroid/widget/ProgressBar;ZLandroid/content/res/ColorStateList;Landroid/content/res/ColorStateList;Ljava/io/File;)V
+    invoke-direct/range {v2 .. v8}, Lqf1;-><init>(Ldhp/vkn/tpl/sporitduck/MainActivity;Landroid/widget/ProgressBar;ZLandroid/content/res/ColorStateList;Landroid/content/res/ColorStateList;Ljava/io/File;)V
     :try_end_4
     .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_4} :catch_2
     .catchall {:try_start_4 .. :try_end_4} :catchall_0
@@ -568,7 +568,7 @@
     const/4 v9, 0x1
 
     .line 221
-    invoke-direct/range {v2 .. v9}, Lqf1;-><init>(Lcom/spotiduck/music/MainActivity;Ljava/io/Serializable;Landroid/widget/ProgressBar;ZLandroid/content/res/ColorStateList;Landroid/content/res/ColorStateList;I)V
+    invoke-direct/range {v2 .. v9}, Lqf1;-><init>(Ldhp/vkn/tpl/sporitduck/MainActivity;Ljava/io/Serializable;Landroid/widget/ProgressBar;ZLandroid/content/res/ColorStateList;Landroid/content/res/ColorStateList;I)V
 
     .line 222
     .line 223

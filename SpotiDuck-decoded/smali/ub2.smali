@@ -105,7 +105,7 @@
 
     .line 36
     :cond_1
-    const-string p1, "com.spotiduck.music.PIP_PREV"
+    const-string p1, "dhp.vkn.tpl.sporitduck.PIP_PREV"
 
     .line 37
     .line 38
@@ -125,7 +125,7 @@
 
     .line 45
     :cond_2
-    sget-object p0, Lcom/spotiduck/music/AppSingleton;->w:Ll9;
+    sget-object p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->w:Ll9;
 
     .line 46
     .line 47
@@ -146,7 +146,7 @@
 
     .line 55
     :cond_3
-    const-string p1, "com.spotiduck.music.PIP_NEXT"
+    const-string p1, "dhp.vkn.tpl.sporitduck.PIP_NEXT"
 
     .line 56
     .line 57
@@ -166,7 +166,7 @@
 
     .line 64
     :cond_4
-    sget-object p0, Lcom/spotiduck/music/AppSingleton;->w:Ll9;
+    sget-object p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->w:Ll9;
 
     .line 65
     .line 66
@@ -187,7 +187,7 @@
 
     .line 74
     :cond_5
-    const-string p1, "com.spotiduck.music.PIP_PLAY_PAUSE"
+    const-string p1, "dhp.vkn.tpl.sporitduck.PIP_PLAY_PAUSE"
 
     .line 75
     .line 76
@@ -207,7 +207,7 @@
 
     .line 83
     :cond_6
-    sget-object p0, Lcom/spotiduck/music/AppSingleton;->w:Ll9;
+    sget-object p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->w:Ll9;
 
     .line 84
     .line 85

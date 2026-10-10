@@ -1,4 +1,4 @@
-.class public final Lcom/spotiduck/music/b;
+.class public final Ldhp/vkn/tpl/sporitduck/b;
 .super Ljava/lang/Object;
 .source "r8-map-id-37e276fb91e34a5f1b4d8f51e71abe3719dc52e9eeab3bd3e0cf2cd8d4f7becf"
 
@@ -20,7 +20,7 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Lcom/spotiduck/music/b;->j:Landroid/view/View;
+    iput-object p1, p0, Ldhp/vkn/tpl/sporitduck/b;->j:Landroid/view/View;
 
     .line 5
     .line 6
@@ -49,7 +49,7 @@
 
     .line 7
     :goto_0
-    iget-object p0, p0, Lcom/spotiduck/music/b;->j:Landroid/view/View;
+    iget-object p0, p0, Ldhp/vkn/tpl/sporitduck/b;->j:Landroid/view/View;
 
     .line 8
     .line 9

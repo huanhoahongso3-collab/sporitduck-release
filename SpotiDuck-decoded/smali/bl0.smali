@@ -9,13 +9,13 @@
 # instance fields
 .field public final synthetic j:I
 
-.field public final synthetic k:Lcom/spotiduck/music/MainActivity;
+.field public final synthetic k:Ldhp/vkn/tpl/sporitduck/MainActivity;
 
 .field public final synthetic l:Ljava/lang/String;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/spotiduck/music/MainActivity;Ljava/lang/String;)V
+.method public synthetic constructor <init>(Ldhp/vkn/tpl/sporitduck/MainActivity;Ljava/lang/String;)V
     .locals 1
 
     .line 1
@@ -31,7 +31,7 @@
     .line 5
     .line 6
     .line 7
-    iput-object p1, p0, Lbl0;->k:Lcom/spotiduck/music/MainActivity;
+    iput-object p1, p0, Lbl0;->k:Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 8
     .line 9
@@ -42,7 +42,7 @@
     return-void
 .end method
 
-.method public synthetic constructor <init>(Ljava/lang/String;Lcom/spotiduck/music/MainActivity;)V
+.method public synthetic constructor <init>(Ljava/lang/String;Ldhp/vkn/tpl/sporitduck/MainActivity;)V
     .locals 1
 
     .line 12
@@ -54,7 +54,7 @@
 
     iput-object p1, p0, Lbl0;->l:Ljava/lang/String;
 
-    iput-object p2, p0, Lbl0;->k:Lcom/spotiduck/music/MainActivity;
+    iput-object p2, p0, Lbl0;->k:Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     return-void
 .end method
@@ -74,7 +74,7 @@
     .line 4
     .line 5
     .line 6
-    iget-object v0, p0, Lbl0;->k:Lcom/spotiduck/music/MainActivity;
+    iget-object v0, p0, Lbl0;->k:Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 7
     .line 8
@@ -82,7 +82,7 @@
 
     .line 9
     .line 10
-    invoke-virtual {v0, p0}, Lcom/spotiduck/music/MainActivity;->E(Ljava/lang/String;)V
+    invoke-virtual {v0, p0}, Ldhp/vkn/tpl/sporitduck/MainActivity;->E(Ljava/lang/String;)V
 
     .line 11
     .line 12
@@ -95,11 +95,11 @@
 
     .line 15
     .line 16
-    iget-object p0, p0, Lbl0;->k:Lcom/spotiduck/music/MainActivity;
+    iget-object p0, p0, Lbl0;->k:Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 17
     .line 18
-    sget v1, Lcom/spotiduck/music/MainActivity;->h0:I
+    sget v1, Ldhp/vkn/tpl/sporitduck/MainActivity;->h0:I
 
     .line 19
     .line 20
@@ -160,7 +160,7 @@
 
     .line 47
     .line 48
-    iput-object v0, p0, Lcom/spotiduck/music/MainActivity;->T:Landroid/graphics/Bitmap;
+    iput-object v0, p0, Ldhp/vkn/tpl/sporitduck/MainActivity;->T:Landroid/graphics/Bitmap;
 
     .line 49
     .line 50

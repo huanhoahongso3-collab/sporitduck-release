@@ -1,4 +1,4 @@
-.class public final Lcom/spotiduck/music/AndBridge;
+.class public final Ldhp/vkn/tpl/sporitduck/AndBridge;
 .super Ljava/lang/Object;
 .source "r8-map-id-37e276fb91e34a5f1b4d8f51e71abe3719dc52e9eeab3bd3e0cf2cd8d4f7becf"
 
@@ -22,7 +22,7 @@
     .line 5
     .line 6
     .line 7
-    iput-object p1, p0, Lcom/spotiduck/music/AndBridge;->a:Landroid/content/Context;
+    iput-object p1, p0, Ldhp/vkn/tpl/sporitduck/AndBridge;->a:Landroid/content/Context;
 
     .line 8
     .line 9
@@ -37,7 +37,7 @@
     .end annotation
 
     .line 1
-    sget p0, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 2
     .line 3
@@ -60,7 +60,7 @@
     .line 2
     .line 3
     .line 4
-    sget-object p0, Lcom/spotiduck/music/AppSingleton;->t:Ljava/lang/ref/WeakReference;
+    sget-object p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->t:Ljava/lang/ref/WeakReference;
 
     .line 5
     .line 6
@@ -76,7 +76,7 @@
     move-result-object p0
 
     .line 12
-    check-cast p0, Lcom/spotiduck/music/MainActivity;
+    check-cast p0, Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 13
     .line 14
@@ -263,7 +263,7 @@
     .end annotation
 
     .line 1
-    sget-object p0, Lcom/spotiduck/music/AppSingleton;->t:Ljava/lang/ref/WeakReference;
+    sget-object p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->t:Ljava/lang/ref/WeakReference;
 
     .line 2
     .line 3
@@ -279,7 +279,7 @@
     move-result-object p0
 
     .line 9
-    check-cast p0, Lcom/spotiduck/music/MainActivity;
+    check-cast p0, Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 10
     .line 11
@@ -294,7 +294,7 @@
     const/4 v1, 0x0
 
     .line 16
-    invoke-direct {v0, p0, v1}, Ls4;-><init>(Lcom/spotiduck/music/MainActivity;I)V
+    invoke-direct {v0, p0, v1}, Ls4;-><init>(Ldhp/vkn/tpl/sporitduck/MainActivity;I)V
 
     .line 17
     .line 18
@@ -314,7 +314,7 @@
     .end annotation
 
     .line 1
-    sget-object p0, Lcom/spotiduck/music/AppSingleton;->t:Ljava/lang/ref/WeakReference;
+    sget-object p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->t:Ljava/lang/ref/WeakReference;
 
     .line 2
     .line 3
@@ -330,7 +330,7 @@
     move-result-object p0
 
     .line 9
-    check-cast p0, Lcom/spotiduck/music/MainActivity;
+    check-cast p0, Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 10
     .line 11
@@ -342,7 +342,7 @@
 
     .line 14
     .line 15
-    invoke-direct {v0, p0, p1, p2}, Lp4;-><init>(Lcom/spotiduck/music/MainActivity;II)V
+    invoke-direct {v0, p0, p1, p2}, Lp4;-><init>(Ldhp/vkn/tpl/sporitduck/MainActivity;II)V
 
     .line 16
     .line 17
@@ -362,7 +362,7 @@
     .end annotation
 
     .line 1
-    iget-object p0, p0, Lcom/spotiduck/music/AndBridge;->a:Landroid/content/Context;
+    iget-object p0, p0, Ldhp/vkn/tpl/sporitduck/AndBridge;->a:Landroid/content/Context;
 
     .line 2
     .line 3
@@ -719,7 +719,7 @@
     .end annotation
 
     .line 1
-    sget-object p0, Lcom/spotiduck/music/AppSingleton;->w:Ll9;
+    sget-object p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->w:Ll9;
 
     .line 2
     .line 3
@@ -761,11 +761,11 @@
     const/4 p0, 0x1
 
     .line 2
-    sput-boolean p0, Lcom/spotiduck/music/AppSingleton;->B:Z
+    sput-boolean p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->B:Z
 
     .line 3
     .line 4
-    sget v0, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 5
     .line 6
@@ -803,7 +803,7 @@
     .end annotation
 
     .line 1
-    sget p0, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 2
     .line 3
@@ -828,7 +828,7 @@
     .end annotation
 
     .line 1
-    sget p0, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 2
     .line 3
@@ -2014,7 +2014,7 @@
     .line 7
     .line 8
     .line 9
-    sget-object v1, Lcom/spotiduck/music/WebService;->E:Ljava/util/concurrent/ConcurrentHashMap;
+    sget-object v1, Ldhp/vkn/tpl/sporitduck/WebService;->E:Ljava/util/concurrent/ConcurrentHashMap;
 
     .line 10
     .line 11
@@ -2545,7 +2545,7 @@
 
     .line 10
     .line 11
-    sget-object v2, Lcom/spotiduck/music/WebService;->F:Ljava/util/concurrent/ConcurrentHashMap;
+    sget-object v2, Ldhp/vkn/tpl/sporitduck/WebService;->F:Ljava/util/concurrent/ConcurrentHashMap;
 
     .line 12
     .line 13
@@ -3452,7 +3452,7 @@
     .line 115
     .line 116
     :cond_2
-    iget-object p0, p0, Lcom/spotiduck/music/AndBridge;->a:Landroid/content/Context;
+    iget-object p0, p0, Ldhp/vkn/tpl/sporitduck/AndBridge;->a:Landroid/content/Context;
 
     .line 117
     .line 118
@@ -3791,11 +3791,11 @@
     const/4 p0, 0x1
 
     .line 2
-    sput-boolean p0, Lcom/spotiduck/music/AppSingleton;->l:Z
+    sput-boolean p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->l:Z
 
     .line 3
     .line 4
-    sget p0, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 5
     .line 6
@@ -3813,11 +3813,11 @@
     .end annotation
 
     .line 1
-    sget-boolean p0, Lcom/spotiduck/music/WebService;->r:Z
+    sget-boolean p0, Ldhp/vkn/tpl/sporitduck/WebService;->r:Z
 
     .line 2
     .line 3
-    sput-wide p1, Lcom/spotiduck/music/WebService;->z:J
+    sput-wide p1, Ldhp/vkn/tpl/sporitduck/WebService;->z:J
 
     .line 4
     .line 5
@@ -3829,11 +3829,11 @@
     move-result-wide p0
 
     .line 9
-    sput-wide p0, Lcom/spotiduck/music/WebService;->A:J
+    sput-wide p0, Ldhp/vkn/tpl/sporitduck/WebService;->A:J
 
     .line 10
     .line 11
-    sget-object p0, Lcom/spotiduck/music/WebService;->G:Lcom/spotiduck/music/WebService;
+    sget-object p0, Ldhp/vkn/tpl/sporitduck/WebService;->G:Ldhp/vkn/tpl/sporitduck/WebService;
 
     .line 12
     .line 13
@@ -3842,7 +3842,7 @@
     .line 14
     .line 15
     :try_start_0
-    iget-object p0, p0, Lcom/spotiduck/music/WebService;->j:Landroid/support/v4/media/session/MediaSessionCompat;
+    iget-object p0, p0, Ldhp/vkn/tpl/sporitduck/WebService;->j:Landroid/support/v4/media/session/MediaSessionCompat;
 
     .line 16
     .line 17
@@ -3866,7 +3866,7 @@
 
     .line 25
     .line 26
-    sget-boolean p1, Lcom/spotiduck/music/WebService;->s:Z
+    sget-boolean p1, Ldhp/vkn/tpl/sporitduck/WebService;->s:Z
 
     .line 27
     .line 28
@@ -3913,11 +3913,11 @@
     move-result-object v0
 
     .line 46
-    sget-wide v2, Lcom/spotiduck/music/WebService;->z:J
+    sget-wide v2, Ldhp/vkn/tpl/sporitduck/WebService;->z:J
 
     .line 47
     .line 48
-    sget-wide v5, Lcom/spotiduck/music/WebService;->A:J
+    sget-wide v5, Ldhp/vkn/tpl/sporitduck/WebService;->A:J
 
     .line 49
     .line 50
@@ -4025,7 +4025,7 @@
     move-result-object p1
 
     .line 29
-    sput-object p1, Lcom/spotiduck/music/WebService;->v:Ljava/lang/String;
+    sput-object p1, Ldhp/vkn/tpl/sporitduck/WebService;->v:Ljava/lang/String;
 
     .line 30
     .line 31
@@ -4046,7 +4046,7 @@
     .line 38
     .line 39
     .line 40
-    sput-object p1, Lcom/spotiduck/music/WebService;->u:Ljava/lang/String;
+    sput-object p1, Ldhp/vkn/tpl/sporitduck/WebService;->u:Ljava/lang/String;
 
     .line 41
     .line 42
@@ -4062,7 +4062,7 @@
     move-result-wide v0
 
     .line 48
-    sput-wide v0, Lcom/spotiduck/music/WebService;->z:J
+    sput-wide v0, Ldhp/vkn/tpl/sporitduck/WebService;->z:J
 
     .line 49
     .line 50
@@ -4078,7 +4078,7 @@
     move-result-wide v0
 
     .line 56
-    sput-wide v0, Lcom/spotiduck/music/WebService;->y:J
+    sput-wide v0, Ldhp/vkn/tpl/sporitduck/WebService;->y:J
 
     .line 57
     .line 58
@@ -4090,7 +4090,7 @@
     move-result-wide v0
 
     .line 62
-    sput-wide v0, Lcom/spotiduck/music/WebService;->A:J
+    sput-wide v0, Ldhp/vkn/tpl/sporitduck/WebService;->A:J
 
     .line 63
     .line 64
@@ -4106,7 +4106,7 @@
     move-result p1
 
     .line 70
-    sput-boolean p1, Lcom/spotiduck/music/WebService;->s:Z
+    sput-boolean p1, Ldhp/vkn/tpl/sporitduck/WebService;->s:Z
 
     .line 71
     .line 72
@@ -4127,7 +4127,7 @@
     .line 79
     .line 80
     .line 81
-    sput-object p1, Lcom/spotiduck/music/WebService;->w:Ljava/lang/String;
+    sput-object p1, Ldhp/vkn/tpl/sporitduck/WebService;->w:Ljava/lang/String;
 
     .line 82
     .line 83
@@ -4148,7 +4148,7 @@
     .line 90
     .line 91
     .line 92
-    sput-object p1, Lcom/spotiduck/music/WebService;->x:Ljava/lang/String;
+    sput-object p1, Ldhp/vkn/tpl/sporitduck/WebService;->x:Ljava/lang/String;
 
     .line 93
     .line 94
@@ -4164,7 +4164,7 @@
     move-result p1
 
     .line 100
-    sput-boolean p1, Lcom/spotiduck/music/WebService;->t:Z
+    sput-boolean p1, Ldhp/vkn/tpl/sporitduck/WebService;->t:Z
 
     .line 101
     .line 102
@@ -4204,11 +4204,11 @@
     const/4 p1, 0x0
 
     .line 120
-    sput-object p1, Lcom/spotiduck/music/WebService;->B:Landroid/graphics/Bitmap;
+    sput-object p1, Ldhp/vkn/tpl/sporitduck/WebService;->B:Landroid/graphics/Bitmap;
 
     .line 121
     .line 122
-    sget-boolean v0, Lcom/spotiduck/music/WebService;->r:Z
+    sget-boolean v0, Ldhp/vkn/tpl/sporitduck/WebService;->r:Z
 
     .line 123
     .line 124
@@ -4220,7 +4220,7 @@
     .line 126
     .line 127
     .line 128
-    sget-object v1, Lcom/spotiduck/music/AppSingleton;->t:Ljava/lang/ref/WeakReference;
+    sget-object v1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->t:Ljava/lang/ref/WeakReference;
 
     .line 129
     .line 130
@@ -4236,7 +4236,7 @@
     move-result-object v1
 
     .line 136
-    check-cast v1, Lcom/spotiduck/music/MainActivity;
+    check-cast v1, Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 137
     .line 138
@@ -4244,11 +4244,11 @@
 
     .line 139
     .line 140
-    sget-boolean v2, Lcom/spotiduck/music/WebService;->s:Z
+    sget-boolean v2, Ldhp/vkn/tpl/sporitduck/WebService;->s:Z
 
     .line 141
     .line 142
-    iput-boolean v2, v1, Lcom/spotiduck/music/MainActivity;->U:Z
+    iput-boolean v2, v1, Ldhp/vkn/tpl/sporitduck/MainActivity;->U:Z
 
     .line 143
     .line 144
@@ -4264,7 +4264,7 @@
 
     .line 149
     .line 150
-    iget-object v2, v1, Lcom/spotiduck/music/MainActivity;->V:Ljava/lang/String;
+    iget-object v2, v1, Ldhp/vkn/tpl/sporitduck/MainActivity;->V:Ljava/lang/String;
 
     .line 151
     .line 152
@@ -4280,11 +4280,11 @@
 
     .line 157
     .line 158
-    iput-object p0, v1, Lcom/spotiduck/music/MainActivity;->V:Ljava/lang/String;
+    iput-object p0, v1, Ldhp/vkn/tpl/sporitduck/MainActivity;->V:Ljava/lang/String;
 
     .line 159
     .line 160
-    iget-boolean v2, v1, Lcom/spotiduck/music/MainActivity;->Y:Z
+    iget-boolean v2, v1, Ldhp/vkn/tpl/sporitduck/MainActivity;->Y:Z
 
     .line 161
     .line 162
@@ -4320,7 +4320,7 @@
 
     .line 177
     :cond_0
-    iput-object p1, v1, Lcom/spotiduck/music/MainActivity;->T:Landroid/graphics/Bitmap;
+    iput-object p1, v1, Ldhp/vkn/tpl/sporitduck/MainActivity;->T:Landroid/graphics/Bitmap;
 
     .line 178
     .line 179
@@ -4337,7 +4337,7 @@
 
     .line 183
     .line 184
-    invoke-direct {v2, p0, v1}, Lbl0;-><init>(Ljava/lang/String;Lcom/spotiduck/music/MainActivity;)V
+    invoke-direct {v2, p0, v1}, Lbl0;-><init>(Ljava/lang/String;Ldhp/vkn/tpl/sporitduck/MainActivity;)V
 
     .line 185
     .line 186
@@ -4362,7 +4362,7 @@
 
     .line 196
     .line 197
-    invoke-direct {p1, v1, v2}, Ls4;-><init>(Lcom/spotiduck/music/MainActivity;I)V
+    invoke-direct {p1, v1, v2}, Ls4;-><init>(Ldhp/vkn/tpl/sporitduck/MainActivity;I)V
 
     .line 198
     .line 199
@@ -4432,11 +4432,11 @@
     .end annotation
 
     .line 1
-    sput-boolean p1, Lcom/spotiduck/music/AppSingleton;->Q:Z
+    sput-boolean p1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->Q:Z
 
     .line 2
     .line 3
-    sget p0, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 4
     .line 5
@@ -4474,7 +4474,7 @@
     .end annotation
 
     .line 1
-    sget-object p0, Lcom/spotiduck/music/AppSingleton;->t:Ljava/lang/ref/WeakReference;
+    sget-object p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->t:Ljava/lang/ref/WeakReference;
 
     .line 2
     .line 3
@@ -4490,7 +4490,7 @@
     move-result-object p0
 
     .line 9
-    check-cast p0, Lcom/spotiduck/music/MainActivity;
+    check-cast p0, Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 10
     .line 11
@@ -4502,7 +4502,7 @@
 
     .line 14
     .line 15
-    invoke-direct {v0, p0, p1}, Ls4;-><init>(Lcom/spotiduck/music/MainActivity;Z)V
+    invoke-direct {v0, p0, p1}, Ls4;-><init>(Ldhp/vkn/tpl/sporitduck/MainActivity;Z)V
 
     .line 16
     .line 17
@@ -4522,11 +4522,11 @@
     .end annotation
 
     .line 1
-    sput-boolean p1, Lcom/spotiduck/music/AppSingleton;->V:Z
+    sput-boolean p1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->V:Z
 
     .line 2
     .line 3
-    sget p0, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 4
     .line 5
@@ -4544,11 +4544,11 @@
     .end annotation
 
     .line 1
-    sget-boolean p0, Lcom/spotiduck/music/WebService;->r:Z
+    sget-boolean p0, Ldhp/vkn/tpl/sporitduck/WebService;->r:Z
 
     .line 2
     .line 3
-    sget-object p0, Lcom/spotiduck/music/WebService;->G:Lcom/spotiduck/music/WebService;
+    sget-object p0, Ldhp/vkn/tpl/sporitduck/WebService;->G:Ldhp/vkn/tpl/sporitduck/WebService;
 
     .line 4
     .line 5
@@ -4556,7 +4556,7 @@
 
     .line 6
     .line 7
-    invoke-virtual {p0}, Lcom/spotiduck/music/WebService;->j()V
+    invoke-virtual {p0}, Ldhp/vkn/tpl/sporitduck/WebService;->j()V
 
     .line 8
     .line 9
@@ -4605,11 +4605,11 @@
     .line 17
     .line 18
     .line 19
-    sget-boolean p0, Lcom/spotiduck/music/WebService;->r:Z
+    sget-boolean p0, Ldhp/vkn/tpl/sporitduck/WebService;->r:Z
 
     .line 20
     .line 21
-    sget-object p0, Lcom/spotiduck/music/WebService;->G:Lcom/spotiduck/music/WebService;
+    sget-object p0, Ldhp/vkn/tpl/sporitduck/WebService;->G:Ldhp/vkn/tpl/sporitduck/WebService;
 
     .line 22
     .line 23
@@ -4617,7 +4617,7 @@
 
     .line 24
     .line 25
-    invoke-virtual {p0}, Lcom/spotiduck/music/WebService;->a()V
+    invoke-virtual {p0}, Ldhp/vkn/tpl/sporitduck/WebService;->a()V
 
     .line 26
     .line 27

@@ -1,4 +1,4 @@
-.class public final Lcom/spotiduck/music/HomeWidget;
+.class public final Ldhp/vkn/tpl/sporitduck/HomeWidget;
 .super Landroid/appwidget/AppWidgetProvider;
 .source "r8-map-id-37e276fb91e34a5f1b4d8f51e71abe3719dc52e9eeab3bd3e0cf2cd8d4f7becf"
 
@@ -33,7 +33,7 @@
     .line 8
     .line 9
     .line 10
-    sput-object v0, Lcom/spotiduck/music/HomeWidget;->a:Landroid/os/Handler;
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/HomeWidget;->a:Landroid/os/Handler;
 
     .line 11
     .line 12
@@ -46,7 +46,7 @@
     .line 15
     .line 16
     .line 17
-    sput-object v0, Lcom/spotiduck/music/HomeWidget;->c:Lac0;
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/HomeWidget;->c:Lac0;
 
     .line 18
     .line 19
@@ -86,7 +86,7 @@
     .line 8
     .line 9
     .line 10
-    invoke-static {p1, p2, p3}, Lcom/spotiduck/music/a;->d(Landroid/content/Context;Landroid/appwidget/AppWidgetManager;I)V
+    invoke-static {p1, p2, p3}, Ldhp/vkn/tpl/sporitduck/a;->d(Landroid/content/Context;Landroid/appwidget/AppWidgetManager;I)V
 
     .line 11
     .line 12
@@ -133,7 +133,7 @@
 
     .line 15
     .line 16
-    invoke-static {p1, p2, v1}, Lcom/spotiduck/music/a;->d(Landroid/content/Context;Landroid/appwidget/AppWidgetManager;I)V
+    invoke-static {p1, p2, v1}, Ldhp/vkn/tpl/sporitduck/a;->d(Landroid/content/Context;Landroid/appwidget/AppWidgetManager;I)V
 
     .line 17
     .line 18

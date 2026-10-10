@@ -8,7 +8,7 @@
     .locals 9
 
     .line 1
-    sget-object v0, Lcom/spotiduck/music/AppSingleton;->G:Ljava/lang/String;
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->G:Ljava/lang/String;
 
     .line 2
     .line 3
@@ -224,7 +224,7 @@
 
     .line 106
     .line 107
-    sget-boolean v4, Lcom/spotiduck/music/WebService;->t:Z
+    sget-boolean v4, Ldhp/vkn/tpl/sporitduck/WebService;->t:Z
 
     .line 108
     .line 109
@@ -314,7 +314,7 @@
 
     .line 150
     .line 151
-    sget v7, Lcom/spotiduck/music/WebService;->D:I
+    sget v7, Ldhp/vkn/tpl/sporitduck/WebService;->D:I
 
     .line 152
     .line 153
@@ -377,7 +377,7 @@
 
     .line 181
     .line 182
-    sget v7, Lcom/spotiduck/music/WebService;->C:I
+    sget v7, Ldhp/vkn/tpl/sporitduck/WebService;->C:I
 
     .line 183
     .line 184
@@ -424,7 +424,7 @@
 
     .line 2
     .line 3
-    sget-object v1, Lcom/spotiduck/music/WebService;->G:Lcom/spotiduck/music/WebService;
+    sget-object v1, Ldhp/vkn/tpl/sporitduck/WebService;->G:Ldhp/vkn/tpl/sporitduck/WebService;
 
     .line 4
     .line 5
@@ -433,7 +433,7 @@
     .line 6
     .line 7
     :try_start_0
-    sget-boolean v2, Lcom/spotiduck/music/WebService;->s:Z
+    sget-boolean v2, Ldhp/vkn/tpl/sporitduck/WebService;->s:Z
 
     .line 8
     .line 9
@@ -441,7 +441,7 @@
 
     .line 10
     .line 11
-    invoke-virtual {v1}, Lcom/spotiduck/music/WebService;->a()V
+    invoke-virtual {v1}, Ldhp/vkn/tpl/sporitduck/WebService;->a()V
 
     .line 12
     .line 13
@@ -450,13 +450,13 @@
 
     .line 15
     :cond_0
-    invoke-virtual {v1}, Lcom/spotiduck/music/WebService;->j()V
+    invoke-virtual {v1}, Ldhp/vkn/tpl/sporitduck/WebService;->j()V
 
     .line 16
     .line 17
     .line 18
     :goto_0
-    iget-object v2, v1, Lcom/spotiduck/music/WebService;->j:Landroid/support/v4/media/session/MediaSessionCompat;
+    iget-object v2, v1, Ldhp/vkn/tpl/sporitduck/WebService;->j:Landroid/support/v4/media/session/MediaSessionCompat;
 
     .line 19
     .line 20
@@ -479,7 +479,7 @@
 
     .line 28
     .line 29
-    sget-boolean v4, Lcom/spotiduck/music/WebService;->s:Z
+    sget-boolean v4, Ldhp/vkn/tpl/sporitduck/WebService;->s:Z
 
     .line 30
     .line 31
@@ -526,7 +526,7 @@
     move-result-object v5
 
     .line 49
-    sget-wide v7, Lcom/spotiduck/music/WebService;->z:J
+    sget-wide v7, Ldhp/vkn/tpl/sporitduck/WebService;->z:J
 
     .line 50
     .line 51
@@ -547,7 +547,7 @@
     .line 58
     .line 59
     .line 60
-    sget-object v4, Lcom/spotiduck/music/WebService;->w:Ljava/lang/String;
+    sget-object v4, Ldhp/vkn/tpl/sporitduck/WebService;->w:Ljava/lang/String;
 
     .line 61
     .line 62
@@ -606,11 +606,11 @@
     .line 86
     .line 87
     :goto_3
-    sput v4, Lcom/spotiduck/music/WebService;->C:I
+    sput v4, Ldhp/vkn/tpl/sporitduck/WebService;->C:I
 
     .line 88
     .line 89
-    sget-object v4, Lcom/spotiduck/music/WebService;->x:Ljava/lang/String;
+    sget-object v4, Ldhp/vkn/tpl/sporitduck/WebService;->x:Ljava/lang/String;
 
     .line 90
     .line 91
@@ -662,11 +662,11 @@
     .line 113
     .line 114
     :goto_4
-    sput v0, Lcom/spotiduck/music/WebService;->D:I
+    sput v0, Ldhp/vkn/tpl/sporitduck/WebService;->D:I
 
     .line 115
     .line 116
-    sget-boolean v0, Lcom/spotiduck/music/WebService;->r:Z
+    sget-boolean v0, Ldhp/vkn/tpl/sporitduck/WebService;->r:Z
 
     .line 117
     .line 118
@@ -712,7 +712,7 @@
 
     .line 136
     .line 137
-    sget-object v4, Lcom/spotiduck/music/WebService;->v:Ljava/lang/String;
+    sget-object v4, Ldhp/vkn/tpl/sporitduck/WebService;->v:Ljava/lang/String;
 
     .line 138
     .line 139
@@ -728,7 +728,7 @@
 
     .line 144
     .line 145
-    sget-object v4, Lcom/spotiduck/music/WebService;->u:Ljava/lang/String;
+    sget-object v4, Ldhp/vkn/tpl/sporitduck/WebService;->u:Ljava/lang/String;
 
     .line 146
     .line 147
@@ -744,7 +744,7 @@
 
     .line 152
     .line 153
-    sget-wide v4, Lcom/spotiduck/music/WebService;->y:J
+    sget-wide v4, Ldhp/vkn/tpl/sporitduck/WebService;->y:J
 
     .line 154
     .line 155
@@ -760,7 +760,7 @@
 
     .line 160
     .line 161
-    sget-object v4, Lcom/spotiduck/music/WebService;->B:Landroid/graphics/Bitmap;
+    sget-object v4, Ldhp/vkn/tpl/sporitduck/WebService;->B:Landroid/graphics/Bitmap;
 
     .line 162
     .line 163
@@ -828,7 +828,7 @@
 
     .line 189
     .line 190
-    invoke-virtual {v1}, Lcom/spotiduck/music/WebService;->b()Landroid/app/Notification;
+    invoke-virtual {v1}, Ldhp/vkn/tpl/sporitduck/WebService;->b()Landroid/app/Notification;
 
     .line 191
     .line 192
@@ -850,16 +850,16 @@
     :catchall_2
     :cond_7
     :try_start_6
-    sget-object p0, Lcom/spotiduck/music/HomeWidget;->a:Landroid/os/Handler;
+    sget-object p0, Ldhp/vkn/tpl/sporitduck/HomeWidget;->a:Landroid/os/Handler;
 
     .line 200
     .line 201
-    invoke-static {v1}, Lcom/spotiduck/music/a;->c(Landroid/content/Context;)V
+    invoke-static {v1}, Ldhp/vkn/tpl/sporitduck/a;->c(Landroid/content/Context;)V
 
     .line 202
     .line 203
     .line 204
-    sget-boolean p0, Lcom/spotiduck/music/WebService;->s:Z
+    sget-boolean p0, Ldhp/vkn/tpl/sporitduck/WebService;->s:Z
     :try_end_6
     .catchall {:try_start_6 .. :try_end_6} :catchall_3
 
@@ -874,7 +874,7 @@
     .line 209
     .line 210
     :try_start_7
-    iget-object p0, v1, Lcom/spotiduck/music/WebService;->k:Landroid/os/PowerManager$WakeLock;
+    iget-object p0, v1, Ldhp/vkn/tpl/sporitduck/WebService;->k:Landroid/os/PowerManager$WakeLock;
 
     .line 211
     .line 212
@@ -894,7 +894,7 @@
 
     .line 219
     .line 220
-    iget-object p0, v1, Lcom/spotiduck/music/WebService;->k:Landroid/os/PowerManager$WakeLock;
+    iget-object p0, v1, Ldhp/vkn/tpl/sporitduck/WebService;->k:Landroid/os/PowerManager$WakeLock;
 
     .line 221
     .line 222
@@ -934,7 +934,7 @@
 
     .line 239
     :cond_a
-    sget-boolean p0, Lcom/spotiduck/music/WebService;->s:Z
+    sget-boolean p0, Ldhp/vkn/tpl/sporitduck/WebService;->s:Z
 
     .line 240
     .line 241
@@ -942,7 +942,7 @@
 
     .line 242
     .line 243
-    iget-object p0, v1, Lcom/spotiduck/music/WebService;->k:Landroid/os/PowerManager$WakeLock;
+    iget-object p0, v1, Ldhp/vkn/tpl/sporitduck/WebService;->k:Landroid/os/PowerManager$WakeLock;
 
     .line 244
     .line 245
@@ -962,7 +962,7 @@
 
     .line 252
     .line 253
-    iget-object p0, v1, Lcom/spotiduck/music/WebService;->k:Landroid/os/PowerManager$WakeLock;
+    iget-object p0, v1, Ldhp/vkn/tpl/sporitduck/WebService;->k:Landroid/os/PowerManager$WakeLock;
 
     .line 254
     .line 255

@@ -1,4 +1,4 @@
-.class public final Lcom/spotiduck/music/ModuleSettingsActivity;
+.class public final Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;
 .super Landroid/app/Activity;
 .implements Landroid/view/View$OnClickListener;
 
@@ -23,12 +23,12 @@
 
     invoke-super {p0, p1}, Landroid/app/Activity;->onCreate(Landroid/os/Bundle;)V
 
-    # prefs = getSharedPreferences("com.spotiduck.music_preferences", 0)
-    const-string v0, "com.spotiduck.music_preferences"
+    # prefs = getSharedPreferences("dhp.vkn.tpl.sporitduck_preferences", 0)
+    const-string v0, "dhp.vkn.tpl.sporitduck_preferences"
     const/4 v1, 0x0
     invoke-virtual {p0, v0, v1}, Landroid/app/Activity;->getSharedPreferences(Ljava/lang/String;I)Landroid/content/SharedPreferences;
     move-result-object v0
-    iput-object v0, p0, Lcom/spotiduck/music/ModuleSettingsActivity;->prefs:Landroid/content/SharedPreferences;
+    iput-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->prefs:Landroid/content/SharedPreferences;
 
     # Read all three booleans
     const-string v1, "LoggedIn"
@@ -97,7 +97,7 @@
     :btn_mod_set
     invoke-virtual {v5, v6}, Landroid/widget/Button;->setText(Ljava/lang/CharSequence;)V
     invoke-virtual {v5, p0}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
-    iput-object v5, p0, Lcom/spotiduck/music/ModuleSettingsActivity;->btnModule:Landroid/widget/Button;
+    iput-object v5, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->btnModule:Landroid/widget/Button;
     invoke-virtual {v4, v5}, Landroid/view/ViewGroup;->addView(Landroid/view/View;)V
 
     # --- Section: DNS Ad Blocker toggle ---
@@ -127,7 +127,7 @@
     :btn_adb_set
     invoke-virtual {v5, v6}, Landroid/widget/Button;->setText(Ljava/lang/CharSequence;)V
     invoke-virtual {v5, p0}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
-    iput-object v5, p0, Lcom/spotiduck/music/ModuleSettingsActivity;->btnAdBlock:Landroid/widget/Button;
+    iput-object v5, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->btnAdBlock:Landroid/widget/Button;
     invoke-virtual {v4, v5}, Landroid/view/ViewGroup;->addView(Landroid/view/View;)V
 
     # --- Section: Web Player toggle ---
@@ -157,7 +157,7 @@
     :btn_wp_set
     invoke-virtual {v5, v6}, Landroid/widget/Button;->setText(Ljava/lang/CharSequence;)V
     invoke-virtual {v5, p0}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
-    iput-object v5, p0, Lcom/spotiduck/music/ModuleSettingsActivity;->btnWebPlayer:Landroid/widget/Button;
+    iput-object v5, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->btnWebPlayer:Landroid/widget/Button;
     invoke-virtual {v4, v5}, Landroid/view/ViewGroup;->addView(Landroid/view/View;)V
 
     # --- Section: Clear Data button ---
@@ -174,7 +174,7 @@
     const-string v6, "Clear SpotiDuck Data"
     invoke-virtual {v5, v6}, Landroid/widget/Button;->setText(Ljava/lang/CharSequence;)V
     invoke-virtual {v5, p0}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
-    iput-object v5, p0, Lcom/spotiduck/music/ModuleSettingsActivity;->btnClear:Landroid/widget/Button;
+    iput-object v5, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->btnClear:Landroid/widget/Button;
     invoke-virtual {v4, v5}, Landroid/view/ViewGroup;->addView(Landroid/view/View;)V
 
     # setContentView(root)
@@ -188,23 +188,23 @@
     .registers 8
 
     # Dispatch to the right handler by comparing button references
-    iget-object v0, p0, Lcom/spotiduck/music/ModuleSettingsActivity;->btnModule:Landroid/widget/Button;
+    iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->btnModule:Landroid/widget/Button;
     if-eq p1, v0, :handle_module
 
-    iget-object v0, p0, Lcom/spotiduck/music/ModuleSettingsActivity;->btnAdBlock:Landroid/widget/Button;
+    iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->btnAdBlock:Landroid/widget/Button;
     if-eq p1, v0, :handle_adblock
 
-    iget-object v0, p0, Lcom/spotiduck/music/ModuleSettingsActivity;->btnWebPlayer:Landroid/widget/Button;
+    iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->btnWebPlayer:Landroid/widget/Button;
     if-eq p1, v0, :handle_webplayer
 
-    iget-object v0, p0, Lcom/spotiduck/music/ModuleSettingsActivity;->btnClear:Landroid/widget/Button;
+    iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->btnClear:Landroid/widget/Button;
     if-eq p1, v0, :handle_clear
 
     return-void
 
     # ---- Toggle LoggedIn ----
     :handle_module
-    iget-object v0, p0, Lcom/spotiduck/music/ModuleSettingsActivity;->prefs:Landroid/content/SharedPreferences;
+    iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->prefs:Landroid/content/SharedPreferences;
     const-string v1, "LoggedIn"
     const/4 v2, 0x0
     invoke-interface {v0, v1, v2}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
@@ -232,7 +232,7 @@
 
     # ---- Toggle AdBlockEnabled ----
     :handle_adblock
-    iget-object v0, p0, Lcom/spotiduck/music/ModuleSettingsActivity;->prefs:Landroid/content/SharedPreferences;
+    iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->prefs:Landroid/content/SharedPreferences;
     const-string v1, "AdBlockEnabled"
     const/4 v2, 0x0
     invoke-interface {v0, v1, v2}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
@@ -260,7 +260,7 @@
 
     # ---- Toggle WebPlayerEnabled ----
     :handle_webplayer
-    iget-object v0, p0, Lcom/spotiduck/music/ModuleSettingsActivity;->prefs:Landroid/content/SharedPreferences;
+    iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->prefs:Landroid/content/SharedPreferences;
     const-string v1, "WebPlayerEnabled"
     const/4 v2, 0x0
     invoke-interface {v0, v1, v2}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
@@ -288,7 +288,7 @@
 
     # ---- Clear all SpotiDuck data ----
     :handle_clear
-    iget-object v0, p0, Lcom/spotiduck/music/ModuleSettingsActivity;->prefs:Landroid/content/SharedPreferences;
+    iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->prefs:Landroid/content/SharedPreferences;
     invoke-interface {v0}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences$Editor;
     move-result-object v0
     invoke-interface {v0}, Landroid/content/SharedPreferences$Editor;->clear()Landroid/content/SharedPreferences$Editor;

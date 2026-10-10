@@ -4,17 +4,17 @@
 
 
 # instance fields
-.field public final synthetic a:Lcom/spotiduck/music/MainActivity;
+.field public final synthetic a:Ldhp/vkn/tpl/sporitduck/MainActivity;
 
 .field public final synthetic b:Lp80;
 
 
 # direct methods
-.method public constructor <init>(Lcom/spotiduck/music/MainActivity;Lp80;)V
+.method public constructor <init>(Ldhp/vkn/tpl/sporitduck/MainActivity;Lp80;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Lcl0;->a:Lcom/spotiduck/music/MainActivity;
+    iput-object p1, p0, Lcl0;->a:Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 2
     .line 3
@@ -41,7 +41,7 @@
     .line 2
     .line 3
     .line 4
-    sget-boolean p1, Lcom/spotiduck/music/AppSingleton;->m:Z
+    sget-boolean p1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->m:Z
 
     .line 5
     .line 6
@@ -49,11 +49,11 @@
 
     .line 7
     .line 8
-    iget-object p1, p0, Lcl0;->a:Lcom/spotiduck/music/MainActivity;
+    iget-object p1, p0, Lcl0;->a:Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 9
     .line 10
-    iget-object v0, p1, Lcom/spotiduck/music/MainActivity;->J:Landroid/widget/ImageView;
+    iget-object v0, p1, Ldhp/vkn/tpl/sporitduck/MainActivity;->J:Landroid/widget/ImageView;
 
     .line 11
     .line 12
@@ -71,7 +71,7 @@
     .line 18
     .line 19
     :cond_0
-    iget-object v0, p1, Lcom/spotiduck/music/MainActivity;->I:Landroid/widget/ImageView;
+    iget-object v0, p1, Ldhp/vkn/tpl/sporitduck/MainActivity;->I:Landroid/widget/ImageView;
 
     .line 20
     .line 21
@@ -97,7 +97,7 @@
     .line 31
     .line 32
     :cond_1
-    iget-object p1, p1, Lcom/spotiduck/music/MainActivity;->I:Landroid/widget/ImageView;
+    iget-object p1, p1, Ldhp/vkn/tpl/sporitduck/MainActivity;->I:Landroid/widget/ImageView;
 
     .line 33
     .line 34

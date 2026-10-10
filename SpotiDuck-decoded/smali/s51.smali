@@ -38,11 +38,11 @@
     .line 2
     .line 3
     .line 4
-    sput-boolean p2, Lcom/spotiduck/music/AppSingleton;->F:Z
+    sput-boolean p2, Ldhp/vkn/tpl/sporitduck/AppSingleton;->F:Z
 
     .line 5
     .line 6
-    sget p1, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget p1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 7
     .line 8
@@ -71,7 +71,7 @@
     .line 19
     .line 20
     .line 21
-    sget-boolean p1, Lcom/spotiduck/music/WebService;->r:Z
+    sget-boolean p1, Ldhp/vkn/tpl/sporitduck/WebService;->r:Z
 
     .line 22
     .line 23

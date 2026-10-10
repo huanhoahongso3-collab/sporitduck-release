@@ -9,11 +9,11 @@
 # instance fields
 .field public final synthetic j:I
 
-.field public final synthetic k:Lcom/spotiduck/music/CustomPrefFooter;
+.field public final synthetic k:Ldhp/vkn/tpl/sporitduck/CustomPrefFooter;
 
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/spotiduck/music/CustomPrefFooter;I)V
+.method public synthetic constructor <init>(Ldhp/vkn/tpl/sporitduck/CustomPrefFooter;I)V
     .locals 0
 
     .line 1
@@ -21,7 +21,7 @@
 
     .line 2
     .line 3
-    iput-object p1, p0, Lft;->k:Lcom/spotiduck/music/CustomPrefFooter;
+    iput-object p1, p0, Lft;->k:Ldhp/vkn/tpl/sporitduck/CustomPrefFooter;
 
     .line 4
     .line 5
@@ -51,7 +51,7 @@
 
     .line 6
     .line 7
-    iget-object p0, p0, Lft;->k:Lcom/spotiduck/music/CustomPrefFooter;
+    iget-object p0, p0, Lft;->k:Ldhp/vkn/tpl/sporitduck/CustomPrefFooter;
 
     .line 8
     .line 9

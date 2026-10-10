@@ -7,7 +7,7 @@
 
 
 # instance fields
-.field public final synthetic j:Lcom/spotiduck/music/MainActivity;
+.field public final synthetic j:Ldhp/vkn/tpl/sporitduck/MainActivity;
 
 .field public final synthetic k:Ljava/lang/String;
 
@@ -17,7 +17,7 @@
 
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/spotiduck/music/MainActivity;Ljava/lang/String;Ljava/lang/String;J)V
+.method public synthetic constructor <init>(Ldhp/vkn/tpl/sporitduck/MainActivity;Ljava/lang/String;Ljava/lang/String;J)V
     .locals 0
 
     .line 1
@@ -26,7 +26,7 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Luf1;->j:Lcom/spotiduck/music/MainActivity;
+    iput-object p1, p0, Luf1;->j:Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 5
     .line 6
@@ -55,7 +55,7 @@
 
     .line 2
     .line 3
-    iget-object v2, p0, Luf1;->j:Lcom/spotiduck/music/MainActivity;
+    iget-object v2, p0, Luf1;->j:Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 4
     .line 5
@@ -269,7 +269,7 @@
     .line 99
     .line 100
     .line 101
-    invoke-static {v2, v3}, Lju1;->t(Lcom/spotiduck/music/MainActivity;Ljava/io/File;)V
+    invoke-static {v2, v3}, Lju1;->t(Ldhp/vkn/tpl/sporitduck/MainActivity;Ljava/io/File;)V
 
     .line 102
     .line 103
@@ -384,7 +384,7 @@
 
     .line 157
     .line 158
-    invoke-direct/range {v0 .. v9}, Lvf1;-><init>(Ljava/lang/String;Lcom/spotiduck/music/MainActivity;Ljava/io/File;JLandroid/widget/ProgressBar;ZLandroid/content/res/ColorStateList;Landroid/content/res/ColorStateList;)V
+    invoke-direct/range {v0 .. v9}, Lvf1;-><init>(Ljava/lang/String;Ldhp/vkn/tpl/sporitduck/MainActivity;Ljava/io/File;JLandroid/widget/ProgressBar;ZLandroid/content/res/ColorStateList;Landroid/content/res/ColorStateList;)V
 
     .line 159
     .line 160

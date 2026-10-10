@@ -1,11 +1,11 @@
-.class public final Lcom/spotiduck/music/WebService$MediaActionReceiver;
+.class public final Ldhp/vkn/tpl/sporitduck/WebService$MediaActionReceiver;
 .super Landroid/content/BroadcastReceiver;
 .source "r8-map-id-37e276fb91e34a5f1b4d8f51e71abe3719dc52e9eeab3bd3e0cf2cd8d4f7becf"
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingClass;
-    value = Lcom/spotiduck/music/WebService;
+    value = Ldhp/vkn/tpl/sporitduck/WebService;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -64,7 +64,7 @@
 
     .line 17
     .line 18
-    sget-boolean p1, Lcom/spotiduck/music/WebService;->r:Z
+    sget-boolean p1, Ldhp/vkn/tpl/sporitduck/WebService;->r:Z
 
     .line 19
     .line 20
@@ -72,7 +72,7 @@
 
     .line 21
     .line 22
-    sget-boolean p1, Lcom/spotiduck/music/AppSingleton;->l:Z
+    sget-boolean p1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->l:Z
 
     .line 23
     .line 24
@@ -80,7 +80,7 @@
 
     .line 25
     .line 26
-    sget-object p1, Lcom/spotiduck/music/WebService;->G:Lcom/spotiduck/music/WebService;
+    sget-object p1, Ldhp/vkn/tpl/sporitduck/WebService;->G:Ldhp/vkn/tpl/sporitduck/WebService;
 
     .line 27
     .line 28
@@ -88,7 +88,7 @@
 
     .line 29
     .line 30
-    iget-object p1, p1, Lcom/spotiduck/music/WebService;->j:Landroid/support/v4/media/session/MediaSessionCompat;
+    iget-object p1, p1, Ldhp/vkn/tpl/sporitduck/WebService;->j:Landroid/support/v4/media/session/MediaSessionCompat;
 
     .line 31
     .line 32
@@ -113,7 +113,7 @@
     .line 41
     .line 42
     :cond_0
-    sget-object p2, Lcom/spotiduck/music/WebService;->G:Lcom/spotiduck/music/WebService;
+    sget-object p2, Ldhp/vkn/tpl/sporitduck/WebService;->G:Ldhp/vkn/tpl/sporitduck/WebService;
 
     .line 43
     .line 44
@@ -121,7 +121,7 @@
 
     .line 45
     .line 46
-    iget-object p2, p2, Lcom/spotiduck/music/WebService;->j:Landroid/support/v4/media/session/MediaSessionCompat;
+    iget-object p2, p2, Ldhp/vkn/tpl/sporitduck/WebService;->j:Landroid/support/v4/media/session/MediaSessionCompat;
 
     .line 47
     .line 48
@@ -211,7 +211,7 @@
     .line 87
     .line 88
     .line 89
-    sget-boolean p0, Lcom/spotiduck/music/WebService;->r:Z
+    sget-boolean p0, Ldhp/vkn/tpl/sporitduck/WebService;->r:Z
 
     .line 90
     .line 91
@@ -322,7 +322,7 @@
 
     .line 139
     :cond_5
-    sget-boolean p0, Lcom/spotiduck/music/WebService;->s:Z
+    sget-boolean p0, Ldhp/vkn/tpl/sporitduck/WebService;->s:Z
 
     .line 140
     .line 141
@@ -393,7 +393,7 @@
     .line 170
     .line 171
     .line 172
-    sget-boolean p0, Lcom/spotiduck/music/WebService;->r:Z
+    sget-boolean p0, Ldhp/vkn/tpl/sporitduck/WebService;->r:Z
 
     .line 173
     .line 174

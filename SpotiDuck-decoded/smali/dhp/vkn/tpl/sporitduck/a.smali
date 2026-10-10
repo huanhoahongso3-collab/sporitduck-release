@@ -1,4 +1,4 @@
-.class public abstract Lcom/spotiduck/music/a;
+.class public abstract Ldhp/vkn/tpl/sporitduck/a;
 .super Ljava/lang/Object;
 .source "r8-map-id-37e276fb91e34a5f1b4d8f51e71abe3719dc52e9eeab3bd3e0cf2cd8d4f7becf"
 
@@ -12,7 +12,7 @@
 
     .line 2
     .line 3
-    const-class v1, Lcom/spotiduck/music/WebService$MediaActionReceiver;
+    const-class v1, Ldhp/vkn/tpl/sporitduck/WebService$MediaActionReceiver;
 
     .line 4
     .line 5
@@ -170,7 +170,7 @@
 
     .line 9
     .line 10
-    const-class v2, Lcom/spotiduck/music/HomeWidget;
+    const-class v2, Ldhp/vkn/tpl/sporitduck/HomeWidget;
 
     .line 11
     .line 12
@@ -202,7 +202,7 @@
 
     .line 24
     .line 25
-    invoke-static {p0, v0, v4}, Lcom/spotiduck/music/a;->d(Landroid/content/Context;Landroid/appwidget/AppWidgetManager;I)V
+    invoke-static {p0, v0, v4}, Ldhp/vkn/tpl/sporitduck/a;->d(Landroid/content/Context;Landroid/appwidget/AppWidgetManager;I)V
 
     .line 26
     .line 27
@@ -215,7 +215,7 @@
 
     .line 31
     :cond_1
-    sget-boolean p0, Lcom/spotiduck/music/WebService;->r:Z
+    sget-boolean p0, Ldhp/vkn/tpl/sporitduck/WebService;->r:Z
 
     .line 32
     .line 33
@@ -223,7 +223,7 @@
 
     .line 34
     .line 35
-    sget-boolean p0, Lcom/spotiduck/music/WebService;->s:Z
+    sget-boolean p0, Ldhp/vkn/tpl/sporitduck/WebService;->s:Z
 
     .line 36
     .line 37
@@ -231,7 +231,7 @@
 
     .line 38
     .line 39
-    sget-boolean p0, Lcom/spotiduck/music/HomeWidget;->b:Z
+    sget-boolean p0, Ldhp/vkn/tpl/sporitduck/HomeWidget;->b:Z
 
     .line 40
     .line 41
@@ -242,15 +242,15 @@
     const/4 p0, 0x1
 
     .line 44
-    sput-boolean p0, Lcom/spotiduck/music/HomeWidget;->b:Z
+    sput-boolean p0, Ldhp/vkn/tpl/sporitduck/HomeWidget;->b:Z
 
     .line 45
     .line 46
-    sget-object p0, Lcom/spotiduck/music/HomeWidget;->a:Landroid/os/Handler;
+    sget-object p0, Ldhp/vkn/tpl/sporitduck/HomeWidget;->a:Landroid/os/Handler;
 
     .line 47
     .line 48
-    sget-object v0, Lcom/spotiduck/music/HomeWidget;->c:Lac0;
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/HomeWidget;->c:Lac0;
 
     .line 49
     .line 50
@@ -411,7 +411,7 @@
     .line 70
     .line 71
     :cond_2
-    sget-boolean v8, Lcom/spotiduck/music/WebService;->r:Z
+    sget-boolean v8, Ldhp/vkn/tpl/sporitduck/WebService;->r:Z
 
     .line 72
     .line 73
@@ -472,7 +472,7 @@
 
     .line 105
     .line 106
-    sget-object v10, Lcom/spotiduck/music/WebService;->v:Ljava/lang/String;
+    sget-object v10, Ldhp/vkn/tpl/sporitduck/WebService;->v:Ljava/lang/String;
 
     .line 107
     .line 108
@@ -481,7 +481,7 @@
     .line 109
     .line 110
     .line 111
-    sget-object v10, Lcom/spotiduck/music/WebService;->u:Ljava/lang/String;
+    sget-object v10, Ldhp/vkn/tpl/sporitduck/WebService;->u:Ljava/lang/String;
 
     .line 112
     .line 113
@@ -490,7 +490,7 @@
     .line 114
     .line 115
     .line 116
-    sget-boolean v9, Lcom/spotiduck/music/WebService;->s:Z
+    sget-boolean v9, Ldhp/vkn/tpl/sporitduck/WebService;->s:Z
 
     .line 117
     .line 118
@@ -517,7 +517,7 @@
     .line 127
     .line 128
     .line 129
-    sget v9, Lcom/spotiduck/music/WebService;->C:I
+    sget v9, Ldhp/vkn/tpl/sporitduck/WebService;->C:I
 
     .line 130
     .line 131
@@ -526,7 +526,7 @@
     .line 132
     .line 133
     .line 134
-    sget v9, Lcom/spotiduck/music/WebService;->D:I
+    sget v9, Ldhp/vkn/tpl/sporitduck/WebService;->D:I
 
     .line 135
     .line 136
@@ -535,7 +535,7 @@
     .line 137
     .line 138
     .line 139
-    sget-boolean v9, Lcom/spotiduck/music/WebService;->t:Z
+    sget-boolean v9, Ldhp/vkn/tpl/sporitduck/WebService;->t:Z
 
     .line 140
     .line 141
@@ -561,15 +561,15 @@
     .line 149
     .line 150
     .line 151
-    sget-wide v24, Lcom/spotiduck/music/WebService;->y:J
+    sget-wide v24, Ldhp/vkn/tpl/sporitduck/WebService;->y:J
 
     .line 152
     .line 153
-    sget-wide v26, Lcom/spotiduck/music/WebService;->z:J
+    sget-wide v26, Ldhp/vkn/tpl/sporitduck/WebService;->z:J
 
     .line 154
     .line 155
-    sget-boolean v9, Lcom/spotiduck/music/WebService;->s:Z
+    sget-boolean v9, Ldhp/vkn/tpl/sporitduck/WebService;->s:Z
 
     .line 156
     .line 157
@@ -581,7 +581,7 @@
 
     .line 160
     .line 161
-    sget-wide v9, Lcom/spotiduck/music/WebService;->A:J
+    sget-wide v9, Ldhp/vkn/tpl/sporitduck/WebService;->A:J
 
     .line 162
     .line 163
@@ -601,7 +601,7 @@
     move-result-wide v9
 
     .line 171
-    sget-wide v30, Lcom/spotiduck/music/WebService;->A:J
+    sget-wide v30, Ldhp/vkn/tpl/sporitduck/WebService;->A:J
 
     .line 172
     .line 173
@@ -801,7 +801,7 @@
     .line 270
     .line 271
     .line 272
-    invoke-static/range {v26 .. v27}, Lcom/spotiduck/music/a;->b(J)Ljava/lang/String;
+    invoke-static/range {v26 .. v27}, Ldhp/vkn/tpl/sporitduck/a;->b(J)Ljava/lang/String;
 
     .line 273
     .line 274
@@ -836,7 +836,7 @@
     .line 288
     .line 289
     :cond_6
-    invoke-static/range {v24 .. v25}, Lcom/spotiduck/music/a;->b(J)Ljava/lang/String;
+    invoke-static/range {v24 .. v25}, Ldhp/vkn/tpl/sporitduck/a;->b(J)Ljava/lang/String;
 
     .line 290
     .line 291
@@ -902,11 +902,11 @@
     .line 319
     .line 320
     .line 321
-    sget-object v6, Lcom/spotiduck/music/WebService;->u:Ljava/lang/String;
+    sget-object v6, Ldhp/vkn/tpl/sporitduck/WebService;->u:Ljava/lang/String;
 
     .line 322
     .line 323
-    sget-object v8, Lcom/spotiduck/music/WebService;->v:Ljava/lang/String;
+    sget-object v8, Ldhp/vkn/tpl/sporitduck/WebService;->v:Ljava/lang/String;
 
     .line 324
     .line 325
@@ -951,7 +951,7 @@
     .line 346
     .line 347
     .line 348
-    sget-boolean v6, Lcom/spotiduck/music/WebService;->s:Z
+    sget-boolean v6, Ldhp/vkn/tpl/sporitduck/WebService;->s:Z
 
     .line 349
     .line 350
@@ -978,7 +978,7 @@
     .line 359
     .line 360
     .line 361
-    sget v6, Lcom/spotiduck/music/WebService;->C:I
+    sget v6, Ldhp/vkn/tpl/sporitduck/WebService;->C:I
 
     .line 362
     .line 363
@@ -987,7 +987,7 @@
     .line 364
     .line 365
     .line 366
-    sget-boolean v6, Lcom/spotiduck/music/WebService;->t:Z
+    sget-boolean v6, Ldhp/vkn/tpl/sporitduck/WebService;->t:Z
 
     .line 367
     .line 368
@@ -1023,7 +1023,7 @@
     .line 381
     .line 382
     :goto_8
-    sget-object v6, Lcom/spotiduck/music/WebService;->B:Landroid/graphics/Bitmap;
+    sget-object v6, Ldhp/vkn/tpl/sporitduck/WebService;->B:Landroid/graphics/Bitmap;
 
     .line 383
     .line 384
@@ -1485,7 +1485,7 @@
 
     .line 610
     .line 611
-    const-class v6, Lcom/spotiduck/music/MainActivity;
+    const-class v6, Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 612
     .line 613
@@ -1540,7 +1540,7 @@
 
     .line 639
     .line 640
-    invoke-static {v0, v10}, Lcom/spotiduck/music/a;->a(Landroid/content/Context;Ljava/lang/String;)Landroid/app/PendingIntent;
+    invoke-static {v0, v10}, Ldhp/vkn/tpl/sporitduck/a;->a(Landroid/content/Context;Ljava/lang/String;)Landroid/app/PendingIntent;
 
     .line 641
     .line 642
@@ -1563,7 +1563,7 @@
     .line 651
     .line 652
     .line 653
-    invoke-static {v0, v9}, Lcom/spotiduck/music/a;->a(Landroid/content/Context;Ljava/lang/String;)Landroid/app/PendingIntent;
+    invoke-static {v0, v9}, Ldhp/vkn/tpl/sporitduck/a;->a(Landroid/content/Context;Ljava/lang/String;)Landroid/app/PendingIntent;
 
     .line 654
     .line 655
@@ -1581,7 +1581,7 @@
     .line 661
     .line 662
     .line 663
-    invoke-static {v0, v8}, Lcom/spotiduck/music/a;->a(Landroid/content/Context;Ljava/lang/String;)Landroid/app/PendingIntent;
+    invoke-static {v0, v8}, Ldhp/vkn/tpl/sporitduck/a;->a(Landroid/content/Context;Ljava/lang/String;)Landroid/app/PendingIntent;
 
     .line 664
     .line 665
@@ -1594,7 +1594,7 @@
     .line 668
     .line 669
     .line 670
-    invoke-static {v0, v6}, Lcom/spotiduck/music/a;->a(Landroid/content/Context;Ljava/lang/String;)Landroid/app/PendingIntent;
+    invoke-static {v0, v6}, Ldhp/vkn/tpl/sporitduck/a;->a(Landroid/content/Context;Ljava/lang/String;)Landroid/app/PendingIntent;
 
     .line 671
     .line 672
@@ -1616,7 +1616,7 @@
 
     .line 681
     .line 682
-    invoke-static {v0, v3}, Lcom/spotiduck/music/a;->a(Landroid/content/Context;Ljava/lang/String;)Landroid/app/PendingIntent;
+    invoke-static {v0, v3}, Ldhp/vkn/tpl/sporitduck/a;->a(Landroid/content/Context;Ljava/lang/String;)Landroid/app/PendingIntent;
 
     .line 683
     .line 684
@@ -1634,7 +1634,7 @@
     .line 690
     .line 691
     .line 692
-    invoke-static {v0, v4}, Lcom/spotiduck/music/a;->a(Landroid/content/Context;Ljava/lang/String;)Landroid/app/PendingIntent;
+    invoke-static {v0, v4}, Ldhp/vkn/tpl/sporitduck/a;->a(Landroid/content/Context;Ljava/lang/String;)Landroid/app/PendingIntent;
 
     .line 693
     .line 694
@@ -1656,7 +1656,7 @@
 
     .line 703
     :cond_11
-    invoke-static {v0, v10}, Lcom/spotiduck/music/a;->a(Landroid/content/Context;Ljava/lang/String;)Landroid/app/PendingIntent;
+    invoke-static {v0, v10}, Ldhp/vkn/tpl/sporitduck/a;->a(Landroid/content/Context;Ljava/lang/String;)Landroid/app/PendingIntent;
 
     .line 704
     .line 705
@@ -1674,7 +1674,7 @@
     .line 711
     .line 712
     .line 713
-    invoke-static {v0, v9}, Lcom/spotiduck/music/a;->a(Landroid/content/Context;Ljava/lang/String;)Landroid/app/PendingIntent;
+    invoke-static {v0, v9}, Ldhp/vkn/tpl/sporitduck/a;->a(Landroid/content/Context;Ljava/lang/String;)Landroid/app/PendingIntent;
 
     .line 714
     .line 715
@@ -1692,7 +1692,7 @@
     .line 721
     .line 722
     .line 723
-    invoke-static {v0, v8}, Lcom/spotiduck/music/a;->a(Landroid/content/Context;Ljava/lang/String;)Landroid/app/PendingIntent;
+    invoke-static {v0, v8}, Ldhp/vkn/tpl/sporitduck/a;->a(Landroid/content/Context;Ljava/lang/String;)Landroid/app/PendingIntent;
 
     .line 724
     .line 725
@@ -1705,7 +1705,7 @@
     .line 728
     .line 729
     .line 730
-    invoke-static {v0, v6}, Lcom/spotiduck/music/a;->a(Landroid/content/Context;Ljava/lang/String;)Landroid/app/PendingIntent;
+    invoke-static {v0, v6}, Ldhp/vkn/tpl/sporitduck/a;->a(Landroid/content/Context;Ljava/lang/String;)Landroid/app/PendingIntent;
 
     .line 731
     .line 732
@@ -1723,7 +1723,7 @@
     .line 738
     .line 739
     .line 740
-    invoke-static {v0, v4}, Lcom/spotiduck/music/a;->a(Landroid/content/Context;Ljava/lang/String;)Landroid/app/PendingIntent;
+    invoke-static {v0, v4}, Ldhp/vkn/tpl/sporitduck/a;->a(Landroid/content/Context;Ljava/lang/String;)Landroid/app/PendingIntent;
 
     .line 741
     .line 742

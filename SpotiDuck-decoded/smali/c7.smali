@@ -358,11 +358,11 @@
 
     .line 156
     :pswitch_0
-    check-cast v0, Lcom/spotiduck/music/WebService;
+    check-cast v0, Ldhp/vkn/tpl/sporitduck/WebService;
 
     .line 157
     .line 158
-    sget-boolean p0, Lcom/spotiduck/music/WebService;->r:Z
+    sget-boolean p0, Ldhp/vkn/tpl/sporitduck/WebService;->r:Z
 
     .line 159
     .line 160
@@ -370,7 +370,7 @@
 
     .line 161
     .line 162
-    sget-boolean p0, Lcom/spotiduck/music/AppSingleton;->l:Z
+    sget-boolean p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->l:Z
 
     .line 163
     .line 164
@@ -378,7 +378,7 @@
 
     .line 165
     .line 166
-    iget-object p0, v0, Lcom/spotiduck/music/WebService;->j:Landroid/support/v4/media/session/MediaSessionCompat;
+    iget-object p0, v0, Ldhp/vkn/tpl/sporitduck/WebService;->j:Landroid/support/v4/media/session/MediaSessionCompat;
 
     .line 167
     .line 168
@@ -507,7 +507,7 @@
 
     .line 225
     :cond_9
-    invoke-virtual {v0, v2}, Lcom/spotiduck/music/WebService;->g(Z)V
+    invoke-virtual {v0, v2}, Ldhp/vkn/tpl/sporitduck/WebService;->g(Z)V
 
     .line 226
     .line 227
@@ -516,7 +516,7 @@
 
     .line 229
     :cond_a
-    sget-boolean p0, Lcom/spotiduck/music/WebService;->s:Z
+    sget-boolean p0, Ldhp/vkn/tpl/sporitduck/WebService;->s:Z
 
     .line 230
     .line 231
@@ -528,7 +528,7 @@
 
     .line 234
     :cond_b
-    invoke-virtual {v0}, Lcom/spotiduck/music/WebService;->h()Z
+    invoke-virtual {v0}, Ldhp/vkn/tpl/sporitduck/WebService;->h()Z
 
     .line 235
     .line 236
@@ -544,7 +544,7 @@
 
     .line 241
     :cond_c
-    invoke-virtual {v0, v2, v3}, Lcom/spotiduck/music/WebService;->f(ZZ)V
+    invoke-virtual {v0, v2, v3}, Ldhp/vkn/tpl/sporitduck/WebService;->f(ZZ)V
 
     .line 242
     .line 243
@@ -573,7 +573,7 @@
 
     .line 254
     :cond_d
-    invoke-virtual {v0, v3, v2}, Lcom/spotiduck/music/WebService;->f(ZZ)V
+    invoke-virtual {v0, v3, v2}, Ldhp/vkn/tpl/sporitduck/WebService;->f(ZZ)V
 
     .line 255
     .line 256
@@ -626,7 +626,7 @@
 
     .line 278
     :cond_f
-    invoke-virtual {v0, v3}, Lcom/spotiduck/music/WebService;->g(Z)V
+    invoke-virtual {v0, v3}, Ldhp/vkn/tpl/sporitduck/WebService;->g(Z)V
 
     .line 279
     .line 280
@@ -635,7 +635,7 @@
 
     .line 282
     :cond_10
-    sget-boolean p0, Lcom/spotiduck/music/WebService;->s:Z
+    sget-boolean p0, Ldhp/vkn/tpl/sporitduck/WebService;->s:Z
 
     .line 283
     .line 284
@@ -647,7 +647,7 @@
 
     .line 287
     :cond_11
-    invoke-virtual {v0}, Lcom/spotiduck/music/WebService;->h()Z
+    invoke-virtual {v0}, Ldhp/vkn/tpl/sporitduck/WebService;->h()Z
 
     .line 288
     .line 289
@@ -663,7 +663,7 @@
 
     .line 294
     :cond_12
-    invoke-virtual {v0, v3, v3}, Lcom/spotiduck/music/WebService;->f(ZZ)V
+    invoke-virtual {v0, v3, v3}, Ldhp/vkn/tpl/sporitduck/WebService;->f(ZZ)V
 
     .line 295
     .line 296

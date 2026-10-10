@@ -2067,7 +2067,7 @@
     return-object p0
 .end method
 
-.method public static t(Lcom/spotiduck/music/MainActivity;Ljava/io/File;)V
+.method public static t(Ldhp/vkn/tpl/sporitduck/MainActivity;Ljava/io/File;)V
     .locals 4
 
     .line 1
@@ -2355,7 +2355,7 @@
     move-result-object v1
 
     .line 143
-    invoke-static {p0, v1, p1}, Landroidx/core/content/FileProvider;->c(Lcom/spotiduck/music/MainActivity;Ljava/lang/String;Ljava/io/File;)Landroid/net/Uri;
+    invoke-static {p0, v1, p1}, Landroidx/core/content/FileProvider;->c(Ldhp/vkn/tpl/sporitduck/MainActivity;Ljava/lang/String;Ljava/io/File;)Landroid/net/Uri;
 
     .line 144
     .line 145

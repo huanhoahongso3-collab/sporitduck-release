@@ -96,7 +96,7 @@
     return-void
 .end method
 
-.method public constructor <init>(Lcom/spotiduck/music/MainActivity;)V
+.method public constructor <init>(Ldhp/vkn/tpl/sporitduck/MainActivity;)V
     .locals 2
 
     const/4 v0, 0x0

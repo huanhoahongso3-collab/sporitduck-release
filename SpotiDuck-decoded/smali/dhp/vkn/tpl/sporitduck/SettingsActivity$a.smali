@@ -1,11 +1,11 @@
-.class public final Lcom/spotiduck/music/SettingsActivity$a;
+.class public final Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;
 .super Lcu0;
 .source "r8-map-id-37e276fb91e34a5f1b4d8f51e71abe3719dc52e9eeab3bd3e0cf2cd8d4f7becf"
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingClass;
-    value = Lcom/spotiduck/music/SettingsActivity;
+    value = Ldhp/vkn/tpl/sporitduck/SettingsActivity;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -31,7 +31,7 @@
     .locals 6
 
     .line 1
-    sget v0, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 2
     .line 3
@@ -704,7 +704,7 @@
     return-object p0
 .end method
 
-.method public static final R(Lcom/spotiduck/music/SettingsActivity$a;Landroidx/preference/Preference;)V
+.method public static final R(Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;Landroidx/preference/Preference;)V
     .locals 2
 
     .line 1
@@ -792,7 +792,7 @@
     .locals 3
 
     .line 1
-    sget-object v0, Lcom/spotiduck/music/AppSingleton;->b0:Ljava/lang/String;
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->b0:Ljava/lang/String;
 
     .line 2
     .line 3
@@ -905,7 +905,7 @@
     return-void
 .end method
 
-.method public static final T(Lcom/spotiduck/music/SettingsActivity$a;Landroidx/preference/Preference;Ljava/lang/String;)V
+.method public static final T(Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;Landroidx/preference/Preference;Ljava/lang/String;)V
     .locals 2
 
     .line 1
@@ -1118,11 +1118,11 @@
     move-object v5, v4
 
     .line 43
-    check-cast v5, Lcom/spotiduck/music/e;
+    check-cast v5, Ldhp/vkn/tpl/sporitduck/e;
 
     .line 44
     .line 45
-    iget-object v5, v5, Lcom/spotiduck/music/e;->a:Ljava/lang/String;
+    iget-object v5, v5, Ldhp/vkn/tpl/sporitduck/e;->a:Ljava/lang/String;
 
     .line 46
     .line 47
@@ -1146,7 +1146,7 @@
 
     .line 55
     :goto_2
-    check-cast v4, Lcom/spotiduck/music/e;
+    check-cast v4, Ldhp/vkn/tpl/sporitduck/e;
 
     .line 56
     .line 57
@@ -1154,7 +1154,7 @@
 
     .line 58
     .line 59
-    iget v2, v4, Lcom/spotiduck/music/e;->c:I
+    iget v2, v4, Ldhp/vkn/tpl/sporitduck/e;->c:I
 
     .line 60
     .line 61
@@ -1655,7 +1655,7 @@
     .line 218
     .line 219
     .line 220
-    sget v4, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget v4, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 221
     .line 222
@@ -1728,7 +1728,7 @@
     .line 254
     .line 255
     .line 256
-    instance-of v8, v7, Lcom/spotiduck/music/ExpandablePreferenceCategory;
+    instance-of v8, v7, Ldhp/vkn/tpl/sporitduck/ExpandablePreferenceCategory;
 
     .line 257
     .line 258
@@ -1745,7 +1745,7 @@
 
     .line 264
     .line 265
-    check-cast v7, Lcom/spotiduck/music/ExpandablePreferenceCategory;
+    check-cast v7, Ldhp/vkn/tpl/sporitduck/ExpandablePreferenceCategory;
 
     .line 266
     .line 267
@@ -1785,7 +1785,7 @@
 
     .line 282
     .line 283
-    invoke-virtual {v7, v2}, Lcom/spotiduck/music/ExpandablePreferenceCategory;->B(Z)V
+    invoke-virtual {v7, v2}, Ldhp/vkn/tpl/sporitduck/ExpandablePreferenceCategory;->B(Z)V
 
     .line 284
     .line 285
@@ -1827,7 +1827,7 @@
 
     .line 301
     .line 302
-    check-cast v5, Lcom/spotiduck/music/ExpandablePreferenceCategory;
+    check-cast v5, Ldhp/vkn/tpl/sporitduck/ExpandablePreferenceCategory;
 
     .line 303
     .line 304
@@ -1840,7 +1840,7 @@
     .line 307
     .line 308
     .line 309
-    iput-object v6, v5, Lcom/spotiduck/music/ExpandablePreferenceCategory;->e0:Ll21;
+    iput-object v6, v5, Ldhp/vkn/tpl/sporitduck/ExpandablePreferenceCategory;->e0:Ll21;
 
     .line 310
     .line 311
@@ -1868,7 +1868,7 @@
 
     .line 321
     .line 322
-    invoke-direct {v3, p0, v1}, Lx51;-><init>(Lcom/spotiduck/music/SettingsActivity$a;I)V
+    invoke-direct {v3, p0, v1}, Lx51;-><init>(Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;I)V
 
     .line 323
     .line 324
@@ -1890,7 +1890,7 @@
     move-result-object p1
 
     .line 333
-    invoke-static {p1}, Lcom/spotiduck/music/SettingsActivity$a;->S(Landroidx/preference/Preference;)V
+    invoke-static {p1}, Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;->S(Landroidx/preference/Preference;)V
 
     .line 334
     .line 335
@@ -1903,7 +1903,7 @@
 
     .line 339
     .line 340
-    invoke-direct {v3, p0, p1, v1}, Le61;-><init>(Lcom/spotiduck/music/SettingsActivity$a;Landroidx/preference/Preference;I)V
+    invoke-direct {v3, p0, p1, v1}, Le61;-><init>(Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;Landroidx/preference/Preference;I)V
 
     .line 341
     .line 342
@@ -1961,7 +1961,7 @@
     move-result-object v4
 
     .line 369
-    invoke-static {p0, p1}, Lcom/spotiduck/music/SettingsActivity$a;->R(Lcom/spotiduck/music/SettingsActivity$a;Landroidx/preference/Preference;)V
+    invoke-static {p0, p1}, Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;->R(Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;Landroidx/preference/Preference;)V
 
     .line 370
     .line 371
@@ -1974,7 +1974,7 @@
 
     .line 375
     .line 376
-    invoke-direct {v5, p0, p1, v2}, Le61;-><init>(Lcom/spotiduck/music/SettingsActivity$a;Landroidx/preference/Preference;I)V
+    invoke-direct {v5, p0, p1, v2}, Le61;-><init>(Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;Landroidx/preference/Preference;I)V
 
     .line 377
     .line 378
@@ -1992,7 +1992,7 @@
 
     .line 384
     .line 385
-    invoke-direct {v3, p0, p1, v0}, Le61;-><init>(Lcom/spotiduck/music/SettingsActivity$a;Landroidx/preference/Preference;I)V
+    invoke-direct {v3, p0, p1, v0}, Le61;-><init>(Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;Landroidx/preference/Preference;I)V
 
     .line 386
     .line 387
@@ -2013,7 +2013,7 @@
     const/4 v3, 0x3
 
     .line 395
-    invoke-direct {v1, p0, p1, v3}, Le61;-><init>(Lcom/spotiduck/music/SettingsActivity$a;Landroidx/preference/Preference;I)V
+    invoke-direct {v1, p0, p1, v3}, Le61;-><init>(Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;Landroidx/preference/Preference;I)V
 
     .line 396
     .line 397
@@ -2035,7 +2035,7 @@
     move-result-object p1
 
     .line 406
-    sget v1, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget v1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 407
     .line 408
@@ -2063,7 +2063,7 @@
     move-result-object v1
 
     .line 420
-    invoke-static {p0, p1, v1}, Lcom/spotiduck/music/SettingsActivity$a;->T(Lcom/spotiduck/music/SettingsActivity$a;Landroidx/preference/Preference;Ljava/lang/String;)V
+    invoke-static {p0, p1, v1}, Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;->T(Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;Landroidx/preference/Preference;Ljava/lang/String;)V
 
     .line 421
     .line 422
@@ -2079,7 +2079,7 @@
     const/4 v3, 0x4
 
     .line 428
-    invoke-direct {v1, p0, p1, v3}, Le61;-><init>(Lcom/spotiduck/music/SettingsActivity$a;Landroidx/preference/Preference;I)V
+    invoke-direct {v1, p0, p1, v3}, Le61;-><init>(Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;Landroidx/preference/Preference;I)V
 
     .line 429
     .line 430
@@ -2109,7 +2109,7 @@
 
     .line 442
     .line 443
-    invoke-direct {v1, p0, v2}, Lx51;-><init>(Lcom/spotiduck/music/SettingsActivity$a;I)V
+    invoke-direct {v1, p0, v2}, Lx51;-><init>(Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;I)V
 
     .line 444
     .line 445
@@ -2139,7 +2139,7 @@
 
     .line 457
     .line 458
-    invoke-direct {v1, p0, v0}, Lx51;-><init>(Lcom/spotiduck/music/SettingsActivity$a;I)V
+    invoke-direct {v1, p0, v0}, Lx51;-><init>(Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;I)V
 
     .line 459
     .line 460
@@ -2165,7 +2165,7 @@
 
     .line 470
     .line 471
-    invoke-static {}, Lcom/spotiduck/music/SettingsActivity$a;->O()Ljava/lang/String;
+    invoke-static {}, Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;->O()Ljava/lang/String;
 
     .line 472
     .line 473
@@ -2190,7 +2190,7 @@
     const/4 v1, 0x5
 
     .line 483
-    invoke-direct {v0, p0, p1, v1}, Le61;-><init>(Lcom/spotiduck/music/SettingsActivity$a;Landroidx/preference/Preference;I)V
+    invoke-direct {v0, p0, p1, v1}, Le61;-><init>(Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;Landroidx/preference/Preference;I)V
 
     .line 484
     .line 485

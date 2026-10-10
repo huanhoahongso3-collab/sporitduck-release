@@ -17,13 +17,13 @@
 
 .field public final synthetic n:Landroid/content/Context;
 
-.field public final synthetic o:Lcom/spotiduck/music/SettingsActivity$a;
+.field public final synthetic o:Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;
 
 .field public final synthetic p:Landroidx/preference/Preference;
 
 
 # direct methods
-.method public synthetic constructor <init>([Ljava/lang/String;Landroid/widget/Spinner;Landroid/widget/EditText;Landroid/widget/EditText;Landroid/content/Context;Lcom/spotiduck/music/SettingsActivity$a;Landroidx/preference/Preference;)V
+.method public synthetic constructor <init>([Ljava/lang/String;Landroid/widget/Spinner;Landroid/widget/EditText;Landroid/widget/EditText;Landroid/content/Context;Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;Landroidx/preference/Preference;)V
     .locals 0
 
     .line 1
@@ -52,7 +52,7 @@
 
     .line 13
     .line 14
-    iput-object p6, p0, Lz51;->o:Lcom/spotiduck/music/SettingsActivity$a;
+    iput-object p6, p0, Lz51;->o:Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;
 
     .line 15
     .line 16
@@ -208,7 +208,7 @@
 
     .line 67
     .line 68
-    iget-object v5, p0, Lz51;->o:Lcom/spotiduck/music/SettingsActivity$a;
+    iget-object v5, p0, Lz51;->o:Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;
 
     .line 69
     .line 70
@@ -302,7 +302,7 @@
 
     .line 115
     :cond_3
-    sget v3, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget v3, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 116
     .line 117
@@ -363,19 +363,19 @@
     .line 144
     .line 145
     .line 146
-    sput-object p1, Lcom/spotiduck/music/AppSingleton;->c0:Ljava/lang/String;
+    sput-object p1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->c0:Ljava/lang/String;
 
     .line 147
     .line 148
-    sput-object p2, Lcom/spotiduck/music/AppSingleton;->d0:Ljava/lang/String;
+    sput-object p2, Ldhp/vkn/tpl/sporitduck/AppSingleton;->d0:Ljava/lang/String;
 
     .line 149
     .line 150
-    sput v0, Lcom/spotiduck/music/AppSingleton;->e0:I
+    sput v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->e0:I
 
     .line 151
     .line 152
-    sget-object p2, Lcom/spotiduck/music/AppSingleton;->w:Ll9;
+    sget-object p2, Ldhp/vkn/tpl/sporitduck/AppSingleton;->w:Ll9;
 
     .line 153
     .line 154
@@ -389,7 +389,7 @@
     .line 158
     .line 159
     :cond_4
-    invoke-static {}, Lcom/spotiduck/music/SettingsActivity$a;->O()Ljava/lang/String;
+    invoke-static {}, Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;->O()Ljava/lang/String;
 
     .line 160
     .line 161

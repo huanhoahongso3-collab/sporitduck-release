@@ -57,7 +57,7 @@
     .locals 6
 
     .line 1
-    new-instance p1, Lcom/spotiduck/music/d;
+    new-instance p1, Ldhp/vkn/tpl/sporitduck/d;
 
     .line 2
     .line 3
@@ -69,7 +69,7 @@
 
     .line 6
     .line 7
-    invoke-direct {p1, v0, v1}, Lcom/spotiduck/music/d;-><init>(Le6;Ljava/util/List;)V
+    invoke-direct {p1, v0, v1}, Ldhp/vkn/tpl/sporitduck/d;-><init>(Le6;Ljava/util/List;)V
 
     .line 8
     .line 9

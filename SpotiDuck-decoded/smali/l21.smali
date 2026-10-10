@@ -631,7 +631,7 @@
 
     .line 274
     .line 275
-    check-cast p1, Lcom/spotiduck/music/ExpandablePreferenceCategory;
+    check-cast p1, Ldhp/vkn/tpl/sporitduck/ExpandablePreferenceCategory;
 
     .line 276
     .line 277
@@ -660,7 +660,7 @@
 
     .line 289
     .line 290
-    sget p2, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget p2, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 291
     .line 292
@@ -731,7 +731,7 @@
 
     .line 323
     .line 324
-    check-cast v2, Lcom/spotiduck/music/ExpandablePreferenceCategory;
+    check-cast v2, Ldhp/vkn/tpl/sporitduck/ExpandablePreferenceCategory;
 
     .line 325
     .line 326
@@ -747,7 +747,7 @@
 
     .line 331
     .line 332
-    invoke-virtual {v2, v1}, Lcom/spotiduck/music/ExpandablePreferenceCategory;->B(Z)V
+    invoke-virtual {v2, v1}, Ldhp/vkn/tpl/sporitduck/ExpandablePreferenceCategory;->B(Z)V
 
     .line 333
     .line 334
@@ -797,11 +797,11 @@
 
     .line 354
     .line 355
-    check-cast p2, Lcom/spotiduck/music/ExpandablePreferenceCategory;
+    check-cast p2, Ldhp/vkn/tpl/sporitduck/ExpandablePreferenceCategory;
 
     .line 356
     .line 357
-    iget-boolean p2, p2, Lcom/spotiduck/music/ExpandablePreferenceCategory;->d0:Z
+    iget-boolean p2, p2, Ldhp/vkn/tpl/sporitduck/ExpandablePreferenceCategory;->d0:Z
 
     .line 358
     .line 359
@@ -814,7 +814,7 @@
     .line 362
     :cond_18
     :goto_8
-    sget p0, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 363
     .line 364

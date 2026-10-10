@@ -173,7 +173,7 @@
 
     .line 52
     :cond_0
-    invoke-static {v2, p0, v1}, Lcom/spotiduck/music/SettingsActivity$a;->U(Ljava/util/List;Ljava/util/ArrayList;Ljava/util/List;)V
+    invoke-static {v2, p0, v1}, Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;->U(Ljava/util/List;Ljava/util/ArrayList;Ljava/util/List;)V
 
     .line 53
     .line 54
@@ -190,11 +190,11 @@
 
     .line 59
     .line 60
-    check-cast v1, Lcom/spotiduck/music/SettingsActivity$a;
+    check-cast v1, Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;
 
     .line 61
     .line 62
-    invoke-static {p0}, Lcom/spotiduck/music/SettingsActivity$a;->Q(Ljava/util/ArrayList;)Ljava/lang/String;
+    invoke-static {p0}, Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;->Q(Ljava/util/ArrayList;)Ljava/lang/String;
 
     .line 63
     .line 64
@@ -235,7 +235,7 @@
 
     .line 82
     :cond_1
-    sget p1, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget p1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 83
     .line 84
@@ -264,7 +264,7 @@
     .line 95
     .line 96
     .line 97
-    sput-object p0, Lcom/spotiduck/music/AppSingleton;->a0:Ljava/lang/String;
+    sput-object p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->a0:Ljava/lang/String;
 
     .line 98
     .line 99
@@ -341,7 +341,7 @@
 
     .line 135
     .line 136
-    invoke-static {v2, p0, v1, p1}, Lcom/spotiduck/music/SettingsActivity$a;->P(Landroid/content/Context;Ljava/util/ArrayList;Landroid/widget/LinearLayout;Ljava/lang/String;)V
+    invoke-static {v2, p0, v1, p1}, Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;->P(Landroid/content/Context;Ljava/util/ArrayList;Landroid/widget/LinearLayout;Ljava/lang/String;)V
 
     .line 137
     .line 138
@@ -358,7 +358,7 @@
 
     .line 143
     .line 144
-    check-cast v1, Lcom/spotiduck/music/SettingsActivity$a;
+    check-cast v1, Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;
 
     .line 145
     .line 146
@@ -380,7 +380,7 @@
     .line 154
     .line 155
     :cond_2
-    sget p0, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 156
     .line 157

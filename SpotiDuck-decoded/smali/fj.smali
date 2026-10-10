@@ -440,11 +440,11 @@
 
     .line 2
     .line 3
-    check-cast p0, Lcom/spotiduck/music/MainActivity;
+    check-cast p0, Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 4
     .line 5
-    sget v0, Lcom/spotiduck/music/MainActivity;->h0:I
+    sget v0, Ldhp/vkn/tpl/sporitduck/MainActivity;->h0:I
 
     .line 6
     .line 7
@@ -824,7 +824,7 @@
 
     .line 184
     .line 185
-    sget p1, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget p1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 186
     .line 187
@@ -857,7 +857,7 @@
     float-to-int p0, p1
 
     .line 200
-    sput p0, Lcom/spotiduck/music/AppSingleton;->U:I
+    sput p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->U:I
 
     .line 201
     .line 202

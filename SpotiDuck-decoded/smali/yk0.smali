@@ -90,7 +90,7 @@
 
     .line 13
     .line 14
-    sget-object p0, Lcom/spotiduck/music/AppSingleton;->Y:Ljava/util/concurrent/ConcurrentHashMap$KeySetView;
+    sget-object p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->Y:Ljava/util/concurrent/ConcurrentHashMap$KeySetView;
 
     .line 15
     .line 16
@@ -186,7 +186,7 @@
 
     .line 60
     .line 61
-    sget v0, Lcom/spotiduck/music/MainActivity;->h0:I
+    sget v0, Ldhp/vkn/tpl/sporitduck/MainActivity;->h0:I
 
     .line 62
     .line 63

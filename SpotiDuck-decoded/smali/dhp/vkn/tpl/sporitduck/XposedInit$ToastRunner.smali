@@ -1,9 +1,9 @@
-.class public Lcom/spotiduck/music/XposedInit$ToastRunner;
+.class public Ldhp/vkn/tpl/sporitduck/XposedInit$ToastRunner;
 .super Ljava/lang/Object;
 .implements Ljava/lang/Runnable;
 
 .annotation system Ldalvik/annotation/EnclosingClass;
-    value = Lcom/spotiduck/music/XposedInit;
+    value = Ldhp/vkn/tpl/sporitduck/XposedInit;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -18,7 +18,7 @@
     .registers 2
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
-    iput-object p1, p0, Lcom/spotiduck/music/XposedInit$ToastRunner;->app:Landroid/app/Application;
+    iput-object p1, p0, Ldhp/vkn/tpl/sporitduck/XposedInit$ToastRunner;->app:Landroid/app/Application;
 
     return-void
 .end method
@@ -29,8 +29,8 @@
 
     :try_start_0
     new-instance v0, Lde/robv/android/xposed/XSharedPreferences;
-    const-string v1, "com.spotiduck.music"
-    const-string v2, "com.spotiduck.music_preferences"
+    const-string v1, "dhp.vkn.tpl.sporitduck"
+    const-string v2, "dhp.vkn.tpl.sporitduck_preferences"
     invoke-direct {v0, v1, v2}, Lde/robv/android/xposed/XSharedPreferences;-><init>(Ljava/lang/String;Ljava/lang/String;)V
 
     invoke-virtual {v0}, Lde/robv/android/xposed/XSharedPreferences;->reload()V
@@ -40,7 +40,7 @@
     invoke-interface {v0, v1, v2}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
     move-result v3
 
-    iget-object v4, p0, Lcom/spotiduck/music/XposedInit$ToastRunner;->app:Landroid/app/Application;
+    iget-object v4, p0, Ldhp/vkn/tpl/sporitduck/XposedInit$ToastRunner;->app:Landroid/app/Application;
 
     if-nez v3, :cond_logged_in
 

@@ -334,7 +334,7 @@
 
     .line 130
     .line 131
-    check-cast v4, Lcom/spotiduck/music/SettingsActivity$a;
+    check-cast v4, Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;
 
     .line 132
     .line 133
@@ -389,7 +389,7 @@
     .line 158
     .line 159
     .line 160
-    invoke-static {v4, v3}, Lcom/spotiduck/music/SettingsActivity$a;->R(Lcom/spotiduck/music/SettingsActivity$a;Landroidx/preference/Preference;)V
+    invoke-static {v4, v3}, Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;->R(Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;Landroidx/preference/Preference;)V
 
     .line 161
     .line 162

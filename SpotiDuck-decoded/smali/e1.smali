@@ -243,7 +243,7 @@
     return-void
 .end method
 
-.method public static bridge synthetic n(Lcom/spotiduck/music/WebService;Landroid/app/Notification;)V
+.method public static bridge synthetic n(Ldhp/vkn/tpl/sporitduck/WebService;Landroid/app/Notification;)V
     .locals 2
 
     .line 1

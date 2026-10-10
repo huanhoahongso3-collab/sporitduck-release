@@ -69,7 +69,7 @@
     .line 11
     .line 12
     .line 13
-    check-cast p0, Lcom/spotiduck/music/SettingsActivity$a;
+    check-cast p0, Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;
 
     .line 14
     .line 15
@@ -112,7 +112,7 @@
 
     .line 34
     :pswitch_0
-    check-cast p0, Lcom/spotiduck/music/LinkHandler;
+    check-cast p0, Ldhp/vkn/tpl/sporitduck/LinkHandler;
 
     .line 35
     .line 36
@@ -120,7 +120,7 @@
 
     .line 37
     .line 38
-    sget v0, Lcom/spotiduck/music/LinkHandler;->H:I
+    sget v0, Ldhp/vkn/tpl/sporitduck/LinkHandler;->H:I
 
     .line 39
     .line 40
@@ -355,7 +355,7 @@
     .line 151
     .line 152
     .line 153
-    invoke-static {v0}, Lcom/spotiduck/music/LinkHandler;->t(Landroid/net/Uri;)Ljava/lang/String;
+    invoke-static {v0}, Ldhp/vkn/tpl/sporitduck/LinkHandler;->t(Landroid/net/Uri;)Ljava/lang/String;
 
     .line 154
     .line 155
@@ -379,7 +379,7 @@
 
     .line 162
     .line 163
-    invoke-direct {v0, p0, v3, v2}, Lti0;-><init>(Lcom/spotiduck/music/LinkHandler;Ljava/lang/String;I)V
+    invoke-direct {v0, p0, v3, v2}, Lti0;-><init>(Ldhp/vkn/tpl/sporitduck/LinkHandler;Ljava/lang/String;I)V
 
     .line 164
     .line 165

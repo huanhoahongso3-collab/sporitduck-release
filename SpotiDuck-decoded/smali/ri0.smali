@@ -140,7 +140,7 @@
     return-void
 .end method
 
-.method public static bridge synthetic k(Lcom/spotiduck/music/LinkHandler;)V
+.method public static bridge synthetic k(Ldhp/vkn/tpl/sporitduck/LinkHandler;)V
     .locals 1
 
     .line 1
@@ -155,7 +155,7 @@
     return-void
 .end method
 
-.method public static bridge synthetic l(Lcom/spotiduck/music/LinkHandler;)V
+.method public static bridge synthetic l(Ldhp/vkn/tpl/sporitduck/LinkHandler;)V
     .locals 2
 
     .line 1

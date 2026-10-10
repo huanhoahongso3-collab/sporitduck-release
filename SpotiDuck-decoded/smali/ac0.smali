@@ -11,7 +11,7 @@
     .locals 3
 
     .line 1
-    sget-boolean v0, Lcom/spotiduck/music/WebService;->r:Z
+    sget-boolean v0, Ldhp/vkn/tpl/sporitduck/WebService;->r:Z
 
     .line 2
     .line 3
@@ -19,7 +19,7 @@
 
     .line 4
     .line 5
-    sget-boolean v0, Lcom/spotiduck/music/WebService;->s:Z
+    sget-boolean v0, Ldhp/vkn/tpl/sporitduck/WebService;->s:Z
 
     .line 6
     .line 7
@@ -27,7 +27,7 @@
 
     .line 8
     .line 9
-    sget v0, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 10
     .line 11
@@ -39,16 +39,16 @@
     move-result-object v0
 
     .line 15
-    sget-object v1, Lcom/spotiduck/music/HomeWidget;->a:Landroid/os/Handler;
+    sget-object v1, Ldhp/vkn/tpl/sporitduck/HomeWidget;->a:Landroid/os/Handler;
 
     .line 16
     .line 17
-    invoke-static {v0}, Lcom/spotiduck/music/a;->c(Landroid/content/Context;)V
+    invoke-static {v0}, Ldhp/vkn/tpl/sporitduck/a;->c(Landroid/content/Context;)V
 
     .line 18
     .line 19
     .line 20
-    sget-object v0, Lcom/spotiduck/music/HomeWidget;->a:Landroid/os/Handler;
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/HomeWidget;->a:Landroid/os/Handler;
 
     .line 21
     .line 22
@@ -68,7 +68,7 @@
     const/4 p0, 0x0
 
     .line 29
-    sput-boolean p0, Lcom/spotiduck/music/HomeWidget;->b:Z
+    sput-boolean p0, Ldhp/vkn/tpl/sporitduck/HomeWidget;->b:Z
 
     .line 30
     .line 31

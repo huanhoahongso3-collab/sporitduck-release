@@ -1,4 +1,4 @@
-.class public Lcom/spotiduck/music/DnsAdBlock;
+.class public Ldhp/vkn/tpl/sporitduck/DnsAdBlock;
 .super Lde/robv/android/xposed/XC_MethodHook;
 
 

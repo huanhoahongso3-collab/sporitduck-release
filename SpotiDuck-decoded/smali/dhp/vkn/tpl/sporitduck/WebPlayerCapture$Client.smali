@@ -1,8 +1,8 @@
-.class public Lcom/spotiduck/music/WebPlayerCapture$Client;
+.class public Ldhp/vkn/tpl/sporitduck/WebPlayerCapture$Client;
 .super Landroid/webkit/WebViewClient;
 
 .annotation system Ldalvik/annotation/EnclosingClass;
-    value = Lcom/spotiduck/music/WebPlayerCapture;
+    value = Ldhp/vkn/tpl/sporitduck/WebPlayerCapture;
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -17,7 +17,7 @@
     .registers 2
 
     invoke-direct {p0}, Landroid/webkit/WebViewClient;-><init>()V
-    iput-object p1, p0, Lcom/spotiduck/music/WebPlayerCapture$Client;->app:Landroid/app/Application;
+    iput-object p1, p0, Ldhp/vkn/tpl/sporitduck/WebPlayerCapture$Client;->app:Landroid/app/Application;
 
     return-void
 .end method
@@ -66,7 +66,7 @@
     move-result-object v1    # v1 = "hobs_<id>"
 
     # prefs = app.getSharedPreferences("spotify_prefs", 0)
-    iget-object v2, p0, Lcom/spotiduck/music/WebPlayerCapture$Client;->app:Landroid/app/Application;
+    iget-object v2, p0, Ldhp/vkn/tpl/sporitduck/WebPlayerCapture$Client;->app:Landroid/app/Application;
     const-string v3, "spotify_prefs"
     const/4 v4, 0x0
     invoke-virtual {v2, v3, v4}, Landroid/content/Context;->getSharedPreferences(Ljava/lang/String;I)Landroid/content/SharedPreferences;

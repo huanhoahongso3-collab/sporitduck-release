@@ -16,7 +16,7 @@
 
 
 # direct methods
-.method public constructor <init>(Lcom/spotiduck/music/MainActivity;)V
+.method public constructor <init>(Ldhp/vkn/tpl/sporitduck/MainActivity;)V
     .locals 1
 
     const/4 v0, 0x1
@@ -81,7 +81,7 @@
     .locals 3
 
     .line 1
-    sget-boolean v0, Lcom/spotiduck/music/WebService;->r:Z
+    sget-boolean v0, Ldhp/vkn/tpl/sporitduck/WebService;->r:Z
 
     .line 2
     .line 3
@@ -89,7 +89,7 @@
 
     .line 4
     .line 5
-    check-cast p0, Lcom/spotiduck/music/MainActivity;
+    check-cast p0, Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 6
     .line 7
@@ -106,7 +106,7 @@
 
     .line 13
     :cond_0
-    iget-object v0, p0, Lcom/spotiduck/music/MainActivity;->G:Landroid/webkit/WebView;
+    iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/MainActivity;->G:Landroid/webkit/WebView;
 
     .line 14
     .line 15
@@ -214,7 +214,7 @@
     .line 67
     .line 68
     .line 69
-    invoke-virtual {p0, v0}, Lcom/spotiduck/music/MainActivity;->E(Ljava/lang/String;)V
+    invoke-virtual {p0, v0}, Ldhp/vkn/tpl/sporitduck/MainActivity;->E(Ljava/lang/String;)V
 
     .line 70
     .line 71
@@ -223,7 +223,7 @@
 
     .line 73
     :cond_1
-    sget-boolean v0, Lcom/spotiduck/music/MainActivity;->i0:Z
+    sget-boolean v0, Ldhp/vkn/tpl/sporitduck/MainActivity;->i0:Z
 
     .line 74
     .line 75
@@ -234,11 +234,11 @@
 
     .line 77
     .line 78
-    sput-boolean v1, Lcom/spotiduck/music/MainActivity;->i0:Z
+    sput-boolean v1, Ldhp/vkn/tpl/sporitduck/MainActivity;->i0:Z
 
     .line 79
     .line 80
-    sget v0, Lcom/spotiduck/music/AppSingleton;->j:I
+    sget v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 81
     .line 82
@@ -279,7 +279,7 @@
     .line 99
     .line 100
     .line 101
-    iget-object p0, p0, Lcom/spotiduck/music/MainActivity;->f0:Landroid/os/Handler;
+    iget-object p0, p0, Ldhp/vkn/tpl/sporitduck/MainActivity;->f0:Landroid/os/Handler;
 
     .line 102
     .line 103

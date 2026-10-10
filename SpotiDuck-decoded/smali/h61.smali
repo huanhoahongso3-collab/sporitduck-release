@@ -63,11 +63,11 @@
     move-result-object p2
 
     .line 7
-    check-cast p2, Lcom/spotiduck/music/e;
+    check-cast p2, Ldhp/vkn/tpl/sporitduck/e;
 
     .line 8
     .line 9
-    iget-object p2, p2, Lcom/spotiduck/music/e;->a:Ljava/lang/String;
+    iget-object p2, p2, Ldhp/vkn/tpl/sporitduck/e;->a:Ljava/lang/String;
 
     .line 10
     .line 11
@@ -88,7 +88,7 @@
 
     .line 19
     .line 20
-    invoke-static {p0, v0, p1}, Lcom/spotiduck/music/SettingsActivity$a;->U(Ljava/util/List;Ljava/util/ArrayList;Ljava/util/List;)V
+    invoke-static {p0, v0, p1}, Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;->U(Ljava/util/List;Ljava/util/ArrayList;Ljava/util/List;)V
 
     .line 21
     .line 22

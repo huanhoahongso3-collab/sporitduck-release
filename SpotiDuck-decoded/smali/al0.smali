@@ -86,7 +86,7 @@
 
     .line 24
     :pswitch_0
-    check-cast p0, Lcom/spotiduck/music/MainActivity;
+    check-cast p0, Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 25
     .line 26
@@ -94,14 +94,14 @@
 
     .line 27
     .line 28
-    sget p1, Lcom/spotiduck/music/MainActivity;->h0:I
+    sget p1, Ldhp/vkn/tpl/sporitduck/MainActivity;->h0:I
 
     .line 29
     .line 30
     const/4 p1, 0x1
 
     .line 31
-    invoke-virtual {p0, p1}, Lcom/spotiduck/music/MainActivity;->v(Z)V
+    invoke-virtual {p0, p1}, Ldhp/vkn/tpl/sporitduck/MainActivity;->v(Z)V
 
     .line 32
     .line 33
@@ -118,7 +118,7 @@
 
     .line 38
     .line 39
-    sget p1, Lcom/spotiduck/music/MainActivity;->h0:I
+    sget p1, Ldhp/vkn/tpl/sporitduck/MainActivity;->h0:I
 
     .line 40
     .line 41

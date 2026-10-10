@@ -7,7 +7,7 @@
 
 
 # instance fields
-.field public final synthetic j:Lcom/spotiduck/music/MainActivity;
+.field public final synthetic j:Ldhp/vkn/tpl/sporitduck/MainActivity;
 
 .field public final synthetic k:Lhz0;
 
@@ -19,7 +19,7 @@
 
 
 # direct methods
-.method public synthetic constructor <init>(Lcom/spotiduck/music/MainActivity;Lhz0;Ljava/lang/String;Lhz0;Lgz0;)V
+.method public synthetic constructor <init>(Ldhp/vkn/tpl/sporitduck/MainActivity;Lhz0;Ljava/lang/String;Lhz0;Lgz0;)V
     .locals 0
 
     .line 1
@@ -28,7 +28,7 @@
     .line 2
     .line 3
     .line 4
-    iput-object p1, p0, Lsf1;->j:Lcom/spotiduck/music/MainActivity;
+    iput-object p1, p0, Lsf1;->j:Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 5
     .line 6
@@ -95,7 +95,7 @@
 
     .line 18
     .line 19
-    iget-object v2, p0, Lsf1;->j:Lcom/spotiduck/music/MainActivity;
+    iget-object v2, p0, Lsf1;->j:Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 20
     .line 21
@@ -347,7 +347,7 @@
 
     .line 134
     .line 135
-    invoke-direct/range {v1 .. v6}, Luf1;-><init>(Lcom/spotiduck/music/MainActivity;Ljava/lang/String;Ljava/lang/String;J)V
+    invoke-direct/range {v1 .. v6}, Luf1;-><init>(Ldhp/vkn/tpl/sporitduck/MainActivity;Ljava/lang/String;Ljava/lang/String;J)V
 
     .line 136
     .line 137

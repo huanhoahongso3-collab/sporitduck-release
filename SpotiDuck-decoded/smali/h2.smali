@@ -148,7 +148,7 @@
 
     .line 15
     :pswitch_0
-    check-cast p0, Lcom/spotiduck/music/MainActivity;
+    check-cast p0, Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 16
     .line 17
@@ -157,7 +157,7 @@
     .line 18
     .line 19
     .line 20
-    sget-boolean p1, Lcom/spotiduck/music/AppSingleton;->m:Z
+    sget-boolean p1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->m:Z
 
     .line 21
     .line 22
@@ -165,7 +165,7 @@
 
     .line 23
     .line 24
-    iget-object p1, p0, Lcom/spotiduck/music/MainActivity;->K:Landroid/widget/TextView;
+    iget-object p1, p0, Ldhp/vkn/tpl/sporitduck/MainActivity;->K:Landroid/widget/TextView;
 
     .line 25
     .line 26
@@ -191,7 +191,7 @@
     .line 36
     .line 37
     :cond_0
-    iget-object p0, p0, Lcom/spotiduck/music/MainActivity;->K:Landroid/widget/TextView;
+    iget-object p0, p0, Ldhp/vkn/tpl/sporitduck/MainActivity;->K:Landroid/widget/TextView;
 
     .line 38
     .line 39

@@ -13,13 +13,13 @@
 
 .field public final synthetic l:Le2;
 
-.field public final synthetic m:Lcom/spotiduck/music/SettingsActivity$a;
+.field public final synthetic m:Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;
 
 .field public final synthetic n:Landroidx/preference/Preference;
 
 
 # direct methods
-.method public synthetic constructor <init>(ZLandroid/content/Context;Le2;Lcom/spotiduck/music/SettingsActivity$a;Landroidx/preference/Preference;)V
+.method public synthetic constructor <init>(ZLandroid/content/Context;Le2;Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;Landroidx/preference/Preference;)V
     .locals 0
 
     .line 1
@@ -40,7 +40,7 @@
 
     .line 9
     .line 10
-    iput-object p4, p0, Li61;->m:Lcom/spotiduck/music/SettingsActivity$a;
+    iput-object p4, p0, Li61;->m:Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;
 
     .line 11
     .line 12
@@ -119,7 +119,7 @@
     .line 31
     .line 32
     .line 33
-    iget-object v0, p0, Li61;->m:Lcom/spotiduck/music/SettingsActivity$a;
+    iget-object v0, p0, Li61;->m:Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;
 
     .line 34
     .line 35
@@ -127,7 +127,7 @@
 
     .line 36
     .line 37
-    invoke-static {v0, p0}, Lcom/spotiduck/music/SettingsActivity$a;->R(Lcom/spotiduck/music/SettingsActivity$a;Landroidx/preference/Preference;)V
+    invoke-static {v0, p0}, Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;->R(Ldhp/vkn/tpl/sporitduck/SettingsActivity$a;Landroidx/preference/Preference;)V
 
     .line 38
     .line 39

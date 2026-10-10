@@ -4,15 +4,15 @@
 
 
 # instance fields
-.field public final synthetic a:Lcom/spotiduck/music/WebService;
+.field public final synthetic a:Ldhp/vkn/tpl/sporitduck/WebService;
 
 
 # direct methods
-.method public constructor <init>(Lcom/spotiduck/music/WebService;)V
+.method public constructor <init>(Ldhp/vkn/tpl/sporitduck/WebService;)V
     .locals 0
 
     .line 1
-    iput-object p1, p0, Laj1;->a:Lcom/spotiduck/music/WebService;
+    iput-object p1, p0, Laj1;->a:Ldhp/vkn/tpl/sporitduck/WebService;
 
     .line 2
     .line 3
@@ -47,7 +47,7 @@
     .line 8
     .line 9
     .line 10
-    iget-object p0, p0, Laj1;->a:Lcom/spotiduck/music/WebService;
+    iget-object p0, p0, Laj1;->a:Ldhp/vkn/tpl/sporitduck/WebService;
 
     .line 11
     .line 12
@@ -97,7 +97,7 @@
 
     .line 34
     :cond_1
-    sget-boolean p1, Lcom/spotiduck/music/WebService;->r:Z
+    sget-boolean p1, Ldhp/vkn/tpl/sporitduck/WebService;->r:Z
 
     .line 35
     .line 36
@@ -105,7 +105,7 @@
 
     .line 37
     .line 38
-    invoke-virtual {p0, p1}, Lcom/spotiduck/music/WebService;->m(Ljava/lang/String;)V
+    invoke-virtual {p0, p1}, Ldhp/vkn/tpl/sporitduck/WebService;->m(Ljava/lang/String;)V
 
     .line 39
     .line 40
@@ -134,7 +134,7 @@
 
     .line 51
     :cond_3
-    sget-boolean p1, Lcom/spotiduck/music/WebService;->r:Z
+    sget-boolean p1, Ldhp/vkn/tpl/sporitduck/WebService;->r:Z
 
     .line 52
     .line 53
@@ -142,7 +142,7 @@
 
     .line 54
     .line 55
-    invoke-virtual {p0, p1}, Lcom/spotiduck/music/WebService;->m(Ljava/lang/String;)V
+    invoke-virtual {p0, p1}, Ldhp/vkn/tpl/sporitduck/WebService;->m(Ljava/lang/String;)V
 
     .line 56
     .line 57
@@ -171,7 +171,7 @@
 
     .line 68
     :cond_5
-    sget-boolean p1, Lcom/spotiduck/music/WebService;->r:Z
+    sget-boolean p1, Ldhp/vkn/tpl/sporitduck/WebService;->r:Z
 
     .line 69
     .line 70
@@ -179,7 +179,7 @@
 
     .line 71
     .line 72
-    invoke-virtual {p0, p1}, Lcom/spotiduck/music/WebService;->m(Ljava/lang/String;)V
+    invoke-virtual {p0, p1}, Ldhp/vkn/tpl/sporitduck/WebService;->m(Ljava/lang/String;)V
 
     .line 73
     .line 74
@@ -193,11 +193,11 @@
     .locals 1
 
     .line 1
-    sget-boolean v0, Lcom/spotiduck/music/WebService;->r:Z
+    sget-boolean v0, Ldhp/vkn/tpl/sporitduck/WebService;->r:Z
 
     .line 2
     .line 3
-    iget-object p0, p0, Laj1;->a:Lcom/spotiduck/music/WebService;
+    iget-object p0, p0, Laj1;->a:Ldhp/vkn/tpl/sporitduck/WebService;
 
     .line 4
     .line 5
@@ -205,7 +205,7 @@
 
     .line 6
     .line 7
-    invoke-virtual {p0, v0}, Lcom/spotiduck/music/WebService;->m(Ljava/lang/String;)V
+    invoke-virtual {p0, v0}, Ldhp/vkn/tpl/sporitduck/WebService;->m(Ljava/lang/String;)V
 
     .line 8
     .line 9
@@ -217,11 +217,11 @@
     .locals 1
 
     .line 1
-    sget-boolean v0, Lcom/spotiduck/music/WebService;->r:Z
+    sget-boolean v0, Ldhp/vkn/tpl/sporitduck/WebService;->r:Z
 
     .line 2
     .line 3
-    iget-object p0, p0, Laj1;->a:Lcom/spotiduck/music/WebService;
+    iget-object p0, p0, Laj1;->a:Ldhp/vkn/tpl/sporitduck/WebService;
 
     .line 4
     .line 5
@@ -229,7 +229,7 @@
 
     .line 6
     .line 7
-    invoke-virtual {p0, v0}, Lcom/spotiduck/music/WebService;->m(Ljava/lang/String;)V
+    invoke-virtual {p0, v0}, Ldhp/vkn/tpl/sporitduck/WebService;->m(Ljava/lang/String;)V
 
     .line 8
     .line 9
@@ -285,7 +285,7 @@
 
     .line 21
     .line 22
-    iget-object p0, p0, Laj1;->a:Lcom/spotiduck/music/WebService;
+    iget-object p0, p0, Laj1;->a:Ldhp/vkn/tpl/sporitduck/WebService;
 
     .line 23
     .line 24
@@ -361,7 +361,7 @@
 
     .line 58
     .line 59
-    iget-object p2, p0, Lcom/spotiduck/music/WebService;->q:Ljava/lang/String;
+    iget-object p2, p0, Ldhp/vkn/tpl/sporitduck/WebService;->q:Ljava/lang/String;
 
     .line 60
     .line 61
@@ -422,7 +422,7 @@
     move-result-object p1
 
     .line 92
-    invoke-virtual {p0, p1}, Lcom/spotiduck/music/WebService;->m(Ljava/lang/String;)V
+    invoke-virtual {p0, p1}, Ldhp/vkn/tpl/sporitduck/WebService;->m(Ljava/lang/String;)V
 
     .line 93
     .line 94
@@ -458,7 +458,7 @@
     move-result-object p1
 
     .line 111
-    invoke-virtual {p0, p1}, Lcom/spotiduck/music/WebService;->m(Ljava/lang/String;)V
+    invoke-virtual {p0, p1}, Ldhp/vkn/tpl/sporitduck/WebService;->m(Ljava/lang/String;)V
 
     .line 112
     .line 113
@@ -475,11 +475,11 @@
     move-result-object p1
 
     .line 119
-    sget-boolean p2, Lcom/spotiduck/music/WebService;->r:Z
+    sget-boolean p2, Ldhp/vkn/tpl/sporitduck/WebService;->r:Z
 
     .line 120
     .line 121
-    invoke-virtual {p0, p1}, Lcom/spotiduck/music/WebService;->m(Ljava/lang/String;)V
+    invoke-virtual {p0, p1}, Ldhp/vkn/tpl/sporitduck/WebService;->m(Ljava/lang/String;)V
 
     .line 122
     .line 123
@@ -489,7 +489,7 @@
     .line 125
     :cond_4
     :goto_0
-    iput-object p1, p0, Lcom/spotiduck/music/WebService;->q:Ljava/lang/String;
+    iput-object p1, p0, Ldhp/vkn/tpl/sporitduck/WebService;->q:Ljava/lang/String;
 
     .line 126
     .line 127
@@ -520,7 +520,7 @@
     move-result-object p1
 
     .line 142
-    invoke-virtual {p0, p1}, Lcom/spotiduck/music/WebService;->m(Ljava/lang/String;)V
+    invoke-virtual {p0, p1}, Ldhp/vkn/tpl/sporitduck/WebService;->m(Ljava/lang/String;)V
 
     .line 143
     .line 144
@@ -534,7 +534,7 @@
     .locals 1
 
     .line 1
-    iget-object p0, p0, Laj1;->a:Lcom/spotiduck/music/WebService;
+    iget-object p0, p0, Laj1;->a:Ldhp/vkn/tpl/sporitduck/WebService;
 
     .line 2
     .line 3
@@ -561,7 +561,7 @@
     const/4 p2, 0x0
 
     .line 13
-    iput-object p2, p0, Lcom/spotiduck/music/WebService;->q:Ljava/lang/String;
+    iput-object p2, p0, Ldhp/vkn/tpl/sporitduck/WebService;->q:Ljava/lang/String;
 
     .line 14
     .line 15
@@ -600,7 +600,7 @@
     move-result-object p1
 
     .line 34
-    invoke-virtual {p0, p1}, Lcom/spotiduck/music/WebService;->m(Ljava/lang/String;)V
+    invoke-virtual {p0, p1}, Ldhp/vkn/tpl/sporitduck/WebService;->m(Ljava/lang/String;)V
 
     .line 35
     .line 36
@@ -610,7 +610,7 @@
     .line 38
     :cond_1
     :goto_0
-    sget-boolean p1, Lcom/spotiduck/music/WebService;->r:Z
+    sget-boolean p1, Ldhp/vkn/tpl/sporitduck/WebService;->r:Z
 
     .line 39
     .line 40
@@ -618,7 +618,7 @@
 
     .line 41
     .line 42
-    invoke-virtual {p0, p1}, Lcom/spotiduck/music/WebService;->m(Ljava/lang/String;)V
+    invoke-virtual {p0, p1}, Ldhp/vkn/tpl/sporitduck/WebService;->m(Ljava/lang/String;)V
 
     .line 43
     .line 44
@@ -680,11 +680,11 @@
     .line 22
     :cond_2
     :goto_1
-    sget-boolean p1, Lcom/spotiduck/music/WebService;->r:Z
+    sget-boolean p1, Ldhp/vkn/tpl/sporitduck/WebService;->r:Z
 
     .line 23
     .line 24
-    iget-object p0, p0, Laj1;->a:Lcom/spotiduck/music/WebService;
+    iget-object p0, p0, Laj1;->a:Ldhp/vkn/tpl/sporitduck/WebService;
 
     .line 25
     .line 26
@@ -692,7 +692,7 @@
 
     .line 27
     .line 28
-    invoke-virtual {p0, p1}, Lcom/spotiduck/music/WebService;->m(Ljava/lang/String;)V
+    invoke-virtual {p0, p1}, Ldhp/vkn/tpl/sporitduck/WebService;->m(Ljava/lang/String;)V
 
     .line 29
     .line 30
@@ -704,11 +704,11 @@
     .locals 1
 
     .line 1
-    sget-boolean v0, Lcom/spotiduck/music/WebService;->r:Z
+    sget-boolean v0, Ldhp/vkn/tpl/sporitduck/WebService;->r:Z
 
     .line 2
     .line 3
-    iget-object p0, p0, Laj1;->a:Lcom/spotiduck/music/WebService;
+    iget-object p0, p0, Laj1;->a:Ldhp/vkn/tpl/sporitduck/WebService;
 
     .line 4
     .line 5
@@ -716,7 +716,7 @@
 
     .line 6
     .line 7
-    invoke-virtual {p0, v0}, Lcom/spotiduck/music/WebService;->m(Ljava/lang/String;)V
+    invoke-virtual {p0, v0}, Ldhp/vkn/tpl/sporitduck/WebService;->m(Ljava/lang/String;)V
 
     .line 8
     .line 9
@@ -799,15 +799,15 @@
     move-result-object p1
 
     .line 20
-    sget-boolean p2, Lcom/spotiduck/music/WebService;->r:Z
+    sget-boolean p2, Ldhp/vkn/tpl/sporitduck/WebService;->r:Z
 
     .line 21
     .line 22
-    iget-object p0, p0, Laj1;->a:Lcom/spotiduck/music/WebService;
+    iget-object p0, p0, Laj1;->a:Ldhp/vkn/tpl/sporitduck/WebService;
 
     .line 23
     .line 24
-    invoke-virtual {p0, p1}, Lcom/spotiduck/music/WebService;->m(Ljava/lang/String;)V
+    invoke-virtual {p0, p1}, Ldhp/vkn/tpl/sporitduck/WebService;->m(Ljava/lang/String;)V
 
     .line 25
     .line 26
@@ -819,11 +819,11 @@
     .locals 1
 
     .line 1
-    sget-boolean v0, Lcom/spotiduck/music/WebService;->r:Z
+    sget-boolean v0, Ldhp/vkn/tpl/sporitduck/WebService;->r:Z
 
     .line 2
     .line 3
-    iget-object p0, p0, Laj1;->a:Lcom/spotiduck/music/WebService;
+    iget-object p0, p0, Laj1;->a:Ldhp/vkn/tpl/sporitduck/WebService;
 
     .line 4
     .line 5
@@ -831,7 +831,7 @@
 
     .line 6
     .line 7
-    invoke-virtual {p0, v0}, Lcom/spotiduck/music/WebService;->m(Ljava/lang/String;)V
+    invoke-virtual {p0, v0}, Ldhp/vkn/tpl/sporitduck/WebService;->m(Ljava/lang/String;)V
 
     .line 8
     .line 9
@@ -843,11 +843,11 @@
     .locals 1
 
     .line 1
-    sget-boolean v0, Lcom/spotiduck/music/WebService;->r:Z
+    sget-boolean v0, Ldhp/vkn/tpl/sporitduck/WebService;->r:Z
 
     .line 2
     .line 3
-    iget-object p0, p0, Laj1;->a:Lcom/spotiduck/music/WebService;
+    iget-object p0, p0, Laj1;->a:Ldhp/vkn/tpl/sporitduck/WebService;
 
     .line 4
     .line 5
@@ -855,7 +855,7 @@
 
     .line 6
     .line 7
-    invoke-virtual {p0, v0}, Lcom/spotiduck/music/WebService;->m(Ljava/lang/String;)V
+    invoke-virtual {p0, v0}, Ldhp/vkn/tpl/sporitduck/WebService;->m(Ljava/lang/String;)V
 
     .line 8
     .line 9

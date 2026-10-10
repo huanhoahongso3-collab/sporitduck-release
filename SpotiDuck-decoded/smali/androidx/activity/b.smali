@@ -343,7 +343,7 @@
     .line 38
     .line 39
     .line 40
-    sget-boolean p0, Lcom/spotiduck/music/AppSingleton;->B:Z
+    sget-boolean p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->B:Z
 
     .line 41
     .line 42
@@ -351,7 +351,7 @@
 
     .line 43
     .line 44
-    sget-boolean p0, Lcom/spotiduck/music/WebService;->r:Z
+    sget-boolean p0, Ldhp/vkn/tpl/sporitduck/WebService;->r:Z
 
     .line 45
     .line 46
@@ -363,11 +363,11 @@
 
     .line 49
     .line 50
-    check-cast p0, Lcom/spotiduck/music/MainActivity;
+    check-cast p0, Ldhp/vkn/tpl/sporitduck/MainActivity;
 
     .line 51
     .line 52
-    iget-object p0, p0, Lcom/spotiduck/music/MainActivity;->G:Landroid/webkit/WebView;
+    iget-object p0, p0, Ldhp/vkn/tpl/sporitduck/MainActivity;->G:Landroid/webkit/WebView;
 
     .line 53
     .line 54

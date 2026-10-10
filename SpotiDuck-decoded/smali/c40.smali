@@ -433,7 +433,7 @@
     .line 174
     .line 175
     .line 176
-    sget-object v5, Lcom/spotiduck/music/AppSingleton;->f0:Ljava/util/concurrent/ConcurrentHashMap;
+    sget-object v5, Ldhp/vkn/tpl/sporitduck/AppSingleton;->f0:Ljava/util/concurrent/ConcurrentHashMap;
 
     .line 177
     .line 178
@@ -528,7 +528,7 @@
     .line 215
     .line 216
     .line 217
-    sget-object v5, Lcom/spotiduck/music/AppSingleton;->f0:Ljava/util/concurrent/ConcurrentHashMap;
+    sget-object v5, Ldhp/vkn/tpl/sporitduck/AppSingleton;->f0:Ljava/util/concurrent/ConcurrentHashMap;
 
     .line 218
     .line 219
@@ -596,7 +596,7 @@
     .line 249
     .line 250
     :cond_a
-    sget-object p0, Lcom/spotiduck/music/AppSingleton;->w:Ll9;
+    sget-object p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->w:Ll9;
 
     .line 251
     .line 252

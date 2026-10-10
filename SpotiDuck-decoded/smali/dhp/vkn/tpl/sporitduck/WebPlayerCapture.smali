@@ -1,4 +1,4 @@
-.class public Lcom/spotiduck/music/WebPlayerCapture;
+.class public Ldhp/vkn/tpl/sporitduck/WebPlayerCapture;
 .super Ljava/lang/Object;
 .implements Ljava/lang/Runnable;
 
@@ -9,7 +9,7 @@
     .registers 2
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
-    iput-object p1, p0, Lcom/spotiduck/music/WebPlayerCapture;->app:Landroid/app/Application;
+    iput-object p1, p0, Ldhp/vkn/tpl/sporitduck/WebPlayerCapture;->app:Landroid/app/Application;
 
     return-void
 .end method
@@ -22,7 +22,7 @@
 
     # WebView wv = new WebView(app)
     new-instance v0, Landroid/webkit/WebView;
-    iget-object v1, p0, Lcom/spotiduck/music/WebPlayerCapture;->app:Landroid/app/Application;
+    iget-object v1, p0, Ldhp/vkn/tpl/sporitduck/WebPlayerCapture;->app:Landroid/app/Application;
     invoke-direct {v0, v1}, Landroid/webkit/WebView;-><init>(Landroid/content/Context;)V
 
     # wv.setVisibility(View.GONE = 8)
@@ -45,9 +45,9 @@
     invoke-virtual {v1, v2}, Landroid/webkit/WebSettings;->setUserAgentString(Ljava/lang/String;)V
 
     # wv.setWebViewClient(new WebPlayerCapture$Client(app))
-    new-instance v1, Lcom/spotiduck/music/WebPlayerCapture$Client;
-    iget-object v2, p0, Lcom/spotiduck/music/WebPlayerCapture;->app:Landroid/app/Application;
-    invoke-direct {v1, v2}, Lcom/spotiduck/music/WebPlayerCapture$Client;-><init>(Landroid/app/Application;)V
+    new-instance v1, Ldhp/vkn/tpl/sporitduck/WebPlayerCapture$Client;
+    iget-object v2, p0, Ldhp/vkn/tpl/sporitduck/WebPlayerCapture;->app:Landroid/app/Application;
+    invoke-direct {v1, v2}, Ldhp/vkn/tpl/sporitduck/WebPlayerCapture$Client;-><init>(Landroid/app/Application;)V
     invoke-virtual {v0, v1}, Landroid/webkit/WebView;->setWebViewClient(Landroid/webkit/WebViewClient;)V
 
     # wv.loadUrl("https://open.spotify.com")

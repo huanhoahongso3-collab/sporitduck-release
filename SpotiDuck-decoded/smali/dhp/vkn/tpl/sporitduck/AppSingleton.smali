@@ -1,4 +1,4 @@
-.class public final Lcom/spotiduck/music/AppSingleton;
+.class public final Ldhp/vkn/tpl/sporitduck/AppSingleton;
 .super Landroid/app/Application;
 .source "r8-map-id-37e276fb91e34a5f1b4d8f51e71abe3719dc52e9eeab3bd3e0cf2cd8d4f7becf"
 
@@ -125,7 +125,7 @@
     .line 8
     .line 9
     .line 10
-    sput-object v0, Lcom/spotiduck/music/AppSingleton;->o:Landroid/os/Handler;
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->o:Landroid/os/Handler;
 
     .line 11
     .line 12
@@ -146,7 +146,7 @@
     .line 19
     .line 20
     .line 21
-    sput-object v0, Lcom/spotiduck/music/AppSingleton;->p:Landroid/os/Handler;
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->p:Landroid/os/Handler;
 
     .line 22
     .line 23
@@ -154,14 +154,14 @@
 
     .line 24
     .line 25
-    sput-object v0, Lcom/spotiduck/music/AppSingleton;->G:Ljava/lang/String;
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->G:Ljava/lang/String;
 
     .line 26
     .line 27
     const/4 v0, 0x1
 
     .line 28
-    sput-boolean v0, Lcom/spotiduck/music/AppSingleton;->W:Z
+    sput-boolean v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->W:Z
 
     .line 29
     .line 30
@@ -169,7 +169,7 @@
 
     .line 31
     .line 32
-    sput-object v0, Lcom/spotiduck/music/AppSingleton;->X:Ljava/lang/String;
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->X:Ljava/lang/String;
 
     .line 33
     .line 34
@@ -181,7 +181,7 @@
     move-result-object v0
 
     .line 38
-    sput-object v0, Lcom/spotiduck/music/AppSingleton;->Y:Ljava/util/concurrent/ConcurrentHashMap$KeySetView;
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->Y:Ljava/util/concurrent/ConcurrentHashMap$KeySetView;
 
     .line 39
     .line 40
@@ -189,7 +189,7 @@
 
     .line 41
     .line 42
-    sput-object v0, Lcom/spotiduck/music/AppSingleton;->a0:Ljava/lang/String;
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->a0:Ljava/lang/String;
 
     .line 43
     .line 44
@@ -197,7 +197,7 @@
 
     .line 45
     .line 46
-    sput-object v0, Lcom/spotiduck/music/AppSingleton;->b0:Ljava/lang/String;
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->b0:Ljava/lang/String;
 
     .line 47
     .line 48
@@ -205,11 +205,11 @@
 
     .line 49
     .line 50
-    sput-object v1, Lcom/spotiduck/music/AppSingleton;->c0:Ljava/lang/String;
+    sput-object v1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->c0:Ljava/lang/String;
 
     .line 51
     .line 52
-    sput-object v0, Lcom/spotiduck/music/AppSingleton;->d0:Ljava/lang/String;
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->d0:Ljava/lang/String;
 
     .line 53
     .line 54
@@ -222,7 +222,7 @@
     .line 57
     .line 58
     .line 59
-    sput-object v0, Lcom/spotiduck/music/AppSingleton;->f0:Ljava/util/concurrent/ConcurrentHashMap;
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->f0:Ljava/util/concurrent/ConcurrentHashMap;
 
     .line 60
     .line 61
@@ -291,21 +291,21 @@
     .line 23
     .line 24
     .line 25
-    sput-object v0, Lcom/spotiduck/music/AppSingleton;->s:Landroid/content/Context;
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->s:Landroid/content/Context;
 
     .line 26
     .line 27
     :try_start_0
-    new-instance v0, Lcom/spotiduck/music/AndBridge;
+    new-instance v0, Ldhp/vkn/tpl/sporitduck/AndBridge;
 
     .line 28
     .line 29
-    invoke-direct {v0, p0}, Lcom/spotiduck/music/AndBridge;-><init>(Landroid/content/Context;)V
+    invoke-direct {v0, p0}, Ldhp/vkn/tpl/sporitduck/AndBridge;-><init>(Landroid/content/Context;)V
 
     .line 30
     .line 31
     .line 32
-    invoke-virtual {v0}, Lcom/spotiduck/music/AndBridge;->isSignatureValid()Z
+    invoke-virtual {v0}, Ldhp/vkn/tpl/sporitduck/AndBridge;->isSignatureValid()Z
 
     .line 33
     .line 34
@@ -713,7 +713,7 @@
     .line 218
     .line 219
     .line 220
-    sput-object v0, Lcom/spotiduck/music/AppSingleton;->u:Landroid/content/SharedPreferences;
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->u:Landroid/content/SharedPreferences;
 
     .line 221
     .line 222
@@ -738,7 +738,7 @@
     .line 231
     .line 232
     .line 233
-    sput-object v0, Lcom/spotiduck/music/AppSingleton;->v:Landroid/content/SharedPreferences$Editor;
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->v:Landroid/content/SharedPreferences$Editor;
 
     .line 234
     .line 235
@@ -762,7 +762,7 @@
     move-result v0
 
     .line 245
-    sput-boolean v0, Lcom/spotiduck/music/AppSingleton;->A:Z
+    sput-boolean v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->A:Z
 
     .line 246
     .line 247
@@ -786,7 +786,7 @@
     move-result v0
 
     .line 257
-    sput-boolean v0, Lcom/spotiduck/music/AppSingleton;->B:Z
+    sput-boolean v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->B:Z
 
     .line 258
     .line 259
@@ -814,7 +814,7 @@
     move-result-object v0
 
     .line 271
-    sput-object v0, Lcom/spotiduck/music/AppSingleton;->y:Ljava/lang/String;
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->y:Ljava/lang/String;
 
     .line 272
     .line 273
@@ -838,7 +838,7 @@
     move-result v0
 
     .line 283
-    sput-boolean v0, Lcom/spotiduck/music/AppSingleton;->D:Z
+    sput-boolean v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->D:Z
 
     .line 284
     .line 285
@@ -862,7 +862,7 @@
     move-result v0
 
     .line 295
-    sput-boolean v0, Lcom/spotiduck/music/AppSingleton;->C:Z
+    sput-boolean v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->C:Z
 
     .line 296
     .line 297
@@ -890,7 +890,7 @@
     move-result-object v0
 
     .line 309
-    sput-object v0, Lcom/spotiduck/music/AppSingleton;->z:Ljava/lang/String;
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->z:Ljava/lang/String;
 
     .line 310
     .line 311
@@ -914,7 +914,7 @@
     move-result v0
 
     .line 321
-    sput-boolean v0, Lcom/spotiduck/music/AppSingleton;->E:Z
+    sput-boolean v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->E:Z
 
     .line 322
     .line 323
@@ -938,7 +938,7 @@
     move-result v0
 
     .line 333
-    sput-boolean v0, Lcom/spotiduck/music/AppSingleton;->F:Z
+    sput-boolean v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->F:Z
 
     .line 334
     .line 335
@@ -973,7 +973,7 @@
 
     .line 349
     .line 350
-    sput-object v0, Lcom/spotiduck/music/AppSingleton;->G:Ljava/lang/String;
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->G:Ljava/lang/String;
 
     .line 351
     .line 352
@@ -1256,7 +1256,7 @@
     move-result-object v0
 
     .line 485
-    sput-object v0, Lcom/spotiduck/music/AppSingleton;->G:Ljava/lang/String;
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->G:Ljava/lang/String;
 
     .line 486
     .line 487
@@ -1437,7 +1437,7 @@
     move-result-object v0
 
     .line 572
-    sput-object v0, Lcom/spotiduck/music/AppSingleton;->G:Ljava/lang/String;
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->G:Ljava/lang/String;
 
     .line 573
     .line 574
@@ -1470,7 +1470,7 @@
 
     .line 588
     :cond_d
-    sput-object v0, Lcom/spotiduck/music/AppSingleton;->G:Ljava/lang/String;
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->G:Ljava/lang/String;
 
     .line 589
     .line 590
@@ -1495,7 +1495,7 @@
     move-result v0
 
     .line 600
-    sput-boolean v0, Lcom/spotiduck/music/AppSingleton;->H:Z
+    sput-boolean v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->H:Z
 
     .line 601
     .line 602
@@ -1519,7 +1519,7 @@
     move-result v0
 
     .line 612
-    sput-boolean v0, Lcom/spotiduck/music/AppSingleton;->R:Z
+    sput-boolean v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->R:Z
 
     .line 613
     .line 614
@@ -1543,7 +1543,7 @@
     move-result v0
 
     .line 624
-    sput-boolean v0, Lcom/spotiduck/music/AppSingleton;->S:Z
+    sput-boolean v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->S:Z
 
     .line 625
     .line 626
@@ -1567,7 +1567,7 @@
     move-result v0
 
     .line 636
-    sput-boolean v0, Lcom/spotiduck/music/AppSingleton;->T:Z
+    sput-boolean v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->T:Z
 
     .line 637
     .line 638
@@ -1619,11 +1619,11 @@
 
     .line 658
     :goto_a
-    sput v0, Lcom/spotiduck/music/AppSingleton;->P:I
+    sput v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->P:I
 
     .line 659
     .line 660
-    sput v2, Lcom/spotiduck/music/AppSingleton;->j:I
+    sput v2, Ldhp/vkn/tpl/sporitduck/AppSingleton;->j:I
 
     .line 661
     .line 662
@@ -1676,7 +1676,7 @@
     move-result v0
 
     .line 687
-    sput-boolean v0, Lcom/spotiduck/music/AppSingleton;->I:Z
+    sput-boolean v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->I:Z
 
     .line 688
     .line 689
@@ -1700,7 +1700,7 @@
     move-result v0
 
     .line 699
-    sput-boolean v0, Lcom/spotiduck/music/AppSingleton;->J:Z
+    sput-boolean v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->J:Z
 
     .line 700
     .line 701
@@ -1724,7 +1724,7 @@
     move-result v0
 
     .line 711
-    sput-boolean v0, Lcom/spotiduck/music/AppSingleton;->K:Z
+    sput-boolean v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->K:Z
 
     .line 712
     .line 713
@@ -1748,7 +1748,7 @@
     move-result v0
 
     .line 723
-    sput-boolean v0, Lcom/spotiduck/music/AppSingleton;->L:Z
+    sput-boolean v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->L:Z
 
     .line 724
     .line 725
@@ -1772,7 +1772,7 @@
     move-result v0
 
     .line 735
-    sput-boolean v0, Lcom/spotiduck/music/AppSingleton;->M:Z
+    sput-boolean v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->M:Z
 
     .line 736
     .line 737
@@ -1796,7 +1796,7 @@
     move-result v0
 
     .line 747
-    sput-boolean v0, Lcom/spotiduck/music/AppSingleton;->N:Z
+    sput-boolean v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->N:Z
 
     .line 748
     .line 749
@@ -1820,7 +1820,7 @@
     move-result v0
 
     .line 759
-    sput-boolean v0, Lcom/spotiduck/music/AppSingleton;->O:Z
+    sput-boolean v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->O:Z
 
     .line 760
     .line 761
@@ -1844,7 +1844,7 @@
     move-result v0
 
     .line 771
-    sput-boolean v0, Lcom/spotiduck/music/AppSingleton;->Q:Z
+    sput-boolean v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->Q:Z
 
     .line 772
     .line 773
@@ -1868,7 +1868,7 @@
     move-result v0
 
     .line 783
-    sput-boolean v0, Lcom/spotiduck/music/AppSingleton;->W:Z
+    sput-boolean v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->W:Z
 
     .line 784
     .line 785
@@ -1905,7 +1905,7 @@
     .line 800
     .line 801
     :cond_f
-    sput-object v0, Lcom/spotiduck/music/AppSingleton;->X:Ljava/lang/String;
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->X:Ljava/lang/String;
 
     .line 802
     .line 803
@@ -2010,7 +2010,7 @@
 
     .line 851
     :goto_b
-    sput-object v0, Lcom/spotiduck/music/AppSingleton;->a0:Ljava/lang/String;
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->a0:Ljava/lang/String;
 
     .line 852
     .line 853
@@ -2047,7 +2047,7 @@
     .line 868
     .line 869
     :cond_12
-    sput-object v0, Lcom/spotiduck/music/AppSingleton;->b0:Ljava/lang/String;
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->b0:Ljava/lang/String;
 
     .line 870
     .line 871
@@ -2084,7 +2084,7 @@
     .line 886
     .line 887
     :cond_13
-    sput-object v0, Lcom/spotiduck/music/AppSingleton;->c0:Ljava/lang/String;
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->c0:Ljava/lang/String;
 
     .line 888
     .line 889
@@ -2121,7 +2121,7 @@
     .line 904
     .line 905
     :cond_14
-    sput-object v0, Lcom/spotiduck/music/AppSingleton;->d0:Ljava/lang/String;
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->d0:Ljava/lang/String;
 
     .line 906
     .line 907
@@ -2174,7 +2174,7 @@
 
     .line 931
     :cond_15
-    sput v2, Lcom/spotiduck/music/AppSingleton;->e0:I
+    sput v2, Ldhp/vkn/tpl/sporitduck/AppSingleton;->e0:I
 
     .line 932
     .line 933
@@ -2271,7 +2271,7 @@
     .line 2
     .line 3
     .line 4
-    sget-object p0, Lcom/spotiduck/music/AppSingleton;->f0:Ljava/util/concurrent/ConcurrentHashMap;
+    sget-object p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->f0:Ljava/util/concurrent/ConcurrentHashMap;
 
     .line 5
     .line 6
@@ -2300,7 +2300,7 @@
 
     .line 7
     .line 8
-    sget-object p0, Lcom/spotiduck/music/AppSingleton;->f0:Ljava/util/concurrent/ConcurrentHashMap;
+    sget-object p0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->f0:Ljava/util/concurrent/ConcurrentHashMap;
 
     .line 9
     .line 10
