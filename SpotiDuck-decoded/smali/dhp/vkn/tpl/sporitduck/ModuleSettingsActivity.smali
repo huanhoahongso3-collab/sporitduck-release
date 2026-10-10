@@ -210,10 +210,17 @@
     invoke-interface {v0, v1, v2}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
     move-result v1
 
+    # v4 = !v1  (avoid xor-int on Z-typed register — causes ART VerifyError)
+    if-nez v1, :mod_toggle_false
+    const/4 v4, 0x1
+    goto :mod_toggle_done
+    :mod_toggle_false
+    const/4 v4, 0x0
+    :mod_toggle_done
+
     invoke-interface {v0}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences$Editor;
     move-result-object v2
     const-string v3, "LoggedIn"
-    xor-int/lit8 v4, v1, 0x1
     invoke-interface {v2, v3, v4}, Landroid/content/SharedPreferences$Editor;->putBoolean(Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;
     invoke-interface {v2}, Landroid/content/SharedPreferences$Editor;->apply()V
 
@@ -238,10 +245,16 @@
     invoke-interface {v0, v1, v2}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
     move-result v1
 
+    if-nez v1, :adb_toggle_false
+    const/4 v4, 0x1
+    goto :adb_toggle_done
+    :adb_toggle_false
+    const/4 v4, 0x0
+    :adb_toggle_done
+
     invoke-interface {v0}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences$Editor;
     move-result-object v2
     const-string v3, "AdBlockEnabled"
-    xor-int/lit8 v4, v1, 0x1
     invoke-interface {v2, v3, v4}, Landroid/content/SharedPreferences$Editor;->putBoolean(Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;
     invoke-interface {v2}, Landroid/content/SharedPreferences$Editor;->apply()V
 
@@ -266,10 +279,16 @@
     invoke-interface {v0, v1, v2}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
     move-result v1
 
+    if-nez v1, :wp_toggle_false
+    const/4 v4, 0x1
+    goto :wp_toggle_done
+    :wp_toggle_false
+    const/4 v4, 0x0
+    :wp_toggle_done
+
     invoke-interface {v0}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences$Editor;
     move-result-object v2
     const-string v3, "WebPlayerEnabled"
-    xor-int/lit8 v4, v1, 0x1
     invoke-interface {v2, v3, v4}, Landroid/content/SharedPreferences$Editor;->putBoolean(Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;
     invoke-interface {v2}, Landroid/content/SharedPreferences$Editor;->apply()V
 
