@@ -87,6 +87,19 @@
     move-result-object v1
     invoke-virtual {v1}, Landroid/widget/Toast;->show()V
 
+    # Mark user as logged in via our overlay in Spotify's own prefs
+    iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay$Client;->activity:Landroid/app/Activity;
+    const-string v2, "spotiduck_overlay"
+    const/4 v3, 0x0
+    invoke-virtual {v0, v2, v3}, Landroid/app/Activity;->getSharedPreferences(Ljava/lang/String;I)Landroid/content/SharedPreferences;
+    move-result-object v0
+    invoke-interface {v0}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences$Editor;
+    move-result-object v0
+    const-string v2, "logged_in"
+    const/4 v3, 0x1
+    invoke-interface {v0, v2, v3}, Landroid/content/SharedPreferences$Editor;->putBoolean(Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;
+    invoke-interface {v0}, Landroid/content/SharedPreferences$Editor;->apply()V
+
     # Dismiss overlay unless ShowWebView is enabled
     new-instance v0, Lde/robv/android/xposed/XSharedPreferences;
     const-string v1, "dhp.vkn.tpl.sporitduck"

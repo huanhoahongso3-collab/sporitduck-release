@@ -24,13 +24,14 @@
 
     invoke-super {p0, p1}, Landroid/app/Activity;->onCreate(Landroid/os/Bundle;)V
 
-    # prefs = getSharedPreferences("dhp.vkn.tpl.sporitduck_preferences", MODE_WORLD_READABLE)
-    # MODE_WORLD_READABLE=1 required so XSharedPreferences in Spotify's process can read this file
+    # prefs = getSharedPreferences("dhp.vkn.tpl.sporitduck_preferences", MODE_PRIVATE)
+    # MODE_WORLD_READABLE is silently ignored on Android 9+; use MODE_PRIVATE and chmod after each commit.
     const-string v0, "dhp.vkn.tpl.sporitduck_preferences"
-    const/4 v1, 0x1
+    const/4 v1, 0x0
     invoke-virtual {p0, v0, v1}, Landroid/app/Activity;->getSharedPreferences(Ljava/lang/String;I)Landroid/content/SharedPreferences;
     move-result-object v0
     iput-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->prefs:Landroid/content/SharedPreferences;
+    invoke-virtual {p0}, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->chmodPrefs()V
 
     # Read relevant booleans
     const-string v1, "LoggedIn"
@@ -266,7 +267,8 @@
     move-result-object v2
     const-string v3, "AdBlockEnabled"
     invoke-interface {v2, v3, v4}, Landroid/content/SharedPreferences$Editor;->putBoolean(Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;
-    invoke-interface {v2}, Landroid/content/SharedPreferences$Editor;->apply()V
+    invoke-interface {v2}, Landroid/content/SharedPreferences$Editor;->commit()Z
+    invoke-virtual {p0}, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->chmodPrefs()V
 
     if-nez v1, :adb_was_on
     const-string v2, "DNS Ad Blocker enabled! Restart Spotify to apply."
@@ -300,7 +302,8 @@
     move-result-object v2
     const-string v3, "WebPlayerEnabled"
     invoke-interface {v2, v3, v4}, Landroid/content/SharedPreferences$Editor;->putBoolean(Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;
-    invoke-interface {v2}, Landroid/content/SharedPreferences$Editor;->apply()V
+    invoke-interface {v2}, Landroid/content/SharedPreferences$Editor;->commit()Z
+    invoke-virtual {p0}, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->chmodPrefs()V
 
     if-nez v1, :wp_was_on
     const-string v2, "Web Player enabled! Restart Spotify to apply."
@@ -317,30 +320,24 @@
 
     # ---- Clear all SpotiDuck data ----
     :handle_clear
+    # Read current clear_count before wiping, then increment and put it back
     iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->prefs:Landroid/content/SharedPreferences;
+    const-string v1, "clear_count"
+    const/4 v2, 0x0
+    invoke-interface {v0, v1, v2}, Landroid/content/SharedPreferences;->getInt(Ljava/lang/String;I)I
+    move-result v2    # v2 = old count
+    add-int/lit8 v2, v2, 0x1    # v2 = new count
+
     invoke-interface {v0}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences$Editor;
     move-result-object v0
     invoke-interface {v0}, Landroid/content/SharedPreferences$Editor;->clear()Landroid/content/SharedPreferences$Editor;
-    invoke-interface {v0}, Landroid/content/SharedPreferences$Editor;->apply()V
+    move-result-object v0
+    const-string v1, "clear_count"
+    invoke-interface {v0, v1, v2}, Landroid/content/SharedPreferences$Editor;->putInt(Ljava/lang/String;I)Landroid/content/SharedPreferences$Editor;
+    invoke-interface {v0}, Landroid/content/SharedPreferences$Editor;->commit()Z
+    invoke-virtual {p0}, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->chmodPrefs()V
 
-    # Create force_relogin flag file — Spotify's process reads & deletes it on next cold start
-    # to clear its own WebView cookies and force the login overlay to appear
-    invoke-virtual {p0}, Landroid/app/Activity;->getFilesDir()Ljava/io/File;
-    move-result-object v1
-    # Make the files/ dir world-executable so Spotify's UID can traverse it to find the flag file
-    const/4 v2, 0x1
-    const/4 v0, 0x0
-    invoke-virtual {v1, v2, v0}, Ljava/io/File;->setExecutable(ZZ)Z
-    const-string v2, "force_relogin"
-    new-instance v3, Ljava/io/File;
-    invoke-direct {v3, v1, v2}, Ljava/io/File;-><init>(Ljava/io/File;Ljava/lang/String;)V
-    invoke-virtual {v3}, Ljava/io/File;->createNewFile()Z
-    const/4 v1, 0x1
-    const/4 v2, 0x0
-    invoke-virtual {v3, v1, v2}, Ljava/io/File;->setReadable(ZZ)Z
-    invoke-virtual {v3, v1, v2}, Ljava/io/File;->setWritable(ZZ)Z
-
-    const-string v1, "SpotiDuck data cleared. Restart Spotify to reset login."
+    const-string v1, "SpotiDuck data cleared. Restart Spotify to re-login."
     const/4 v2, 0x0
     invoke-static {p0, v1, v2}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
     move-result-object v1
@@ -367,7 +364,8 @@
     move-result-object v2
     const-string v3, "DebugEnabled"
     invoke-interface {v2, v3, v4}, Landroid/content/SharedPreferences$Editor;->putBoolean(Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;
-    invoke-interface {v2}, Landroid/content/SharedPreferences$Editor;->apply()V
+    invoke-interface {v2}, Landroid/content/SharedPreferences$Editor;->commit()Z
+    invoke-virtual {p0}, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->chmodPrefs()V
 
     if-nez v1, :dbg_was_on
     const-string v2, "Debug toasts enabled! Restart Spotify."
@@ -401,7 +399,8 @@
     move-result-object v2
     const-string v3, "ShowWebView"
     invoke-interface {v2, v3, v4}, Landroid/content/SharedPreferences$Editor;->putBoolean(Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;
-    invoke-interface {v2}, Landroid/content/SharedPreferences$Editor;->apply()V
+    invoke-interface {v2}, Landroid/content/SharedPreferences$Editor;->commit()Z
+    invoke-virtual {p0}, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->chmodPrefs()V
 
     if-nez v1, :swv_was_on
     const-string v2, "Show WebView enabled! Restart Spotify to apply."
@@ -414,5 +413,35 @@
     move-result-object v2
     invoke-virtual {v2}, Landroid/widget/Toast;->show()V
     invoke-virtual {p0}, Landroid/app/Activity;->recreate()V
+    return-void
+.end method
+
+
+# Make the module prefs file world-readable so XSharedPreferences in Spotify's process can read it.
+# MODE_WORLD_READABLE is silently ignored on Android 9+, so we chmod manually after every commit.
+.method private chmodPrefs()V
+    .registers 4
+
+    :try_start_0
+    # Make shared_prefs/ directory world-executable (traversable by other UIDs)
+    new-instance v0, Ljava/io/File;
+    const-string v1, "/data/data/dhp.vkn.tpl.sporitduck/shared_prefs"
+    invoke-direct {v0, v1}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+    const/4 v2, 0x1
+    const/4 v3, 0x0
+    invoke-virtual {v0, v2, v3}, Ljava/io/File;->setExecutable(ZZ)Z
+
+    # Make the prefs XML file world-readable
+    new-instance v0, Ljava/io/File;
+    const-string v1, "/data/data/dhp.vkn.tpl.sporitduck/shared_prefs/dhp.vkn.tpl.sporitduck_preferences.xml"
+    invoke-direct {v0, v1}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+    invoke-virtual {v0, v2, v3}, Ljava/io/File;->setReadable(ZZ)Z
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+
+    return-void
+
+    :catch_0
+    move-exception v0
     return-void
 .end method

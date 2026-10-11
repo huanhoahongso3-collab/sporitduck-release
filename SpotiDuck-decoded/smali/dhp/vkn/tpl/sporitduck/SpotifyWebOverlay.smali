@@ -142,16 +142,38 @@
     sput-object v0, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sDialog:Landroid/app/Dialog;
     sput-object v1, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sWebView:Landroid/webkit/WebView;
 
-    # Check force_relogin flag file written by ModuleSettingsActivity.handle_clear
-    new-instance v2, Ljava/io/File;
-    const-string v3, "/data/data/dhp.vkn.tpl.sporitduck/files/force_relogin"
-    invoke-direct {v2, v3}, Ljava/io/File;-><init>(Ljava/lang/String;)V
-    invoke-virtual {v2}, Ljava/io/File;->exists()Z
-    move-result v3
-    if-eqz v3, :check_cookies
+    # Check if user requested a data clear (clear_count in module prefs vs last_handled_count in Spotify's prefs)
+    new-instance v2, Lde/robv/android/xposed/XSharedPreferences;
+    const-string v3, "dhp.vkn.tpl.sporitduck"
+    const-string v4, "dhp.vkn.tpl.sporitduck_preferences"
+    invoke-direct {v2, v3, v4}, Lde/robv/android/xposed/XSharedPreferences;-><init>(Ljava/lang/String;Ljava/lang/String;)V
+    invoke-virtual {v2}, Lde/robv/android/xposed/XSharedPreferences;->reload()V
+    const-string v3, "clear_count"
+    const/4 v4, 0x0
+    invoke-interface {v2, v3, v4}, Landroid/content/SharedPreferences;->getInt(Ljava/lang/String;I)I
+    move-result v2    # v2 = module clear_count
 
-    # Flag exists: delete it (one-shot), then clear Spotify's WebView cookies
-    invoke-virtual {v2}, Ljava/io/File;->delete()Z
+    const-string v3, "spotiduck_overlay"
+    const/4 v4, 0x0
+    invoke-virtual {p0, v3, v4}, Landroid/app/Activity;->getSharedPreferences(Ljava/lang/String;I)Landroid/content/SharedPreferences;
+    move-result-object v3    # v3 = Spotify's own spotiduck_overlay prefs
+    const-string v4, "last_handled_count"
+    const/4 v5, 0x0
+    invoke-interface {v3, v4, v5}, Landroid/content/SharedPreferences;->getInt(Ljava/lang/String;I)I
+    move-result v4    # v4 = Spotify's last_handled_count
+
+    if-eq v2, v4, :check_cookies    # counts match → no pending clear
+
+    # New clear request: update handled count in Spotify's own prefs, clear WebView cookies
+    invoke-interface {v3}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences$Editor;
+    move-result-object v3
+    const-string v4, "last_handled_count"
+    invoke-interface {v3, v4, v2}, Landroid/content/SharedPreferences$Editor;->putInt(Ljava/lang/String;I)Landroid/content/SharedPreferences$Editor;
+    # Also reset logged_in so login overlay appears
+    const-string v4, "logged_in"
+    const/4 v5, 0x0
+    invoke-interface {v3, v4, v5}, Landroid/content/SharedPreferences$Editor;->putBoolean(Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;
+    invoke-interface {v3}, Landroid/content/SharedPreferences$Editor;->apply()V
     invoke-static {}, Landroid/webkit/CookieManager;->getInstance()Landroid/webkit/CookieManager;
     move-result-object v2
     const/4 v3, 0x0
@@ -171,19 +193,18 @@
     move-result v3
     if-nez v3, :load_login
 
-    # Check for sp_dc session cookie (avoids false-positive from tracking cookies)
-    invoke-static {}, Landroid/webkit/CookieManager;->getInstance()Landroid/webkit/CookieManager;
+    # Check logged_in flag in Spotify's own prefs (set by JsInterface when login completes)
+    const-string v2, "spotiduck_overlay"
+    const/4 v3, 0x0
+    invoke-virtual {p0, v2, v3}, Landroid/app/Activity;->getSharedPreferences(Ljava/lang/String;I)Landroid/content/SharedPreferences;
     move-result-object v2
-    const-string v3, "https://open.spotify.com"
-    invoke-virtual {v2, v3}, Landroid/webkit/CookieManager;->getCookie(Ljava/lang/String;)Ljava/lang/String;
-    move-result-object v2
-    if-eqz v2, :load_login
-    const-string v3, "sp_dc"
-    invoke-virtual {v2, v3}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+    const-string v3, "logged_in"
+    const/4 v4, 0x0
+    invoke-interface {v2, v3, v4}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
     move-result v3
-    if-eqz v3, :load_login
+    if-eqz v3, :load_login    # not logged in → show login overlay
 
-    # Has valid session cookie and ShowWebView off → load player in background, no overlay
+    # Logged in and ShowWebView=off → load player in background, no overlay
     const-string v2, "https://open.spotify.com"
     invoke-virtual {v1, v2}, Landroid/webkit/WebView;->loadUrl(Ljava/lang/String;)V
     goto :skip_show
