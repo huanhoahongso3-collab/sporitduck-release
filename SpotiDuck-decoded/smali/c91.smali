@@ -20,19 +20,17 @@
 
     .line 4
     .line 5
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->s:Landroid/content/Context;
+
+    if-nez v0, :use_singleton_ctx
+
     invoke-virtual {p0}, Landroid/view/View;->getContext()Landroid/content/Context;
 
-    .line 6
-    .line 7
-    .line 8
-    move-result-object p0
+    move-result-object v0
 
-    .line 9
-    invoke-virtual {p0}, Landroid/content/Context;->getAssets()Landroid/content/res/AssetManager;
+    :use_singleton_ctx
+    invoke-virtual {v0}, Landroid/content/Context;->getAssets()Landroid/content/res/AssetManager;
 
-    .line 10
-    .line 11
-    .line 12
     move-result-object p0
 
     .line 13

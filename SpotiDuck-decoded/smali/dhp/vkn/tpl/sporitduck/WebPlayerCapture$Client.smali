@@ -103,3 +103,45 @@
     invoke-static {v0}, Lde/robv/android/xposed/XposedBridge;->log(Ljava/lang/Throwable;)V
     goto :super
 .end method
+
+
+# API 21+ variant: captures Connect hobs_ device ID AND runs SpotiDuck's 3-mode AdBlock engine
+.method public shouldInterceptRequest(Landroid/webkit/WebView;Landroid/webkit/WebResourceRequest;)Landroid/webkit/WebResourceResponse;
+    .registers 7
+
+    if-eqz p2, :check_adblock
+
+    :try_start_req
+    invoke-interface {p2}, Landroid/webkit/WebResourceRequest;->getUrl()Landroid/net/Uri;
+    move-result-object v0
+    if-eqz v0, :check_adblock
+    invoke-virtual {v0}, Landroid/net/Uri;->toString()Ljava/lang/String;
+    move-result-object v0
+    if-eqz v0, :check_adblock
+
+    const-string v1, "/connect-state/v1/devices/hobs_"
+    invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+    move-result v1
+    if-eqz v1, :check_adblock
+
+    # Trigger device ID capture logic via the String overload
+    invoke-virtual {p0, p1, v0}, Ldhp/vkn/tpl/sporitduck/WebPlayerCapture$Client;->shouldInterceptRequest(Landroid/webkit/WebView;Ljava/lang/String;)Landroid/webkit/WebResourceResponse;
+    :try_end_req
+    .catch Ljava/lang/Exception; {:try_start_req .. :try_end_req} :catch_req
+    goto :check_adblock
+
+    :catch_req
+    move-exception v0
+    invoke-static {v0}, Lde/robv/android/xposed/XposedBridge;->log(Ljava/lang/Throwable;)V
+
+    :check_adblock
+    invoke-static {p1, p2}, Ldhp/vkn/tpl/sporitduck/AdBlockList;->intercept(Landroid/webkit/WebView;Landroid/webkit/WebResourceRequest;)Landroid/webkit/WebResourceResponse;
+    move-result-object v0
+    if-eqz v0, :pass
+    return-object v0
+
+    :pass
+    invoke-super {p0, p1, p2}, Landroid/webkit/WebViewClient;->shouldInterceptRequest(Landroid/webkit/WebView;Landroid/webkit/WebResourceRequest;)Landroid/webkit/WebResourceResponse;
+    move-result-object v0
+    return-object v0
+.end method

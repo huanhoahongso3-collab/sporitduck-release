@@ -145,152 +145,17 @@
 .end method
 
 
-# Block 24 ad/analytics URL keyword patterns
+# Delegate WebView ad blocking to SpotiDuck's 3-mode AdBlock engine (legacy / instant / dynamic)
 .method public shouldInterceptRequest(Landroid/webkit/WebView;Landroid/webkit/WebResourceRequest;)Landroid/webkit/WebResourceResponse;
-    .registers 8
+    .registers 4
 
-    invoke-interface {p2}, Landroid/webkit/WebResourceRequest;->getUrl()Landroid/net/Uri;
+    invoke-static {p1, p2}, Ldhp/vkn/tpl/sporitduck/AdBlockList;->intercept(Landroid/webkit/WebView;Landroid/webkit/WebResourceRequest;)Landroid/webkit/WebResourceResponse;
     move-result-object v0
-    invoke-virtual {v0}, Landroid/net/Uri;->toString()Ljava/lang/String;
-    move-result-object v0
-
     if-eqz v0, :pass
-
-    const-string v1, "advertising"
-    invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :block
-
-    const-string v1, "adserver"
-    invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :block
-
-    const-string v1, "google-analytics"
-    invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :block
-
-    const-string v1, "googletagmanager"
-    invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :block
-
-    const-string v1, "doubleclick"
-    invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :block
-
-    const-string v1, "partnerad"
-    invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :block
-
-    const-string v1, "telemetry"
-    invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :block
-
-    const-string v1, "sentry"
-    invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :block
-
-    const-string v1, "bugsnag"
-    invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :block
-
-    const-string v1, "log-client"
-    invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :block
-
-    const-string v1, "event-tracker"
-    invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :block
-
-    const-string v1, "facebook.net"
-    invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :block
-
-    const-string v1, "crashlytics"
-    invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :block
-
-    const-string v1, "amplitude"
-    invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :block
-
-    const-string v1, "optimizely"
-    invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :block
-
-    const-string v1, "ads-sdk"
-    invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :block
-
-    const-string v1, "ad-logic"
-    invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :block
-
-    const-string v1, "ad-engine"
-    invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :block
-
-    const-string v1, "googleads"
-    invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :block
-
-    const-string v1, "amazon-adsystem"
-    invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :block
-
-    const-string v1, "adnxs"
-    invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :block
-
-    const-string v1, "pubads"
-    invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :block
-
-    const-string v1, "scorecardresearch"
-    invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :block
-
-    const-string v1, "moatads"
-    invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :block
+    return-object v0
 
     :pass
     invoke-super {p0, p1, p2}, Landroid/webkit/WebViewClient;->shouldInterceptRequest(Landroid/webkit/WebView;Landroid/webkit/WebResourceRequest;)Landroid/webkit/WebResourceResponse;
     move-result-object v0
     return-object v0
-
-    :block
-    const/4 v1, 0x0
-    new-array v1, v1, [B
-
-    new-instance v2, Ljava/io/ByteArrayInputStream;
-    invoke-direct {v2, v1}, Ljava/io/ByteArrayInputStream;-><init>([B)V
-
-    new-instance v3, Landroid/webkit/WebResourceResponse;
-    const-string v1, "text/plain"
-    const-string v4, "utf-8"
-    invoke-direct {v3, v1, v4, v2}, Landroid/webkit/WebResourceResponse;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/io/InputStream;)V
-    return-object v3
 .end method

@@ -49,11 +49,28 @@
     const-string v2, "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
     invoke-virtual {v1, v2}, Landroid/webkit/WebSettings;->setUserAgentString(Ljava/lang/String;)V
 
+    const/4 v2, 0x0
+    invoke-virtual {v1, v2}, Landroid/webkit/WebSettings;->setMediaPlaybackRequiresUserGesture(Z)V
+    invoke-virtual {v1, v2}, Landroid/webkit/WebSettings;->setMixedContentMode(I)V
+
+    sget v1, Landroid/os/Build$VERSION;->SDK_INT:I
+    const/16 v2, 0x15
+    if-lt v1, v2, :skip_cookies
+    invoke-static {}, Landroid/webkit/CookieManager;->getInstance()Landroid/webkit/CookieManager;
+    move-result-object v1
+    const/4 v2, 0x1
+    invoke-virtual {v1, v0, v2}, Landroid/webkit/CookieManager;->setAcceptThirdPartyCookies(Landroid/webkit/WebView;Z)V
+    :skip_cookies
+
     # wv.setWebViewClient(new WebPlayerCapture$Client(app))
     new-instance v1, Ldhp/vkn/tpl/sporitduck/WebPlayerCapture$Client;
     iget-object v2, p0, Ldhp/vkn/tpl/sporitduck/WebPlayerCapture;->app:Landroid/app/Application;
     invoke-direct {v1, v2}, Ldhp/vkn/tpl/sporitduck/WebPlayerCapture$Client;-><init>(Landroid/app/Application;)V
     invoke-virtual {v0, v1}, Landroid/webkit/WebView;->setWebViewClient(Landroid/webkit/WebViewClient;)V
+
+    new-instance v1, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay$ChromeClient;
+    invoke-direct {v1}, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay$ChromeClient;-><init>()V
+    invoke-virtual {v0, v1}, Landroid/webkit/WebView;->setWebChromeClient(Landroid/webkit/WebChromeClient;)V
 
     # wv.loadUrl("https://open.spotify.com")
     const-string v1, "https://open.spotify.com"

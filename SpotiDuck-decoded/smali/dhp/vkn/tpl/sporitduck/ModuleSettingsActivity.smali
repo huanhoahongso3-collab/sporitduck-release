@@ -4,6 +4,7 @@
 
 .field private prefs:Landroid/content/SharedPreferences;
 .field private btnAdBlock:Landroid/widget/Button;
+.field private btnAdBlockMode:Landroid/widget/Button;
 .field private btnWebPlayer:Landroid/widget/Button;
 .field private btnClear:Landroid/widget/Button;
 .field private btnDebug:Landroid/widget/Button;
@@ -21,7 +22,7 @@
 
 
 .method protected onCreate(Landroid/os/Bundle;)V
-    .registers 14
+    .registers 15
 
     invoke-super {p0, p1}, Landroid/app/Activity;->onCreate(Landroid/os/Bundle;)V
 
@@ -34,11 +35,7 @@
     iput-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->prefs:Landroid/content/SharedPreferences;
     invoke-direct {p0}, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->chmodPrefs()V
 
-    # Read relevant booleans
-    # WebLoggedIn is set by SpotifyWebOverlay$Client (running inside Spotify's process)
-    # when the web overlay actually authenticates — this reflects whether SpotiDuck's
-    # Spotify login is really working, unlike the old "LoggedIn" flag which belongs to
-    # a separate, unrelated native account flow that most users never trigger.
+    # Read relevant booleans & AdBlockMode
     const-string v1, "WebLoggedIn"
     const/4 v2, 0x0
     invoke-interface {v0, v1, v2}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
@@ -63,6 +60,11 @@
     const/4 v9, 0x0
     invoke-interface {v0, v8, v9}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
     move-result v8    # v8 = showWebView
+
+    const-string v9, "AdBlockMode"
+    const-string v10, "legacy"
+    invoke-interface {v0, v9, v10}, Landroid/content/SharedPreferences;->getString(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    move-result-object v9    # v9 = adBlockMode ("legacy" | "instant" | "dynamic")
 
     # root = new LinearLayout(this); VERTICAL; setPadding(64,80,64,64)
     new-instance v4, Landroid/widget/LinearLayout;
@@ -97,10 +99,10 @@
     invoke-virtual {v5, v6}, Landroid/widget/TextView;->setTextSize(F)V
     invoke-virtual {v4, v5}, Landroid/view/ViewGroup;->addView(Landroid/view/View;)V
 
-    # --- Section: DNS Ad Blocker toggle ---
+    # --- Section: Ad Blocker toggle & 3-Mode selector ---
     new-instance v5, Landroid/widget/TextView;
     invoke-direct {v5, p0}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
-    const-string v6, "\nDNS Ad Blocker"
+    const-string v6, "\nAd Blocker (WebView & DNS)"
     invoke-virtual {v5, v6}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
     const v6, 0x41800000
     invoke-virtual {v5, v6}, Landroid/widget/TextView;->setTextSize(F)V
@@ -108,7 +110,7 @@
 
     new-instance v5, Landroid/widget/TextView;
     invoke-direct {v5, p0}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
-    const-string v6, "Block ads, analytics & tracking domains. Restart Spotify to apply."
+    const-string v6, "Block audio/video ads (silent.mp3 replacement), analytics & tracking across WebViews and DNS."
     invoke-virtual {v5, v6}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
     const v6, 0x41600000    # 14.0f
     invoke-virtual {v5, v6}, Landroid/widget/TextView;->setTextSize(F)V
@@ -117,14 +119,46 @@
     new-instance v5, Landroid/widget/Button;
     invoke-direct {v5, p0}, Landroid/widget/Button;-><init>(Landroid/content/Context;)V
     if-eqz v2, :btn_adb_enable
-    const-string v6, "Disable DNS Ad Blocker"
+    const-string v6, "Disable Ad Blocker"
     goto :btn_adb_set
     :btn_adb_enable
-    const-string v6, "Enable DNS Ad Blocker"
+    const-string v6, "Enable Ad Blocker"
     :btn_adb_set
     invoke-virtual {v5, v6}, Landroid/widget/Button;->setText(Ljava/lang/CharSequence;)V
     invoke-virtual {v5, p0}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
     iput-object v5, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->btnAdBlock:Landroid/widget/Button;
+    invoke-virtual {v4, v5}, Landroid/view/ViewGroup;->addView(Landroid/view/View;)V
+
+    # --- Subsection: Ad Blocker Mode (3 SpotiDuck Mechanisms) ---
+    new-instance v5, Landroid/widget/TextView;
+    invoke-direct {v5, p0}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
+    const-string v6, "AdBlock Mechanism:\n• Legacy (Connection-Verified): Inspects audio stream Content-Type + curated list\n• Instant (In-Memory): Fast in-memory Spotify & ad domain blocking\n• Dynamic Blocklist (In-Memory): Full adblock_hosts.txt + EasyList/ABP rules"
+    invoke-virtual {v5, v6}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+    const v6, 0x41500000    # 13.0f
+    invoke-virtual {v5, v6}, Landroid/widget/TextView;->setTextSize(F)V
+    invoke-virtual {v4, v5}, Landroid/view/ViewGroup;->addView(Landroid/view/View;)V
+
+    new-instance v5, Landroid/widget/Button;
+    invoke-direct {v5, p0}, Landroid/widget/Button;-><init>(Landroid/content/Context;)V
+    const-string v6, "instant"
+    invoke-virtual {v6, v9}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    move-result v6
+    if-nez v6, :mode_btn_instant
+    const-string v6, "dynamic"
+    invoke-virtual {v6, v9}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    move-result v6
+    if-nez v6, :mode_btn_dynamic
+    const-string v6, "Mode: Legacy (Connection-Verified)  [Tap to switch]"
+    goto :mode_btn_set
+    :mode_btn_instant
+    const-string v6, "Mode: Instant (In-Memory)  [Tap to switch]"
+    goto :mode_btn_set
+    :mode_btn_dynamic
+    const-string v6, "Mode: Dynamic Blocklist (In-Memory)  [Tap to switch]"
+    :mode_btn_set
+    invoke-virtual {v5, v6}, Landroid/widget/Button;->setText(Ljava/lang/CharSequence;)V
+    invoke-virtual {v5, p0}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
+    iput-object v5, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->btnAdBlockMode:Landroid/widget/Button;
     invoke-virtual {v4, v5}, Landroid/view/ViewGroup;->addView(Landroid/view/View;)V
 
     # --- Section: Web Player toggle ---
@@ -242,8 +276,13 @@
     iput-object v5, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->btnForceStop:Landroid/widget/Button;
     invoke-virtual {v4, v5}, Landroid/view/ViewGroup;->addView(Landroid/view/View;)V
 
-    # setContentView(root)
-    invoke-virtual {p0, v4}, Landroid/app/Activity;->setContentView(Landroid/view/View;)V
+    # Wrap LinearLayout in ScrollView so all buttons are accessible on smaller screens
+    new-instance v5, Landroid/widget/ScrollView;
+    invoke-direct {v5, p0}, Landroid/widget/ScrollView;-><init>(Landroid/content/Context;)V
+    invoke-virtual {v5, v4}, Landroid/widget/ScrollView;->addView(Landroid/view/View;)V
+
+    # setContentView(scrollView)
+    invoke-virtual {p0, v5}, Landroid/app/Activity;->setContentView(Landroid/view/View;)V
 
     return-void
 .end method
@@ -255,6 +294,9 @@
     # Dispatch to the right handler by comparing button references
     iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->btnAdBlock:Landroid/widget/Button;
     if-eq p1, v0, :handle_adblock
+
+    iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->btnAdBlockMode:Landroid/widget/Button;
+    if-eq p1, v0, :handle_adblock_mode
 
     iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->btnWebPlayer:Landroid/widget/Button;
     if-eq p1, v0, :handle_webplayer
@@ -271,6 +313,56 @@
     iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->btnForceStop:Landroid/widget/Button;
     if-eq p1, v0, :handle_forcestop
 
+    return-void
+
+    # ---- Cycle AdBlockMode: legacy -> instant -> dynamic -> legacy ----
+    :handle_adblock_mode
+    iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->prefs:Landroid/content/SharedPreferences;
+    const-string v1, "AdBlockMode"
+    const-string v2, "legacy"
+    invoke-interface {v0, v1, v2}, Landroid/content/SharedPreferences;->getString(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+    move-result-object v1
+
+    const-string v2, "instant"
+    invoke-virtual {v2, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    move-result v2
+    if-nez v2, :cycle_to_dynamic
+
+    const-string v2, "dynamic"
+    invoke-virtual {v2, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    move-result v2
+    if-nez v2, :cycle_to_legacy
+
+    # Currently legacy -> switch to instant
+    const-string v3, "instant"
+    const-string v4, "AdBlock Mode: Instant (In-Memory)"
+    goto :save_adblock_mode
+
+    :cycle_to_dynamic
+    const-string v3, "dynamic"
+    const-string v4, "AdBlock Mode: Dynamic Blocklist (In-Memory)"
+    goto :save_adblock_mode
+
+    :cycle_to_legacy
+    const-string v3, "legacy"
+    const-string v4, "AdBlock Mode: Legacy (Connection-Verified)"
+
+    :save_adblock_mode
+    invoke-interface {v0}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences$Editor;
+    move-result-object v2
+    const-string v1, "AdBlockMode"
+    invoke-interface {v2, v1, v3}, Landroid/content/SharedPreferences$Editor;->putString(Ljava/lang/String;Ljava/lang/String;)Landroid/content/SharedPreferences$Editor;
+    invoke-interface {v2}, Landroid/content/SharedPreferences$Editor;->commit()Z
+    invoke-direct {p0}, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->chmodPrefs()V
+
+    sput-object v3, Ldhp/vkn/tpl/sporitduck/AppSingleton;->X:Ljava/lang/String;
+    sput-object v3, Ldhp/vkn/tpl/sporitduck/AdBlockList;->sAdBlockMode:Ljava/lang/String;
+
+    const/4 v2, 0x0
+    invoke-static {p0, v4, v2}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
+    move-result-object v2
+    invoke-virtual {v2}, Landroid/widget/Toast;->show()V
+    invoke-virtual {p0}, Landroid/app/Activity;->recreate()V
     return-void
 
     # ---- Open Spotify's own App info screen so the user can tap Force stop there ----
@@ -314,11 +406,14 @@
     invoke-interface {v2}, Landroid/content/SharedPreferences$Editor;->commit()Z
     invoke-direct {p0}, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->chmodPrefs()V
 
+    sput-boolean v4, Ldhp/vkn/tpl/sporitduck/AdBlockList;->sAdBlockEnabled:Z
+    sput-boolean v4, Ldhp/vkn/tpl/sporitduck/AppSingleton;->W:Z
+
     if-nez v1, :adb_was_on
-    const-string v2, "DNS Ad Blocker enabled! Restart Spotify to apply."
+    const-string v2, "Ad Blocker enabled!"
     goto :adb_toast
     :adb_was_on
-    const-string v2, "DNS Ad Blocker disabled."
+    const-string v2, "Ad Blocker disabled."
     :adb_toast
     const/4 v3, 0x1
     invoke-static {p0, v2, v3}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
