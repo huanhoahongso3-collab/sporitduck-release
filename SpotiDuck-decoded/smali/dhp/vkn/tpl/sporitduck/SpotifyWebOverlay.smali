@@ -167,6 +167,13 @@
 
     :skip_show
 
+    # Toast: "Web player loading..."
+    const-string v3, "SpotiDuck: Web player loading..."
+    const/4 v4, 0x0
+    invoke-static {p0, v3, v4}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
+    move-result-object v3
+    invoke-virtual {v3}, Landroid/widget/Toast;->show()V
+
     # Debug toast if DebugEnabled
     new-instance v6, Lde/robv/android/xposed/XSharedPreferences;
     const-string v7, "dhp.vkn.tpl.sporitduck"

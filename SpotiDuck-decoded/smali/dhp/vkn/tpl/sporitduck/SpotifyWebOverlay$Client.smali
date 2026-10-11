@@ -79,6 +79,14 @@
     move-result-object v0
     invoke-virtual {v0}, Landroid/webkit/CookieManager;->flush()V
 
+    # Toast: "Web player ready"
+    iget-object v1, p0, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay$Client;->activity:Landroid/app/Activity;
+    const-string v2, "SpotiDuck: Web player ready"
+    const/4 v0, 0x0
+    invoke-static {v1, v2, v0}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
+    move-result-object v1
+    invoke-virtual {v1}, Landroid/widget/Toast;->show()V
+
     :return
     return-void
 .end method
