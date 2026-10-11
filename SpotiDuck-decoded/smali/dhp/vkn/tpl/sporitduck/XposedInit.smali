@@ -55,10 +55,9 @@
     const/4 v3, 0x1
     aput-object v1, v0, v3
 
-    iget-object v4, p1, Lde/robv/android/xposed/callbacks/XC_LoadPackage$LoadPackageParam;->classLoader:Ljava/lang/ClassLoader;
-    const-string v5, "com.spotify.music.MainActivity"
-    const-string v6, "onCreate"
-    invoke-static {v5, v4, v6, v0}, Lde/robv/android/xposed/XposedHelpers;->findAndHookMethod(Ljava/lang/String;Ljava/lang/ClassLoader;Ljava/lang/String;[Ljava/lang/Object;)Lde/robv/android/xposed/XC_MethodHook$Unhook;
+    const-class v4, Landroid/app/Activity;
+    const-string v5, "onCreate"
+    invoke-static {v4, v5, v0}, Lde/robv/android/xposed/XposedHelpers;->findAndHookMethod(Ljava/lang/Class;Ljava/lang/String;[Ljava/lang/Object;)Lde/robv/android/xposed/XC_MethodHook$Unhook;
 
     # --- Read prefs for optional feature flags ---
     new-instance v5, Lde/robv/android/xposed/XSharedPreferences;
