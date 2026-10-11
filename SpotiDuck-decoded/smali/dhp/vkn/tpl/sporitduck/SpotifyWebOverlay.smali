@@ -54,7 +54,7 @@
 # Called from XposedInit$ActivityHook after Spotify's MainActivity.onCreate.
 # Creates the WebView overlay Dialog once (guarded by sDialog null-check).
 .method public static create(Landroid/app/Activity;)V
-    .registers 9
+    .registers 10
 
     # Guard: only create once
     sget-object v0, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sDialog:Landroid/app/Dialog;
@@ -159,6 +159,18 @@
     goto :load_login
 
     :check_cookies
+    # If ShowWebView is enabled, always show login overlay regardless of session
+    new-instance v2, Lde/robv/android/xposed/XSharedPreferences;
+    const-string v3, "dhp.vkn.tpl.sporitduck"
+    const-string v4, "dhp.vkn.tpl.sporitduck_preferences"
+    invoke-direct {v2, v3, v4}, Lde/robv/android/xposed/XSharedPreferences;-><init>(Ljava/lang/String;Ljava/lang/String;)V
+    invoke-virtual {v2}, Lde/robv/android/xposed/XSharedPreferences;->reload()V
+    const-string v3, "ShowWebView"
+    const/4 v4, 0x0
+    invoke-interface {v2, v3, v4}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
+    move-result v3
+    if-nez v3, :load_login
+
     # Check for sp_dc session cookie (avoids false-positive from tracking cookies)
     invoke-static {}, Landroid/webkit/CookieManager;->getInstance()Landroid/webkit/CookieManager;
     move-result-object v2
@@ -171,7 +183,7 @@
     move-result v3
     if-eqz v3, :load_login
 
-    # Has valid session cookie → load player in background, no overlay
+    # Has valid session cookie and ShowWebView off → load player in background, no overlay
     const-string v2, "https://open.spotify.com"
     invoke-virtual {v1, v2}, Landroid/webkit/WebView;->loadUrl(Ljava/lang/String;)V
     goto :skip_show
