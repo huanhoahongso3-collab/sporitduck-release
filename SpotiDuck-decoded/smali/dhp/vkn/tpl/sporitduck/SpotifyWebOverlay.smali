@@ -20,12 +20,6 @@
 
     sget-object v0, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sDialog:Landroid/app/Dialog;
     if-eqz v0, :create_new
-
-    invoke-virtual {v0}, Landroid/app/Dialog;->isShowing()Z
-    move-result v1
-    if-nez v1, :done
-
-    invoke-virtual {v0}, Landroid/app/Dialog;->show()V
     goto :done
 
     :create_new
@@ -140,17 +134,17 @@
     move-result v2
     if-nez v2, :load_login
 
-    # Has cookies → load player directly
+    # Has cookies → load player in background, don't show overlay
     const-string v2, "https://open.spotify.com"
     invoke-virtual {v1, v2}, Landroid/webkit/WebView;->loadUrl(Ljava/lang/String;)V
-    goto :show_dialog
+    goto :skip_show
 
     :load_login
     const-string v2, "https://accounts.spotify.com/login"
     invoke-virtual {v1, v2}, Landroid/webkit/WebView;->loadUrl(Ljava/lang/String;)V
-
-    :show_dialog
     invoke-virtual {v0}, Landroid/app/Dialog;->show()V
+
+    :skip_show
 
     # Debug toast if DebugEnabled
     new-instance v6, Lde/robv/android/xposed/XSharedPreferences;
