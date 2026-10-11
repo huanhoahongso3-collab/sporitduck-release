@@ -142,20 +142,36 @@
     sput-object v0, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sDialog:Landroid/app/Dialog;
     sput-object v1, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sWebView:Landroid/webkit/WebView;
 
-    # Decide URL: check CookieManager for existing session
+    # Check force_relogin flag file written by ModuleSettingsActivity.handle_clear
+    new-instance v2, Ljava/io/File;
+    const-string v3, "/data/data/dhp.vkn.tpl.sporitduck/files/force_relogin"
+    invoke-direct {v2, v3}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+    invoke-virtual {v2}, Ljava/io/File;->exists()Z
+    move-result v3
+    if-eqz v3, :check_cookies
+
+    # Flag exists: delete it (one-shot), then clear Spotify's WebView cookies
+    invoke-virtual {v2}, Ljava/io/File;->delete()Z
+    invoke-static {}, Landroid/webkit/CookieManager;->getInstance()Landroid/webkit/CookieManager;
+    move-result-object v2
+    const/4 v3, 0x0
+    invoke-virtual {v2, v3}, Landroid/webkit/CookieManager;->removeAllCookies(Landroid/webkit/ValueCallback;)V
+    goto :load_login
+
+    :check_cookies
+    # Check for sp_dc session cookie (avoids false-positive from tracking cookies)
     invoke-static {}, Landroid/webkit/CookieManager;->getInstance()Landroid/webkit/CookieManager;
     move-result-object v2
     const-string v3, "https://open.spotify.com"
     invoke-virtual {v2, v3}, Landroid/webkit/CookieManager;->getCookie(Ljava/lang/String;)Ljava/lang/String;
     move-result-object v2
-
     if-eqz v2, :load_login
-    const-string v3, ""
-    invoke-virtual {v2, v3}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-    move-result v2
-    if-nez v2, :load_login
+    const-string v3, "sp_dc"
+    invoke-virtual {v2, v3}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+    move-result v3
+    if-eqz v3, :load_login
 
-    # Has cookies → load player in background, don't show overlay
+    # Has valid session cookie → load player in background, no overlay
     const-string v2, "https://open.spotify.com"
     invoke-virtual {v1, v2}, Landroid/webkit/WebView;->loadUrl(Ljava/lang/String;)V
     goto :skip_show

@@ -87,6 +87,22 @@
     move-result-object v1
     invoke-virtual {v1}, Landroid/widget/Toast;->show()V
 
+    # Dismiss overlay unless ShowWebView is enabled
+    new-instance v0, Lde/robv/android/xposed/XSharedPreferences;
+    const-string v1, "dhp.vkn.tpl.sporitduck"
+    const-string v2, "dhp.vkn.tpl.sporitduck_preferences"
+    invoke-direct {v0, v1, v2}, Lde/robv/android/xposed/XSharedPreferences;-><init>(Ljava/lang/String;Ljava/lang/String;)V
+    invoke-virtual {v0}, Lde/robv/android/xposed/XSharedPreferences;->reload()V
+    const-string v1, "ShowWebView"
+    const/4 v2, 0x0
+    invoke-interface {v0, v1, v2}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
+    move-result v1
+    if-nez v1, :return
+
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sDialog:Landroid/app/Dialog;
+    if-eqz v0, :return
+    invoke-virtual {v0}, Landroid/app/Dialog;->dismiss()V
+
     :return
     return-void
 .end method
