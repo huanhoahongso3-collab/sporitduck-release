@@ -2,27 +2,18 @@
 .super Ljava/lang/Object;
 .implements Ljava/lang/Runnable;
 
-# Step 2 of the auto web-player-switch: the devices dialog is a Jetpack Compose view
-# with no per-row View we can find/click normally, so this locates the dialog window via
-# reflection on WindowManagerGlobal.mViews, finds its compose_view, and dispatches a
-# synthetic tap at a fixed offset below it — the Web Player device is always the first
-# row once captured, so a constant offset works across devices (scaled by density).
-
-# Register layout for run():
-# v0  - scratch / MotionEvent result
-# v1  - scratch
-# v2  - composeViewId (int)
-# v3  - loop size
-# v4  - loop counter
-# v5  - dialog root view (preserved until dispatch)
-# v6  - compose_view
-# v7  - scratch
-# v8:v9  - wide pair (downTime J)
-# v10:v11 - wide pair (eventTime J)
-# v12 - action (int)
-# v13 - x (float)
-# v14 - y (float)
-# v15 - metaState = 0 (int)
+# Step 2 of the auto web-player-switch: the devices dialog is rendered entirely inside a
+# single Jetpack Compose canvas (compose_view) with no per-row View, and no accessibility
+# node tree either — AccessibilityNodeInfo.setQueryFromAppProcessEnabled(), the public API
+# meant for exactly this in-process case, is hidden-API blocked on this device/Android
+# build (NoSuchMethodError even though the class has the method). So this locates the
+# dialog window via reflection on WindowManagerGlobal.mViews, finds its compose_view, and
+# dispatches a synthetic tap at a fixed offset below it — the Web Player device, once
+# captured, is always the second row (right after "This phone"). The offset is stored in
+# dp and scaled by the live display density so it lands correctly on any screen size/DPI;
+# it was measured directly via `adb shell uiautomator dump` against the real dialog on a
+# 450dpi (density 2.8125) device: compose_view top=787px, Web Player row center=1228px,
+# giving (1228-787)/2.8125 = 156.8dp.
 
 
 .method public constructor <init>()V
@@ -34,7 +25,7 @@
 
 
 .method public final run()V
-    .registers 16
+    .locals 16
 
     :try_start
     # --- WindowManagerGlobal.getInstance() ---
@@ -102,9 +93,8 @@
     new-array v7, v7, [I
     invoke-virtual {v6, v7}, Landroid/view/View;->getLocationOnScreen([I)V
 
-    # tapScreenY = composeScreenY + (int)(218dp * displayDensity) — 218dp is the offset
-    # from compose_view's top to the Web Player row's center, measured at 420dpi
-    # (218 * 2.625 = 572px); scaling by density keeps it correct on any phone.
+    # tapScreenY = composeScreenY + (int)(156.8dp * displayDensity) — see header comment
+    # for how this offset to the Web Player row's center was measured.
     const/4 v1, 0x1
     aget v1, v7, v1
 
@@ -115,7 +105,7 @@
     move-result-object v0
     iget v0, v0, Landroid/util/DisplayMetrics;->density:F
 
-    const/high16 v2, 0x43590000    # 218.0f
+    const v2, 156.8f
     mul-float/2addr v0, v2
     float-to-int v0, v0
     add-int v14, v1, v0
@@ -195,7 +185,7 @@
     goto :end
     :try_end
 
-    .catch Ljava/lang/Exception; {:try_start .. :try_end} :catch_err
+    .catch Ljava/lang/Throwable; {:try_start .. :try_end} :catch_err
 
     :catch_err
     move-exception v0

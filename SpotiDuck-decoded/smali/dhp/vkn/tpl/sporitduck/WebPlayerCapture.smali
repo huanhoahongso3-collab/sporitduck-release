@@ -4,6 +4,11 @@
 
 .field private final app:Landroid/app/Application;
 
+# Kept so destroy() can stop playback when Spotify's task is actually removed from
+# Recents — this WebView is Application-scoped and otherwise outlives the Activity
+# entirely, so audio kept playing through it even after the app appeared closed.
+.field public static sWebView:Landroid/webkit/WebView;
+
 
 .method public constructor <init>(Landroid/app/Application;)V
     .registers 2
@@ -54,6 +59,8 @@
     const-string v1, "https://open.spotify.com"
     invoke-virtual {v0, v1}, Landroid/webkit/WebView;->loadUrl(Ljava/lang/String;)V
 
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/WebPlayerCapture;->sWebView:Landroid/webkit/WebView;
+
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
@@ -62,5 +69,30 @@
     :catch_0
     move-exception v0
     invoke-static {v0}, Lde/robv/android/xposed/XposedBridge;->log(Ljava/lang/Throwable;)V
+    return-void
+.end method
+
+
+# Called from XposedInit$ActivityDestroyHook when Spotify's task is actually removed, so
+# the hidden Web Player device doesn't keep playing audio after the app looks closed.
+.method public static destroy()V
+    .registers 2
+
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/WebPlayerCapture;->sWebView:Landroid/webkit/WebView;
+    if-eqz v0, :clear
+
+    :try_start_1
+    const-string v1, "about:blank"
+    invoke-virtual {v0, v1}, Landroid/webkit/WebView;->loadUrl(Ljava/lang/String;)V
+    invoke-virtual {v0}, Landroid/webkit/WebView;->onPause()V
+    invoke-virtual {v0}, Landroid/webkit/WebView;->pauseTimers()V
+    invoke-virtual {v0}, Landroid/webkit/WebView;->destroy()V
+    :try_end_1
+    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
+    :catch_1
+
+    :clear
+    const/4 v0, 0x0
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/WebPlayerCapture;->sWebView:Landroid/webkit/WebView;
     return-void
 .end method

@@ -34,6 +34,7 @@
     if-eqz v1, :skip
 
     invoke-static {}, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->destroy()V
+    invoke-static {}, Ldhp/vkn/tpl/sporitduck/WebPlayerCapture;->destroy()V
 
     :skip
     :try_end_0

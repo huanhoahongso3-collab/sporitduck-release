@@ -14,7 +14,7 @@
 
 
 .method public final run()V
-    .registers 7
+    .locals 7
 
     sget-object v0, Ldhp/vkn/tpl/sporitduck/WebPlayerAutoSwitch;->activity:Landroid/app/Activity;
     if-eqz v0, :no_act
