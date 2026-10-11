@@ -18,7 +18,16 @@ fi
 echo "[2/4] Rebuilding APK..."
 java -jar "$APKTOOL" b "$DECODED_DIR" -o "$OUTPUT_DIR/SpotiDuck-module-unsigned.apk"
 
-echo "[3/4] Generating debug keystore..."
+UBER_SIGNER="$OUTPUT_DIR/uber-apk-signer.jar"
+if [ ! -f "$UBER_SIGNER" ]; then
+  echo "[3/4] Downloading uber-apk-signer..."
+  curl -fL -o "$UBER_SIGNER" \
+    "https://github.com/patrickfav/uber-apk-signer/releases/download/v1.3.0/uber-apk-signer-1.3.0.jar"
+else
+  echo "[3/4] uber-apk-signer already present, skipping download."
+fi
+
+echo "[3b/4] Generating debug keystore..."
 if [ ! -f "$KEYSTORE" ]; then
   keytool -genkeypair -v \
     -keystore "$KEYSTORE" \
@@ -28,14 +37,15 @@ if [ ! -f "$KEYSTORE" ]; then
     -dname "CN=Android Debug,O=Android,C=US"
 fi
 
-echo "[4/4] Signing APK..."
-"${ANDROID_HOME:-/usr/local/lib/android/sdk}/build-tools/$(ls "${ANDROID_HOME:-/usr/local/lib/android/sdk}/build-tools/" | sort -V | tail -1)/apksigner" \
-  sign \
+echo "[4/4] Signing APK (v1+v2+v3)..."
+java -jar "$UBER_SIGNER" \
+  --apks "$OUTPUT_DIR/SpotiDuck-module-unsigned.apk" \
   --ks "$KEYSTORE" \
-  --ks-pass pass:android \
-  --key-pass pass:android \
-  --ks-key-alias androiddebugkey \
-  --out "$OUTPUT_DIR/SpotiDuck-module-signed.apk" \
-  "$OUTPUT_DIR/SpotiDuck-module-unsigned.apk"
+  --ksAlias androiddebugkey \
+  --ksPass android \
+  --ksKeyPass android \
+  --out "$OUTPUT_DIR/"
+mv "$OUTPUT_DIR/SpotiDuck-module-unsigned-aligned-signed.apk" "$OUTPUT_DIR/SpotiDuck-module-signed.apk" 2>/dev/null || \
+  mv "$OUTPUT_DIR/SpotiDuck-module-aligned-signed.apk" "$OUTPUT_DIR/SpotiDuck-module-signed.apk" 2>/dev/null || true
 
 echo "BUILD SUCCESSFUL -> $OUTPUT_DIR/SpotiDuck-module-signed.apk"
