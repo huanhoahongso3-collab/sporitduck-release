@@ -41,14 +41,14 @@
     sput-object v0, Ldhp/vkn/tpl/sporitduck/WebPlayerAutoSwitch;->activity:Landroid/app/Activity;
     invoke-static {v0}, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->onResume(Landroid/app/Activity;)V
 
-    # Re-arm the hidden Web Player and trigger the Connect auto-switch on every resume of
-    # the main activity — not just on a fresh process start or a track change — so both
-    # work right away on a plain launcher open (no playback yet) and after a warm reopen
-    # (process survived a Recents close, so Application.onCreate never re-fires).
-    invoke-virtual {v0}, Landroid/app/Activity;->getApplication()Landroid/app/Application;
-    move-result-object v3
-    invoke-static {v3}, Ldhp/vkn/tpl/sporitduck/WebPlayerCapture;->ensureRunning(Landroid/app/Application;)V
-
+    # Trigger the Connect auto-switch on every resume of the main activity — not just on a
+    # track change — so it works right away on a plain launcher open (no playback yet) and
+    # after a warm reopen (process survived a Recents close). It only needs
+    # SpotifyWebOverlay's own WebView (already loading open.spotify.com in the background
+    # regardless of this) to have registered a "Web Player" device to tap -- WebPlayerCapture,
+    # a second independent WebView that used to also be re-armed here, is retired: it
+    # registered its own separate "Web Player" device, which was the actual cause of two
+    # functional "Web Player" entries showing up in Spotify Connect.
     invoke-static {}, Ldhp/vkn/tpl/sporitduck/WebPlayerAutoSwitch;->switchToWebPlayer()V
 
     :skip

@@ -43,22 +43,15 @@
     invoke-direct {v2, v0}, Ldhp/vkn/tpl/sporitduck/XposedInit$ToastRunner;-><init>(Landroid/app/Application;)V
     invoke-virtual {v1, v2}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
 
-    # Read prefs to check WebPlayerEnabled (via PrefsProvider — XSharedPreferences can't
-    # read cross-process on modern Android)
-    invoke-static {v0}, Ldhp/vkn/tpl/sporitduck/PrefsClient;->readAll(Landroid/content/Context;)Landroid/os/Bundle;
-    move-result-object v3
+    # WebPlayerCapture used to be started here (a second, independent hidden WebView that
+    # also loaded open.spotify.com whenever WebPlayerEnabled was on). It's retired: it
+    # registered its own separate "Web Player" Spotify Connect device, duplicating the one
+    # SpotifyWebOverlay's own WebView already registers (that one loads open.spotify.com
+    # unconditionally in the background to support login/ShowWebView, regardless of this
+    # toggle) -- hence two functional "Web Player" devices showing up in Spotify Connect.
+    # WebPlayerAutoSwitch's UI automation just taps whichever "Web Player" row already
+    # exists in the native Connect dialog, so it never needed WebPlayerCapture's device to
+    # begin with -- SpotifyWebOverlay's own WebView is sufficient.
 
-    const-string v4, "WebPlayerEnabled"
-    const/4 v5, 0x0
-    invoke-virtual {v3, v4, v5}, Landroid/os/Bundle;->getBoolean(Ljava/lang/String;Z)Z
-    move-result v4
-    if-eqz v4, :done
-
-    # If WebPlayerEnabled: post WebPlayerCapture to start hidden WebView
-    new-instance v3, Ldhp/vkn/tpl/sporitduck/WebPlayerCapture;
-    invoke-direct {v3, v0}, Ldhp/vkn/tpl/sporitduck/WebPlayerCapture;-><init>(Landroid/app/Application;)V
-    invoke-virtual {v1, v3}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
-
-    :done
     return-void
 .end method
