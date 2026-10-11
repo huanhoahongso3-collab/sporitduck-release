@@ -283,6 +283,12 @@
     invoke-interface {v0}, Landroid/content/SharedPreferences$Editor;->clear()Landroid/content/SharedPreferences$Editor;
     invoke-interface {v0}, Landroid/content/SharedPreferences$Editor;->apply()V
 
+    # Also wipe WebView cookies so the overlay re-prompts login
+    invoke-static {}, Landroid/webkit/CookieManager;->getInstance()Landroid/webkit/CookieManager;
+    move-result-object v1
+    const/4 v2, 0x0
+    invoke-virtual {v1, v2}, Landroid/webkit/CookieManager;->removeAllCookies(Landroid/webkit/ValueCallback;)V
+
     const-string v1, "SpotiDuck data cleared."
     const/4 v2, 0x0
     invoke-static {p0, v1, v2}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
