@@ -59,6 +59,18 @@
     invoke-static {v4, v5, v6}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
     move-result-object v5
     invoke-virtual {v5}, Landroid/widget/Toast;->show()V
+
+    # Debug toast if DebugEnabled
+    const-string v1, "DebugEnabled"
+    const/4 v2, 0x0
+    invoke-interface {v0, v1, v2}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
+    move-result v7
+    if-eqz v7, :try_end_0
+    const-string v5, "SPD DBG: Application.onCreate hooked ✓"
+    const/4 v6, 0x0
+    invoke-static {v4, v5, v6}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
+    move-result-object v5
+    invoke-virtual {v5}, Landroid/widget/Toast;->show()V
     :try_end_0
 
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0

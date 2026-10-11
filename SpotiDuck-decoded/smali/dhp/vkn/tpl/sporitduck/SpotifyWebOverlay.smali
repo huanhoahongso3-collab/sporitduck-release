@@ -16,7 +16,7 @@
 # Called from XposedInit$ActivityHook after Spotify's MainActivity.onCreate.
 # Creates the WebView overlay Dialog once (guarded by sDialog null-check).
 .method public static create(Landroid/app/Activity;)V
-    .registers 6
+    .registers 9
 
     # Guard: only create once
     sget-object v0, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sDialog:Landroid/app/Dialog;
@@ -120,6 +120,24 @@
 
     :show_dialog
     invoke-virtual {v0}, Landroid/app/Dialog;->show()V
+
+    # Debug toast if DebugEnabled
+    new-instance v6, Lde/robv/android/xposed/XSharedPreferences;
+    const-string v7, "dhp.vkn.tpl.sporitduck"
+    const-string v8, "dhp.vkn.tpl.sporitduck_preferences"
+    invoke-direct {v6, v7, v8}, Lde/robv/android/xposed/XSharedPreferences;-><init>(Ljava/lang/String;Ljava/lang/String;)V
+    invoke-virtual {v6}, Lde/robv/android/xposed/XSharedPreferences;->reload()V
+    const-string v7, "DebugEnabled"
+    const/4 v8, 0x0
+    invoke-interface {v6, v7, v8}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
+    move-result v7
+    if-eqz v7, :try_end_0
+    const-string v6, "SPD DBG: Overlay shown"
+    const/4 v7, 0x0
+    invoke-static {p0, v6, v7}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
+    move-result-object v6
+    invoke-virtual {v6}, Landroid/widget/Toast;->show()V
+
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 

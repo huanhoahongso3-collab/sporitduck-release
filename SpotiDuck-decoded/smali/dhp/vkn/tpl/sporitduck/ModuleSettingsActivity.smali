@@ -6,6 +6,7 @@
 .field private btnAdBlock:Landroid/widget/Button;
 .field private btnWebPlayer:Landroid/widget/Button;
 .field private btnClear:Landroid/widget/Button;
+.field private btnDebug:Landroid/widget/Button;
 
 
 .method public constructor <init>()V
@@ -44,6 +45,11 @@
     const/4 v4, 0x0
     invoke-interface {v0, v3, v4}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
     move-result v3    # v3 = webPlayerEnabled
+
+    const-string v7, "DebugEnabled"
+    const/4 v8, 0x0
+    invoke-interface {v0, v7, v8}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
+    move-result v7    # v7 = debugEnabled
 
     # root = new LinearLayout(this); VERTICAL; setPadding(64,80,64,64)
     new-instance v4, Landroid/widget/LinearLayout;
@@ -137,6 +143,28 @@
     iput-object v5, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->btnWebPlayer:Landroid/widget/Button;
     invoke-virtual {v4, v5}, Landroid/view/ViewGroup;->addView(Landroid/view/View;)V
 
+    # --- Section: Debug Toasts toggle ---
+    new-instance v5, Landroid/widget/TextView;
+    invoke-direct {v5, p0}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
+    const-string v6, "\nDebug Toasts"
+    invoke-virtual {v5, v6}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+    const v6, 0x41800000
+    invoke-virtual {v5, v6}, Landroid/widget/TextView;->setTextSize(F)V
+    invoke-virtual {v4, v5}, Landroid/view/ViewGroup;->addView(Landroid/view/View;)V
+
+    new-instance v5, Landroid/widget/Button;
+    invoke-direct {v5, p0}, Landroid/widget/Button;-><init>(Landroid/content/Context;)V
+    if-eqz v7, :btn_dbg_enable
+    const-string v6, "Disable Debug Toasts"
+    goto :btn_dbg_set
+    :btn_dbg_enable
+    const-string v6, "Enable Debug Toasts"
+    :btn_dbg_set
+    invoke-virtual {v5, v6}, Landroid/widget/Button;->setText(Ljava/lang/CharSequence;)V
+    invoke-virtual {v5, p0}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
+    iput-object v5, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->btnDebug:Landroid/widget/Button;
+    invoke-virtual {v4, v5}, Landroid/view/ViewGroup;->addView(Landroid/view/View;)V
+
     # --- Section: Clear Data button ---
     new-instance v5, Landroid/widget/TextView;
     invoke-direct {v5, p0}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
@@ -173,6 +201,9 @@
 
     iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->btnClear:Landroid/widget/Button;
     if-eq p1, v0, :handle_clear
+
+    iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->btnDebug:Landroid/widget/Button;
+    if-eq p1, v0, :handle_debug
 
     return-void
 
@@ -257,6 +288,40 @@
     invoke-static {p0, v1, v2}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
     move-result-object v1
     invoke-virtual {v1}, Landroid/widget/Toast;->show()V
+    invoke-virtual {p0}, Landroid/app/Activity;->recreate()V
+    return-void
+
+    # ---- Toggle DebugEnabled ----
+    :handle_debug
+    iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->prefs:Landroid/content/SharedPreferences;
+    const-string v1, "DebugEnabled"
+    const/4 v2, 0x0
+    invoke-interface {v0, v1, v2}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
+    move-result v1
+
+    if-nez v1, :dbg_toggle_false
+    const/4 v4, 0x1
+    goto :dbg_toggle_done
+    :dbg_toggle_false
+    const/4 v4, 0x0
+    :dbg_toggle_done
+
+    invoke-interface {v0}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences$Editor;
+    move-result-object v2
+    const-string v3, "DebugEnabled"
+    invoke-interface {v2, v3, v4}, Landroid/content/SharedPreferences$Editor;->putBoolean(Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;
+    invoke-interface {v2}, Landroid/content/SharedPreferences$Editor;->apply()V
+
+    if-nez v1, :dbg_was_on
+    const-string v2, "Debug toasts enabled! Restart Spotify."
+    goto :dbg_toast
+    :dbg_was_on
+    const-string v2, "Debug toasts disabled."
+    :dbg_toast
+    const/4 v3, 0x0
+    invoke-static {p0, v2, v3}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
+    move-result-object v2
+    invoke-virtual {v2}, Landroid/widget/Toast;->show()V
     invoke-virtual {p0}, Landroid/app/Activity;->recreate()V
     return-void
 .end method

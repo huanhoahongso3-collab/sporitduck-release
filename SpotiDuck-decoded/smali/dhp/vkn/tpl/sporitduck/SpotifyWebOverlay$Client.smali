@@ -74,10 +74,6 @@
     move-result v0
     if-eqz v0, :return
 
-    sget-object v0, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sDialog:Landroid/app/Dialog;
-    if-eqz v0, :flush
-    invoke-virtual {v0}, Landroid/app/Dialog;->dismiss()V
-
     :flush
     invoke-static {}, Landroid/webkit/CookieManager;->getInstance()Landroid/webkit/CookieManager;
     move-result-object v0
