@@ -426,12 +426,21 @@
     .registers 4
 
     :try_start_0
+    # Make the app home dir world-executable. Linux requires execute permission on every
+    # directory in the path to traverse into it, and this dir defaults to 0700 (no "other"
+    # bit) on modern Android, which alone was blocking Spotify's process from ever reaching
+    # shared_prefs/ regardless of that subdir's or the xml file's own permissions.
+    new-instance v0, Ljava/io/File;
+    const-string v1, "/data/data/dhp.vkn.tpl.sporitduck"
+    invoke-direct {v0, v1}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+    const/4 v2, 0x1
+    const/4 v3, 0x0
+    invoke-virtual {v0, v2, v3}, Ljava/io/File;->setExecutable(ZZ)Z
+
     # Make shared_prefs/ directory world-executable (traversable by other UIDs)
     new-instance v0, Ljava/io/File;
     const-string v1, "/data/data/dhp.vkn.tpl.sporitduck/shared_prefs"
     invoke-direct {v0, v1}, Ljava/io/File;-><init>(Ljava/lang/String;)V
-    const/4 v2, 0x1
-    const/4 v3, 0x0
     invoke-virtual {v0, v2, v3}, Ljava/io/File;->setExecutable(ZZ)Z
 
     # Make the prefs XML file world-readable

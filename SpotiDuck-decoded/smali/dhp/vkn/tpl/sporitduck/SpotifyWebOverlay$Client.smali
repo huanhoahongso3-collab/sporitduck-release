@@ -100,16 +100,11 @@
     invoke-interface {v0, v2, v3}, Landroid/content/SharedPreferences$Editor;->putBoolean(Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;
     invoke-interface {v0}, Landroid/content/SharedPreferences$Editor;->apply()V
 
-    # Dismiss overlay unless ShowWebView is enabled
-    new-instance v0, Lde/robv/android/xposed/XSharedPreferences;
-    const-string v1, "dhp.vkn.tpl.sporitduck"
-    const-string v2, "dhp.vkn.tpl.sporitduck_preferences"
-    invoke-direct {v0, v1, v2}, Lde/robv/android/xposed/XSharedPreferences;-><init>(Ljava/lang/String;Ljava/lang/String;)V
-    invoke-virtual {v0}, Lde/robv/android/xposed/XSharedPreferences;->reload()V
-    const-string v1, "ShowWebView"
-    const/4 v2, 0x0
-    invoke-interface {v0, v1, v2}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
-    move-result v1
+    # Dismiss overlay unless ShowWebView is enabled.
+    # Uses the cached value create()/refresh() just computed instead of a fresh
+    # XSharedPreferences read here, which was observed to disagree and dismiss
+    # the dialog right after it was shown.
+    sget-boolean v1, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sShowWebView:Z
     if-nez v1, :return
 
     sget-object v0, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sDialog:Landroid/app/Dialog;

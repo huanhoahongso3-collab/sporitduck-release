@@ -105,20 +105,9 @@
     const-string v5, "setPlaybackState"
     invoke-static {v4, v5, v0}, Lde/robv/android/xposed/XposedHelpers;->findAndHookMethod(Ljava/lang/Class;Ljava/lang/String;[Ljava/lang/Object;)Lde/robv/android/xposed/XC_MethodHook$Unhook;
 
-    # --- Read prefs for optional feature flags ---
-    new-instance v5, Lde/robv/android/xposed/XSharedPreferences;
-    const-string v6, "dhp.vkn.tpl.sporitduck"
-    const-string v7, "dhp.vkn.tpl.sporitduck_preferences"
-    invoke-direct {v5, v6, v7}, Lde/robv/android/xposed/XSharedPreferences;-><init>(Ljava/lang/String;Ljava/lang/String;)V
-    invoke-virtual {v5}, Lde/robv/android/xposed/XSharedPreferences;->reload()V
-
-    # --- If AdBlockEnabled: register DNS blocker hook ---
-    const-string v6, "AdBlockEnabled"
-    const/4 v7, 0x0
-    invoke-interface {v5, v6, v7}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
-    move-result v6
-    if-eqz v6, :return
-
+    # --- Always register the DNS blocker hook; it checks AdBlockEnabled itself on every
+    #     call (via PrefsProvider) since no Activity/Application context is available yet
+    #     at this point to query it just once here. ---
     const-string v6, "java.net.InetAddress"
     const/4 v7, 0x0           # null = bootstrap ClassLoader
     const-string v8, "getAllByName"

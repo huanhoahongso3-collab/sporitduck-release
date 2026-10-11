@@ -19,6 +19,19 @@
         }
     .end annotation
 
+    # This hook is always registered (the module process may not have had an Activity
+    # context available yet to gate it at registration time), so check AdBlockEnabled
+    # here on every call instead, via PrefsProvider (Binder IPC).
+    invoke-static {}, Landroid/app/ActivityThread;->currentApplication()Landroid/app/Application;
+    move-result-object v5
+    invoke-static {v5}, Ldhp/vkn/tpl/sporitduck/PrefsClient;->readAll(Landroid/content/Context;)Landroid/os/Bundle;
+    move-result-object v5
+    const-string v6, "AdBlockEnabled"
+    const/4 v7, 0x0
+    invoke-virtual {v5, v6, v7}, Landroid/os/Bundle;->getBoolean(Ljava/lang/String;Z)Z
+    move-result v5
+    if-eqz v5, :return
+
     # String host = (String) param.args[0]
     iget-object v0, p1, Lde/robv/android/xposed/XC_MethodHook$MethodHookParam;->args:[Ljava/lang/Object;
     const/4 v1, 0x0

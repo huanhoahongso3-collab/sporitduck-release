@@ -43,16 +43,14 @@
     invoke-direct {v2, v0}, Ldhp/vkn/tpl/sporitduck/XposedInit$ToastRunner;-><init>(Landroid/app/Application;)V
     invoke-virtual {v1, v2}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
 
-    # Read prefs to check WebPlayerEnabled
-    new-instance v3, Lde/robv/android/xposed/XSharedPreferences;
-    const-string v4, "dhp.vkn.tpl.sporitduck"
-    const-string v5, "dhp.vkn.tpl.sporitduck_preferences"
-    invoke-direct {v3, v4, v5}, Lde/robv/android/xposed/XSharedPreferences;-><init>(Ljava/lang/String;Ljava/lang/String;)V
-    invoke-virtual {v3}, Lde/robv/android/xposed/XSharedPreferences;->reload()V
+    # Read prefs to check WebPlayerEnabled (via PrefsProvider — XSharedPreferences can't
+    # read cross-process on modern Android)
+    invoke-static {v0}, Ldhp/vkn/tpl/sporitduck/PrefsClient;->readAll(Landroid/content/Context;)Landroid/os/Bundle;
+    move-result-object v3
 
     const-string v4, "WebPlayerEnabled"
     const/4 v5, 0x0
-    invoke-interface {v3, v4, v5}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
+    invoke-virtual {v3, v4, v5}, Landroid/os/Bundle;->getBoolean(Ljava/lang/String;Z)Z
     move-result v4
     if-eqz v4, :done
 

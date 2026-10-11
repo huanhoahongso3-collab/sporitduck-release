@@ -4,11 +4,44 @@
 .field public static sDialog:Landroid/app/Dialog;
 .field public static sWebView:Landroid/webkit/WebView;
 
+# Cached result of the last ShowWebView read done by create()/refresh(), so Client's
+# onPageFinished dismiss-check uses the exact same decision instead of re-reading
+# XSharedPreferences a second time (which was observed to disagree and dismiss the
+# dialog right after it was shown).
+.field public static sShowWebView:Z
+
 
 .method public constructor <init>()V
     .registers 1
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+    return-void
+.end method
+
+
+# Shows sDialog via a posted Runnable instead of calling Dialog.show() synchronously,
+# since doing that directly inside the Activity.onCreate hook can run before the
+# activity's window is attached, silently producing no visible window.
+.method public static showDialog()V
+    .registers 5
+
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sDialog:Landroid/app/Dialog;
+    if-eqz v0, :return
+
+    new-instance v1, Landroid/os/Handler;
+    invoke-static {}, Landroid/os/Looper;->getMainLooper()Landroid/os/Looper;
+    move-result-object v2
+    invoke-direct {v1, v2}, Landroid/os/Handler;-><init>(Landroid/os/Looper;)V
+
+    new-instance v2, Ldhp/vkn/tpl/sporitduck/ShowDialogRunnable;
+    invoke-direct {v2, v0}, Ldhp/vkn/tpl/sporitduck/ShowDialogRunnable;-><init>(Landroid/app/Dialog;)V
+    # Delay a bit rather than posting immediately: a plain post() still lands while the
+    # host OS's own activity-enter-transition animation is in flight, which was observed
+    # to keep the dialog's window added but not actually visible on screen.
+    const-wide/16 v3, 0x2bc
+    invoke-virtual {v1, v2, v3, v4}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
+
+    :return
     return-void
 .end method
 
@@ -64,15 +97,20 @@
     if-eqz v1, :return
 
     :try_start_0
-    # Read module's clear_count
-    new-instance v2, Lde/robv/android/xposed/XSharedPreferences;
-    const-string v3, "dhp.vkn.tpl.sporitduck"
-    const-string v4, "dhp.vkn.tpl.sporitduck_preferences"
-    invoke-direct {v2, v3, v4}, Lde/robv/android/xposed/XSharedPreferences;-><init>(Ljava/lang/String;Ljava/lang/String;)V
-    invoke-virtual {v2}, Lde/robv/android/xposed/XSharedPreferences;->reload()V
-    const-string v3, "clear_count"
-    const/4 v4, 0x0
-    invoke-interface {v2, v3, v4}, Landroid/content/SharedPreferences;->getInt(Ljava/lang/String;I)I
+    # Fetch module settings via PrefsProvider (Binder IPC) instead of XSharedPreferences,
+    # which cannot read across the app sandbox boundary on modern Android.
+    invoke-static {p0}, Ldhp/vkn/tpl/sporitduck/PrefsClient;->readAll(Landroid/content/Context;)Landroid/os/Bundle;
+    move-result-object v6
+
+    const-string v7, "ShowWebView"
+    const/4 v8, 0x0
+    invoke-virtual {v6, v7, v8}, Landroid/os/Bundle;->getBoolean(Ljava/lang/String;Z)Z
+    move-result v7
+    sput-boolean v7, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sShowWebView:Z
+
+    const-string v7, "clear_count"
+    const/4 v8, 0x0
+    invoke-virtual {v6, v7, v8}, Landroid/os/Bundle;->getInt(Ljava/lang/String;I)I
     move-result v2    # v2 = module clear_count
 
     const-string v3, "spotiduck_overlay"
@@ -109,21 +147,13 @@
 
     const-string v3, "https://accounts.spotify.com/login"
     invoke-virtual {v1, v3}, Landroid/webkit/WebView;->loadUrl(Ljava/lang/String;)V
-    invoke-virtual {v0}, Landroid/app/Dialog;->show()V
+    invoke-static {}, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->showDialog()V
     goto :return
 
     :check_showwebview
-    new-instance v2, Lde/robv/android/xposed/XSharedPreferences;
-    const-string v3, "dhp.vkn.tpl.sporitduck"
-    const-string v4, "dhp.vkn.tpl.sporitduck_preferences"
-    invoke-direct {v2, v3, v4}, Lde/robv/android/xposed/XSharedPreferences;-><init>(Ljava/lang/String;Ljava/lang/String;)V
-    invoke-virtual {v2}, Lde/robv/android/xposed/XSharedPreferences;->reload()V
-    const-string v3, "ShowWebView"
-    const/4 v4, 0x0
-    invoke-interface {v2, v3, v4}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
-    move-result v3
+    sget-boolean v3, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sShowWebView:Z
     if-eqz v3, :check_hide
-    invoke-virtual {v0}, Landroid/app/Dialog;->show()V
+    invoke-static {}, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->showDialog()V
     goto :return
 
     :check_hide
@@ -155,7 +185,7 @@
 # Called from XposedInit$ActivityHook after Spotify's MainActivity.onCreate.
 # Creates the WebView overlay Dialog once (guarded by sDialog null-check).
 .method public static create(Landroid/app/Activity;)V
-    .registers 10
+    .registers 11
 
     # Guard: only create once
     sget-object v0, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sDialog:Landroid/app/Dialog;
@@ -173,12 +203,17 @@
     const/4 v1, 0x1
     invoke-virtual {v0, v1}, Landroid/app/Dialog;->requestWindowFeature(I)Z
 
-    # Set fullscreen + hardware-accelerated window flags
+    # Set fullscreen + hardware-accelerated window flags, and explicitly use the
+    # "attached dialog" window type so it is guaranteed to draw above its host Activity's
+    # own window — a plain Dialog's default TYPE_APPLICATION was observed to sometimes
+    # add a window that never actually renders on top (invisible, though not an error).
     invoke-virtual {v0}, Landroid/app/Dialog;->getWindow()Landroid/view/Window;
     move-result-object v1
     if-eqz v1, :window_done
     const v2, 0x1000400    # FLAG_HARDWARE_ACCELERATED | FLAG_FULLSCREEN
     invoke-virtual {v1, v2, v2}, Landroid/view/Window;->setFlags(II)V
+    const/16 v2, 0x3ea    # TYPE_APPLICATION_ATTACHED_DIALOG
+    invoke-virtual {v1, v2}, Landroid/view/Window;->setType(I)V
     :window_done
 
     # v1 = new WebView(activity)
@@ -243,15 +278,26 @@
     sput-object v0, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sDialog:Landroid/app/Dialog;
     sput-object v1, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sWebView:Landroid/webkit/WebView;
 
+    # Fetch module settings via PrefsProvider (Binder IPC) instead of XSharedPreferences,
+    # which cannot read across the app sandbox boundary on modern Android.
+    invoke-static {p0}, Ldhp/vkn/tpl/sporitduck/PrefsClient;->readAll(Landroid/content/Context;)Landroid/os/Bundle;
+    move-result-object v6
+
+    const-string v7, "ShowWebView"
+    const/4 v8, 0x0
+    invoke-virtual {v6, v7, v8}, Landroid/os/Bundle;->getBoolean(Ljava/lang/String;Z)Z
+    move-result v7
+    sput-boolean v7, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sShowWebView:Z
+
+    const-string v7, "DebugEnabled"
+    const/4 v8, 0x0
+    invoke-virtual {v6, v7, v8}, Landroid/os/Bundle;->getBoolean(Ljava/lang/String;Z)Z
+    move-result v9    # v9 = DebugEnabled, used later for the debug toast
+
     # Check if user requested a data clear (clear_count in module prefs vs last_handled_count in Spotify's prefs)
-    new-instance v2, Lde/robv/android/xposed/XSharedPreferences;
-    const-string v3, "dhp.vkn.tpl.sporitduck"
-    const-string v4, "dhp.vkn.tpl.sporitduck_preferences"
-    invoke-direct {v2, v3, v4}, Lde/robv/android/xposed/XSharedPreferences;-><init>(Ljava/lang/String;Ljava/lang/String;)V
-    invoke-virtual {v2}, Lde/robv/android/xposed/XSharedPreferences;->reload()V
     const-string v3, "clear_count"
     const/4 v4, 0x0
-    invoke-interface {v2, v3, v4}, Landroid/content/SharedPreferences;->getInt(Ljava/lang/String;I)I
+    invoke-virtual {v6, v3, v4}, Landroid/os/Bundle;->getInt(Ljava/lang/String;I)I
     move-result v2    # v2 = module clear_count
 
     const-string v3, "spotiduck_overlay"
@@ -282,18 +328,6 @@
     goto :load_login
 
     :check_cookies
-    # If ShowWebView is enabled, always show login overlay regardless of session
-    new-instance v2, Lde/robv/android/xposed/XSharedPreferences;
-    const-string v3, "dhp.vkn.tpl.sporitduck"
-    const-string v4, "dhp.vkn.tpl.sporitduck_preferences"
-    invoke-direct {v2, v3, v4}, Lde/robv/android/xposed/XSharedPreferences;-><init>(Ljava/lang/String;Ljava/lang/String;)V
-    invoke-virtual {v2}, Lde/robv/android/xposed/XSharedPreferences;->reload()V
-    const-string v3, "ShowWebView"
-    const/4 v4, 0x0
-    invoke-interface {v2, v3, v4}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
-    move-result v3
-    if-nez v3, :load_login
-
     # Check logged_in flag in Spotify's own prefs (set by JsInterface when login completes)
     const-string v2, "spotiduck_overlay"
     const/4 v3, 0x0
@@ -302,18 +336,35 @@
     const-string v3, "logged_in"
     const/4 v4, 0x0
     invoke-interface {v2, v3, v4}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
-    move-result v3
-    if-eqz v3, :load_login    # not logged in → show login overlay
+    move-result v3    # v3 = logged_in
 
-    # Logged in and ShowWebView=off → load player in background, no overlay
+    # Pick the URL based on login state: the actual web player if already logged in,
+    # the login form otherwise. (Loading the login URL while already authenticated just
+    # redirects to Spotify's account-overview page, which isn't useful behind ShowWebView.)
+    if-eqz v3, :need_login
     const-string v2, "https://open.spotify.com"
     invoke-virtual {v1, v2}, Landroid/webkit/WebView;->loadUrl(Ljava/lang/String;)V
+    goto :decide_show
+
+    :need_login
+    const-string v2, "https://accounts.spotify.com/login"
+    invoke-virtual {v1, v2}, Landroid/webkit/WebView;->loadUrl(Ljava/lang/String;)V
+
+    :decide_show
+    # Show the overlay if ShowWebView is on, or if the user still needs to log in
+    sget-boolean v2, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sShowWebView:Z
+    if-nez v2, :do_show
+    if-eqz v3, :do_show
+    goto :skip_show
+
+    :do_show
+    invoke-static {}, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->showDialog()V
     goto :skip_show
 
     :load_login
     const-string v2, "https://accounts.spotify.com/login"
     invoke-virtual {v1, v2}, Landroid/webkit/WebView;->loadUrl(Ljava/lang/String;)V
-    invoke-virtual {v0}, Landroid/app/Dialog;->show()V
+    invoke-static {}, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->showDialog()V
 
     :skip_show
 
@@ -324,17 +375,8 @@
     move-result-object v3
     invoke-virtual {v3}, Landroid/widget/Toast;->show()V
 
-    # Debug toast if DebugEnabled
-    new-instance v6, Lde/robv/android/xposed/XSharedPreferences;
-    const-string v7, "dhp.vkn.tpl.sporitduck"
-    const-string v8, "dhp.vkn.tpl.sporitduck_preferences"
-    invoke-direct {v6, v7, v8}, Lde/robv/android/xposed/XSharedPreferences;-><init>(Ljava/lang/String;Ljava/lang/String;)V
-    invoke-virtual {v6}, Lde/robv/android/xposed/XSharedPreferences;->reload()V
-    const-string v7, "DebugEnabled"
-    const/4 v8, 0x0
-    invoke-interface {v6, v7, v8}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
-    move-result v7
-    if-eqz v7, :try_end_0
+    # Debug toast if DebugEnabled (value already fetched above via PrefsClient)
+    if-eqz v9, :try_end_0
     const-string v6, "SPD DBG: Overlay shown"
     const/4 v7, 0x0
     invoke-static {p0, v6, v7}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;

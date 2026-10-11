@@ -94,6 +94,7 @@
             </intent-filter>
             <meta-data android:name="android.appwidget.provider" android:resource="@xml/home_widget_info"/>
         </receiver>
+        <provider android:authorities="dhp.vkn.tpl.sporitduck.prefsprovider" android:exported="true" android:name="dhp.vkn.tpl.sporitduck.PrefsProvider"/>
         <provider android:authorities="dhp.vkn.tpl.sporitduck.fileprovider" android:exported="false" android:grantUriPermissions="true" android:name="androidx.core.content.FileProvider">
             <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"/>
         </provider>
