@@ -24,9 +24,10 @@
 
     invoke-super {p0, p1}, Landroid/app/Activity;->onCreate(Landroid/os/Bundle;)V
 
-    # prefs = getSharedPreferences("dhp.vkn.tpl.sporitduck_preferences", 0)
+    # prefs = getSharedPreferences("dhp.vkn.tpl.sporitduck_preferences", MODE_WORLD_READABLE)
+    # MODE_WORLD_READABLE=1 required so XSharedPreferences in Spotify's process can read this file
     const-string v0, "dhp.vkn.tpl.sporitduck_preferences"
-    const/4 v1, 0x0
+    const/4 v1, 0x1
     invoke-virtual {p0, v0, v1}, Landroid/app/Activity;->getSharedPreferences(Ljava/lang/String;I)Landroid/content/SharedPreferences;
     move-result-object v0
     iput-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->prefs:Landroid/content/SharedPreferences;
