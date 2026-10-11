@@ -22,7 +22,7 @@
 
 
 .method protected onCreate(Landroid/os/Bundle;)V
-    .registers 15
+    .locals 11
 
     invoke-super {p0, p1}, Landroid/app/Activity;->onCreate(Landroid/os/Bundle;)V
 
@@ -289,7 +289,7 @@
 
 
 .method public onClick(Landroid/view/View;)V
-    .registers 8
+    .locals 6
 
     # Dispatch to the right handler by comparing button references
     iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->btnAdBlock:Landroid/widget/Button;
@@ -315,7 +315,7 @@
 
     return-void
 
-    # ---- Cycle AdBlockMode: legacy -> instant -> dynamic -> legacy ----
+    # ---- Show AlertDialog to choose AdBlockMode (Legacy / Instant / Dynamic) ----
     :handle_adblock_mode
     iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->prefs:Landroid/content/SharedPreferences;
     const-string v1, "AdBlockMode"
@@ -323,46 +323,51 @@
     invoke-interface {v0, v1, v2}, Landroid/content/SharedPreferences;->getString(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
     move-result-object v1
 
-    const-string v2, "instant"
-    invoke-virtual {v2, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-    move-result v2
-    if-nez v2, :cycle_to_dynamic
-
-    const-string v2, "dynamic"
-    invoke-virtual {v2, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-    move-result v2
-    if-nez v2, :cycle_to_legacy
-
-    # Currently legacy -> switch to instant
-    const-string v3, "instant"
-    const-string v4, "AdBlock Mode: Instant (In-Memory)"
-    goto :save_adblock_mode
-
-    :cycle_to_dynamic
-    const-string v3, "dynamic"
-    const-string v4, "AdBlock Mode: Dynamic Blocklist (In-Memory)"
-    goto :save_adblock_mode
-
-    :cycle_to_legacy
-    const-string v3, "legacy"
-    const-string v4, "AdBlock Mode: Legacy (Connection-Verified)"
-
-    :save_adblock_mode
-    invoke-interface {v0}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences$Editor;
-    move-result-object v2
-    const-string v1, "AdBlockMode"
-    invoke-interface {v2, v1, v3}, Landroid/content/SharedPreferences$Editor;->putString(Ljava/lang/String;Ljava/lang/String;)Landroid/content/SharedPreferences$Editor;
-    invoke-interface {v2}, Landroid/content/SharedPreferences$Editor;->commit()Z
-    invoke-direct {p0}, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->chmodPrefs()V
-
-    sput-object v3, Ldhp/vkn/tpl/sporitduck/AppSingleton;->X:Ljava/lang/String;
-    sput-object v3, Ldhp/vkn/tpl/sporitduck/AdBlockList;->sAdBlockMode:Ljava/lang/String;
-
     const/4 v2, 0x0
-    invoke-static {p0, v4, v2}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
-    move-result-object v2
-    invoke-virtual {v2}, Landroid/widget/Toast;->show()V
-    invoke-virtual {p0}, Landroid/app/Activity;->recreate()V
+    const-string v3, "instant"
+    invoke-virtual {v3, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    move-result v3
+    if-nez v3, :checked_instant
+
+    const-string v3, "dynamic"
+    invoke-virtual {v3, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    move-result v3
+    if-nez v3, :checked_dynamic
+    goto :build_dialog
+
+    :checked_instant
+    const/4 v2, 0x1
+    goto :build_dialog
+
+    :checked_dynamic
+    const/4 v2, 0x2
+
+    :build_dialog
+    const/4 v3, 0x3
+    new-array v3, v3, [Ljava/lang/CharSequence;
+    const/4 v4, 0x0
+    const-string v1, "Legacy (Connection-Verified)"
+    aput-object v1, v3, v4
+    const/4 v4, 0x1
+    const-string v1, "Instant (In-Memory)"
+    aput-object v1, v3, v4
+    const/4 v4, 0x2
+    const-string v1, "Dynamic Blocklist (In-Memory)"
+    aput-object v1, v3, v4
+
+    new-instance v0, Landroid/app/AlertDialog$Builder;
+    invoke-direct {v0, p0}, Landroid/app/AlertDialog$Builder;-><init>(Landroid/content/Context;)V
+    const-string v1, "Select Ad-Block Mechanism"
+    invoke-virtual {v0, v1}, Landroid/app/AlertDialog$Builder;->setTitle(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
+
+    new-instance v4, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity$ModeDialogListener;
+    invoke-direct {v4, p0}, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity$ModeDialogListener;-><init>(Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;)V
+    invoke-virtual {v0, v3, v2, v4}, Landroid/app/AlertDialog$Builder;->setSingleChoiceItems([Ljava/lang/CharSequence;ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+
+    const-string v1, "Cancel"
+    const/4 v4, 0x0
+    invoke-virtual {v0, v1, v4}, Landroid/app/AlertDialog$Builder;->setNegativeButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+    invoke-virtual {v0}, Landroid/app/AlertDialog$Builder;->show()Landroid/app/AlertDialog;
     return-void
 
     # ---- Open Spotify's own App info screen so the user can tap Force stop there ----
@@ -597,5 +602,56 @@
 
     :catch_0
     move-exception v0
+    return-void
+.end method
+
+
+# Callback invoked by ModuleSettingsActivity$ModeDialogListener when user picks an AdBlock mode
+.method public onAdBlockModeSelected(I)V
+    .locals 5
+
+    const/4 v0, 0x1
+    if-eq p1, v0, :sel_instant
+
+    const/4 v0, 0x2
+    if-eq p1, v0, :sel_dynamic
+
+    const-string v1, "legacy"
+    const-string v2, "Mode: Legacy (Connection-Verified)  [Tap to switch]"
+    const-string v3, "AdBlock Mode: Legacy (Connection-Verified)"
+    goto :save_sel
+
+    :sel_instant
+    const-string v1, "instant"
+    const-string v2, "Mode: Instant (In-Memory)  [Tap to switch]"
+    const-string v3, "AdBlock Mode: Instant (In-Memory)"
+    goto :save_sel
+
+    :sel_dynamic
+    const-string v1, "dynamic"
+    const-string v2, "Mode: Dynamic Blocklist (In-Memory)  [Tap to switch]"
+    const-string v3, "AdBlock Mode: Dynamic Blocklist (In-Memory)"
+
+    :save_sel
+    iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->prefs:Landroid/content/SharedPreferences;
+    invoke-interface {v0}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences$Editor;
+    move-result-object v0
+    const-string v4, "AdBlockMode"
+    invoke-interface {v0, v4, v1}, Landroid/content/SharedPreferences$Editor;->putString(Ljava/lang/String;Ljava/lang/String;)Landroid/content/SharedPreferences$Editor;
+    invoke-interface {v0}, Landroid/content/SharedPreferences$Editor;->commit()Z
+    invoke-direct {p0}, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->chmodPrefs()V
+
+    sput-object v1, Ldhp/vkn/tpl/sporitduck/AdBlockList;->sAdBlockMode:Ljava/lang/String;
+    sput-object v1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->X:Ljava/lang/String;
+
+    iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->btnAdBlockMode:Landroid/widget/Button;
+    if-eqz v0, :toast_sel
+    invoke-virtual {v0, v2}, Landroid/widget/Button;->setText(Ljava/lang/CharSequence;)V
+
+    :toast_sel
+    const/4 v0, 0x0
+    invoke-static {p0, v3, v0}, Landroid/widget/Toast;->makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
+    move-result-object v0
+    invoke-virtual {v0}, Landroid/widget/Toast;->show()V
     return-void
 .end method

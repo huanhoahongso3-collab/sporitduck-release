@@ -25,7 +25,7 @@
 
 
 .method public query(Landroid/net/Uri;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;
-    .registers 21
+    .locals 13
 
     const/4 v0, 0x7
     new-array v0, v0, [Ljava/lang/String;

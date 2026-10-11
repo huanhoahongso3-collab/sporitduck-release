@@ -14,14 +14,28 @@
 #                  SpotiDuck's adblock_hosts.txt domain set (AppSingleton.Y with parent
 #                  subdomain walking) and EasyList/ABP filter engine (Ln3 in AppSingleton.Z).
 
-.field public static sInitialized:Z = false
-.field public static sAdBlockEnabled:Z = false
-.field public static sAdBlockMode:Ljava/lang/String; = "legacy"
-.field public static sLastPrefsCheckMs:J = 0x0L
+.field public static sInitialized:Z
+
+.field public static sHostsLoaded:Z
+
+.field public static sAdBlockEnabled:Z
+
+.field public static sAdBlockMode:Ljava/lang/String;
+
+.field public static sLastPrefsCheckMs:J
+
+
+.method static constructor <clinit>()V
+    .locals 1
+
+    const-string v0, "legacy"
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/AdBlockList;->sAdBlockMode:Ljava/lang/String;
+    return-void
+.end method
 
 
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
     return-void
@@ -30,11 +44,12 @@
 
 # Initializes AppSingleton.s (using createPackageContext("dhp.vkn.tpl.sporitduck", 0) when
 # running inside com.spotify.music so SpotiDuck's assets silent.mp3 and adblock_hosts.txt
-# are accessible), loads the dynamic blocklist via Lm9;->j(), and refreshes AdBlockEnabled
-# and AdBlockMode from PrefsClient with a 2-second TTL cache.
+# are accessible), and refreshes AdBlockEnabled and AdBlockMode from PrefsClient with a
+# 2-second TTL cache.
 .method public static ensureInitialized(Landroid/content/Context;)V
-    .registers 8
+    .locals 8
 
+    :try_start_all
     if-nez p0, :have_ctx
     invoke-static {}, Landroid/app/ActivityThread;->currentApplication()Landroid/app/Application;
     move-result-object p0
@@ -50,7 +65,7 @@
 
     :try_start_init
     sget-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->s:Landroid/content/Context;
-    if-nez v0, :load_hosts
+    if-nez v0, :check_prefs
 
     const-string v1, "dhp.vkn.tpl.sporitduck"
     const/4 v2, 0x0
@@ -58,28 +73,20 @@
     move-result-object v0
     sput-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->s:Landroid/content/Context;
     :try_end_init
-    .catch Ljava/lang/Exception; {:try_start_init .. :try_end_init} :catch_ctx
-    goto :load_hosts
+    .catch Ljava/lang/Throwable; {:try_start_init .. :try_end_init} :catch_ctx
+    goto :check_prefs
 
     :catch_ctx
     move-exception v0
+    :try_start_fb
     invoke-virtual {p0}, Landroid/content/Context;->getApplicationContext()Landroid/content/Context;
     move-result-object v0
     if-nez v0, :set_fallback_ctx
     move-object v0, p0
     :set_fallback_ctx
     sput-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->s:Landroid/content/Context;
-
-    :load_hosts
-    :try_start_hosts
-    invoke-static {}, Lm9;->j()V
-    :try_end_hosts
-    .catch Ljava/lang/Exception; {:try_start_hosts .. :try_end_hosts} :catch_hosts
-    goto :check_prefs
-
-    :catch_hosts
-    move-exception v0
-    invoke-static {v0}, Lde/robv/android/xposed/XposedBridge;->log(Ljava/lang/Throwable;)V
+    :try_end_fb
+    .catch Ljava/lang/Throwable; {:try_start_fb .. :try_end_fb} :catch_prefs
 
     :check_prefs
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
@@ -92,7 +99,6 @@
 
     sput-wide v0, Ldhp/vkn/tpl/sporitduck/AdBlockList;->sLastPrefsCheckMs:J
 
-    :try_start_prefs
     invoke-static {p0}, Ldhp/vkn/tpl/sporitduck/PrefsClient;->readAll(Landroid/content/Context;)Landroid/os/Bundle;
     move-result-object v0
 
@@ -111,8 +117,8 @@
     :set_mode
     sput-object v1, Ldhp/vkn/tpl/sporitduck/AdBlockList;->sAdBlockMode:Ljava/lang/String;
     sput-object v1, Ldhp/vkn/tpl/sporitduck/AppSingleton;->X:Ljava/lang/String;
-    :try_end_prefs
-    .catch Ljava/lang/Exception; {:try_start_prefs .. :try_end_prefs} :catch_prefs
+    :try_end_all
+    .catch Ljava/lang/Throwable; {:try_start_all .. :try_end_all} :catch_prefs
 
     :done
     return-void
@@ -125,7 +131,7 @@
 
 # Static UI asset check matching c91.smali lines 4832-4954
 .method public static isStaticAsset(Ljava/lang/String;)Z
-    .registers 3
+    .locals 2
 
     const-string v0, ".jpg"
     invoke-virtual {p0, v0}, Ljava/lang/String;->endsWith(Ljava/lang/String;)Z
@@ -185,7 +191,7 @@
 # Returns true if Accept/Sec-Fetch-Dest has audio/video, Range header is present,
 # or URL contains .mp3, .mp4, .m4a, .aac, /mp3-ad/, or scdn.co/mp3-ad/.
 .method public static isMediaRequest(Ljava/lang/String;Ljava/util/Map;)Z
-    .registers 5
+    .locals 3
 
     if-eqz p1, :check_url
 
@@ -282,7 +288,7 @@
 
 # Empty 200 OK response with CORS header matching c91.smali lines 5721-5767
 .method public static createEmpty200Response()Landroid/webkit/WebResourceResponse;
-    .registers 8
+    .locals 7
 
     new-instance v5, Ljava/util/HashMap;
     invoke-direct {v5}, Ljava/util/HashMap;-><init>()V
@@ -307,7 +313,7 @@
 
 # Core 16 Spotify ad patterns checked first in "dynamic" mode (c91.smali lines 5229-5394)
 .method public static isCoreSpotifyAdUrl(Ljava/lang/String;)Z
-    .registers 3
+    .locals 2
 
     const-string v0, "/mp3-ad/"
     invoke-virtual {p0, v0}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
@@ -401,7 +407,7 @@
 # Curated in-memory ad/tracker check matching c91.smali "instant" & "legacy" lists
 # (lines 5773-6015 & 6147-6389) plus analytics/tracker patterns.
 .method public static isBlocked(Ljava/lang/String;)Z
-    .registers 4
+    .locals 3
 
     if-eqz p0, :not_blocked
 
@@ -584,11 +590,24 @@
 # 2. AppSingleton.Y domain set (walking subdomains a.b.c.com -> b.c.com -> c.com)
 # 3. AppSingleton.Z (Ln3 EasyList/ABP filter matcher)
 .method public static isDynamicBlocked(Ljava/lang/String;Ljava/lang/String;)Z
-    .registers 7
+    .locals 5
 
     invoke-static {p0}, Ldhp/vkn/tpl/sporitduck/AdBlockList;->isCoreSpotifyAdUrl(Ljava/lang/String;)Z
     move-result v0
     if-nez v0, :blocked
+
+    sget-boolean v0, Ldhp/vkn/tpl/sporitduck/AdBlockList;->sHostsLoaded:Z
+    if-nez v0, :hosts_ready
+    const/4 v0, 0x1
+    sput-boolean v0, Ldhp/vkn/tpl/sporitduck/AdBlockList;->sHostsLoaded:Z
+    :try_start_hosts
+    invoke-static {}, Lm9;->j()V
+    :try_end_hosts
+    .catch Ljava/lang/Throwable; {:try_start_hosts .. :try_end_hosts} :catch_hosts
+    goto :hosts_ready
+    :catch_hosts
+    move-exception v0
+    :hosts_ready
 
     if-eqz p1, :check_abp
     invoke-virtual {p1}, Ljava/lang/String;->length()I
@@ -641,7 +660,7 @@
 
 # Candidate audio stream URL check for "legacy" mode (c91.smali lines 6447-6622)
 .method public static isAudioStreamCandidate(Ljava/lang/String;)Z
-    .registers 3
+    .locals 2
 
     const-string v0, ".net/audio/"
     invoke-virtual {p0, v0}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
@@ -732,7 +751,7 @@
 # inspects Content-Type, and returns true if it starts with "audio/mpeg" (and URL
 # does not contain "podz-content" or "gew4-spclient").
 .method public static verifyLegacyAudioAd(Ljava/lang/String;Ljava/lang/String;Landroid/webkit/WebResourceRequest;)Z
-    .registers 9
+    .locals 5
 
     const/4 v0, 0x0
 
@@ -812,7 +831,7 @@
     :disconnect_false
     invoke-virtual {v1}, Ljava/net/HttpURLConnection;->disconnect()V
     :try_end_conn
-    .catch Ljava/lang/Exception; {:try_start_conn .. :try_end_conn} :catch_conn
+    .catch Ljava/lang/Throwable; {:try_start_conn .. :try_end_conn} :catch_conn
 
     return v0
 
@@ -827,12 +846,13 @@
 # "legacy", "instant", and "dynamic".
 # Returns null when the request should be allowed to proceed normally.
 .method public static intercept(Landroid/webkit/WebView;Landroid/webkit/WebResourceRequest;)Landroid/webkit/WebResourceResponse;
-    .registers 10
+    .locals 9
 
     const/4 v0, 0x0
     if-eqz p0, :return_null
     if-eqz p1, :return_null
 
+    :try_start_intercept
     invoke-virtual {p0}, Landroid/view/View;->getContext()Landroid/content/Context;
     move-result-object v1
     invoke-static {v1}, Ldhp/vkn/tpl/sporitduck/AdBlockList;->ensureInitialized(Landroid/content/Context;)V
@@ -932,6 +952,11 @@
     invoke-static {}, Ldhp/vkn/tpl/sporitduck/AdBlockList;->createEmpty200Response()Landroid/webkit/WebResourceResponse;
     move-result-object v0
     return-object v0
+    :try_end_intercept
+    .catch Ljava/lang/Throwable; {:try_start_intercept .. :try_end_intercept} :catch_intercept
+
+    :catch_intercept
+    move-exception v1
 
     :return_null
     return-object v0
@@ -942,11 +967,12 @@
 # Respects AdBlockEnabled and AdBlockMode (including dynamic hostlist lookup),
 # while safeguarding shared Spotify/CDN hosts that also serve normal music/UI.
 .method public static isDnsBlocked(Landroid/content/Context;Ljava/lang/String;)Z
-    .registers 5
+    .locals 4
 
     const/4 v0, 0x0
     if-eqz p1, :return_false
 
+    :try_start_dns
     invoke-static {p0}, Ldhp/vkn/tpl/sporitduck/AdBlockList;->ensureInitialized(Landroid/content/Context;)V
 
     sget-boolean v1, Ldhp/vkn/tpl/sporitduck/AdBlockList;->sAdBlockEnabled:Z
@@ -992,7 +1018,6 @@
     move-result v2
     if-nez v2, :return_false
 
-    const-string v2, "Dynamic"
     sget-object v2, Ldhp/vkn/tpl/sporitduck/AdBlockList;->sAdBlockMode:Ljava/lang/String;
     const-string v3, "dynamic"
     invoke-virtual {v3, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -1007,10 +1032,15 @@
     invoke-static {v1}, Ldhp/vkn/tpl/sporitduck/AdBlockList;->isBlocked(Ljava/lang/String;)Z
     move-result v0
     return v0
+    :try_end_dns
+    .catch Ljava/lang/Throwable; {:try_start_dns .. :try_end_dns} :catch_dns
 
     :return_true
     const/4 v0, 0x1
     return v0
+
+    :catch_dns
+    move-exception v1
 
     :return_false
     return v0
