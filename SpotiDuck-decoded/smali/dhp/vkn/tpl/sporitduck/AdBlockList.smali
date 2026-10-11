@@ -2,14 +2,14 @@
 .super Ljava/lang/Object;
 
 # Unified SpotiDuck AdBlock engine supporting all 3 upstream SpotiDuck mechanisms:
-#   1. "legacy"  — Connection-Verified: blocks curated ad/tracker domains AND opens an
-#                  HttpURLConnection (2000ms timeout) on candidate audio stream URLs
-#                  (.net/audio/, .co/audio/, akamaized.net/audio/, scdn.co/audio/,
+#   1. "legacy"  — Connection-Verified: blocks curated ad networks (returning empty 200 OK)
+#                  AND opens an HttpURLConnection (2000ms timeout) on candidate audio stream
+#                  URLs (.net/audio/, .co/audio/, akamaized.net/audio/, scdn.co/audio/,
 #                  spotifycdn.com/audio/, etc.) to inspect Content-Type; if audio/mpeg
 #                  (and not podz-content / gew4-spclient), replaces with silent.mp3.
 #   2. "instant" — Instant (In-Memory): immediately blocks curated Spotify & third-party
-#                  ad/tracker URLs in memory, serving silent.mp3 (200/206 with Range & CORS)
-#                  for media requests and 200 OK with CORS for non-media requests.
+#                  ad URLs in memory, serving silent.mp3 for media requests and
+#                  empty 200 OK with CORS for non-media requests.
 #   3. "dynamic" — Dynamic Blocklist (In-Memory): checks core Spotify ad patterns plus
 #                  SpotiDuck's adblock_hosts.txt domain set (AppSingleton.Y with parent
 #                  subdomain walking) and EasyList/ABP filter engine (Ln3 in AppSingleton.Z).
@@ -129,9 +129,19 @@
 .end method
 
 
-# Static UI asset check matching c91.smali lines 4832-4954
-.method public static isStaticAsset(Ljava/lang/String;)Z
+# Static UI asset check matching c91.smali lines 4066-4240 (checked against Uri path)
+.method public static isStaticAsset(Landroid/net/Uri;)Z
     .locals 2
+
+    if-eqz p0, :no
+
+    invoke-virtual {p0}, Landroid/net/Uri;->getPath()Ljava/lang/String;
+    move-result-object p0
+    if-eqz p0, :no
+
+    sget-object v0, Ljava/util/Locale;->ROOT:Ljava/util/Locale;
+    invoke-virtual {p0, v0}, Ljava/lang/String;->toLowerCase(Ljava/util/Locale;)Ljava/lang/String;
+    move-result-object p0
 
     const-string v0, ".jpg"
     invoke-virtual {p0, v0}, Ljava/lang/String;->endsWith(Ljava/lang/String;)Z
@@ -178,6 +188,7 @@
     move-result v0
     if-nez v0, :yes
 
+    :no
     const/4 v0, 0x0
     return v0
 
@@ -187,7 +198,7 @@
 .end method
 
 
-# Media request detection matching c91.smali lines 4956-5156
+# Media request detection matching c91.smali lines 4350-4550
 # Returns true if Accept/Sec-Fetch-Dest has audio/video, Range header is present,
 # or URL contains .mp3, .mp4, .m4a, .aac, /mp3-ad/, or scdn.co/mp3-ad/.
 .method public static isMediaRequest(Ljava/lang/String;Ljava/util/Map;)Z
@@ -247,6 +258,8 @@
     if-nez v0, :is_media
 
     :check_url
+    if-eqz p0, :not_media
+
     const-string v0, ".mp3"
     invoke-virtual {p0, v0}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
     move-result v0
@@ -277,6 +290,7 @@
     move-result v0
     if-nez v0, :is_media
 
+    :not_media
     const/4 v0, 0x0
     return v0
 
@@ -311,9 +325,11 @@
 .end method
 
 
-# Core 16 Spotify ad patterns checked first in "dynamic" mode (c91.smali lines 5229-5394)
+# Core 16 Spotify ad patterns matching upstream c91.smali (checked in dynamic, instant & legacy)
 .method public static isCoreSpotifyAdUrl(Ljava/lang/String;)Z
     .locals 2
+
+    if-eqz p0, :not_matched
 
     const-string v0, "/mp3-ad/"
     invoke-virtual {p0, v0}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
@@ -395,6 +411,7 @@
     move-result v0
     if-nez v0, :matched
 
+    :not_matched
     const/4 v0, 0x0
     return v0
 
@@ -404,8 +421,10 @@
 .end method
 
 
-# Curated in-memory ad/tracker check matching c91.smali "instant" & "legacy" lists
-# (lines 5773-6015 & 6147-6389) plus analytics/tracker patterns.
+# Curated in-memory ad check strictly matching upstream c91.smali lines 5773-6015 & 6147-6389:
+# 16 core Spotify ad patterns + 7 curated third-party ad networks.
+# First-party Spotify telemetry/playback endpoints (events.spotify.com, log.spotify.com,
+# analytics.spotify.com) are NEVER blocked here to prevent Web Player song-skipping bugs.
 .method public static isBlocked(Ljava/lang/String;)Z
     .locals 3
 
@@ -450,130 +469,61 @@
     move-result v2
     if-nez v2, :blocked
 
-    const-string v1, "log.spotify.com"
-    invoke-virtual {p0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+    :not_blocked
+    const/4 v0, 0x0
+    return v0
+
+    :blocked
+    const/4 v0, 0x1
+    return v0
+.end method
+
+
+# Host-only blocklist lookup for DNS blocker in dynamic mode (AppSingleton.Y with subdomain walking)
+.method public static isDnsDynamicBlocked(Ljava/lang/String;)Z
+    .locals 5
+
+    if-eqz p0, :not_blocked
+    invoke-virtual {p0}, Ljava/lang/String;->length()I
+    move-result v0
+    if-eqz v0, :not_blocked
+
+    sget-boolean v0, Ldhp/vkn/tpl/sporitduck/AdBlockList;->sHostsLoaded:Z
+    if-nez v0, :hosts_ready
+    const/4 v0, 0x1
+    sput-boolean v0, Ldhp/vkn/tpl/sporitduck/AdBlockList;->sHostsLoaded:Z
+    :try_start_hosts
+    invoke-static {}, Lm9;->j()V
+    :try_end_hosts
+    .catch Ljava/lang/Throwable; {:try_start_hosts .. :try_end_hosts} :catch_hosts
+    :hosts_ready
+
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->Y:Ljava/util/concurrent/ConcurrentHashMap$KeySetView;
+    if-eqz v0, :not_blocked
+
+    move-object v1, p0
+
+    :host_loop
+    invoke-virtual {v0, v1}, Ljava/util/concurrent/ConcurrentHashMap$KeySetView;->contains(Ljava/lang/Object;)Z
     move-result v2
     if-nez v2, :blocked
 
-    const-string v1, "analytics.spotify.com"
-    invoke-virtual {p0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :blocked
+    const/16 v2, 0x2e    # '.'
+    invoke-virtual {v1, v2}, Ljava/lang/String;->indexOf(I)I
+    move-result v3
+    const/4 v4, -0x1
+    if-eq v3, v4, :not_blocked
 
-    const-string v1, "events.spotify.com"
-    invoke-virtual {p0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+    add-int/lit8 v3, v3, 0x1
+    invoke-virtual {v1, v3}, Ljava/lang/String;->substring(I)Ljava/lang/String;
+    move-result-object v1
+    invoke-virtual {v1, v2}, Ljava/lang/String;->indexOf(I)I
     move-result v2
-    if-nez v2, :blocked
+    if-eq v2, v4, :not_blocked
+    goto :host_loop
 
-    const-string v1, "crashlytics.com"
-    invoke-virtual {p0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :blocked
-
-    const-string v1, "branch.io"
-    invoke-virtual {p0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :blocked
-
-    const-string v1, "app-measurement.com"
-    invoke-virtual {p0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :blocked
-
-    const-string v1, "scorecardresearch.com"
-    invoke-virtual {p0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :blocked
-
-    const-string v1, "firebaseremoteconfig.googleapis.com"
-    invoke-virtual {p0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :blocked
-
-    const-string v1, "google-analytics.com"
-    invoke-virtual {p0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :blocked
-
-    const-string v1, "googletagmanager.com"
-    invoke-virtual {p0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :blocked
-
-    const-string v1, "facebook.net"
-    invoke-virtual {p0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :blocked
-
-    const-string v1, "amplitude.com"
-    invoke-virtual {p0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :blocked
-
-    const-string v1, "bugsnag.com"
-    invoke-virtual {p0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :blocked
-
-    const-string v1, "app.adjust.com"
-    invoke-virtual {p0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :blocked
-
-    const-string v1, "moatads.com"
-    invoke-virtual {p0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :blocked
-
-    const-string v1, "adnxs.com"
-    invoke-virtual {p0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :blocked
-
-    const-string v1, "amazon-adsystem.com"
-    invoke-virtual {p0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :blocked
-
-    const-string v1, "pubads"
-    invoke-virtual {p0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :blocked
-
-    const-string v1, "optimizely.com"
-    invoke-virtual {p0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :blocked
-
-    const-string v1, "partnerad"
-    invoke-virtual {p0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :blocked
-
-    const-string v1, "adserver"
-    invoke-virtual {p0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :blocked
-
-    const-string v1, "ads-sdk"
-    invoke-virtual {p0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :blocked
-
-    const-string v1, "ad-logic"
-    invoke-virtual {p0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :blocked
-
-    const-string v1, "ad-engine"
-    invoke-virtual {p0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :blocked
-
-    const-string v1, "googleads"
-    invoke-virtual {p0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :blocked
+    :catch_hosts
+    move-exception v0
 
     :not_blocked
     const/4 v0, 0x0
@@ -585,41 +535,40 @@
 .end method
 
 
-# Dynamic blocklist check matching c91.smali lines 5229-5684:
+# Dynamic blocklist check matching upstream c91.smali lines 4780-5500:
 # 1. Core Spotify ad URLs
 # 2. AppSingleton.Y domain set (walking subdomains a.b.c.com -> b.c.com -> c.com)
-# 3. AppSingleton.Z (Ln3 EasyList/ABP filter matcher)
-.method public static isDynamicBlocked(Ljava/lang/String;Ljava/lang/String;)Z
+# 3. EasyList/ABP filter engine (Ln3 in AppSingleton.Z calling g(Uri, String) and Pattern matcher)
+.method public static isDynamicBlocked(Landroid/net/Uri;Ljava/lang/String;Ljava/lang/String;)Z
     .locals 5
 
-    invoke-static {p0}, Ldhp/vkn/tpl/sporitduck/AdBlockList;->isCoreSpotifyAdUrl(Ljava/lang/String;)Z
+    # 1. Core Spotify ad URLs
+    invoke-static {p1}, Ldhp/vkn/tpl/sporitduck/AdBlockList;->isCoreSpotifyAdUrl(Ljava/lang/String;)Z
     move-result v0
     if-nez v0, :blocked
 
+    # 2. Host lookup in adblock_hosts.txt (AppSingleton.Y)
     sget-boolean v0, Ldhp/vkn/tpl/sporitduck/AdBlockList;->sHostsLoaded:Z
     if-nez v0, :hosts_ready
     const/4 v0, 0x1
     sput-boolean v0, Ldhp/vkn/tpl/sporitduck/AdBlockList;->sHostsLoaded:Z
-    :try_start_hosts
+    :try_start_dyn_hosts
     invoke-static {}, Lm9;->j()V
-    :try_end_hosts
-    .catch Ljava/lang/Throwable; {:try_start_hosts .. :try_end_hosts} :catch_hosts
-    goto :hosts_ready
-    :catch_hosts
-    move-exception v0
+    :try_end_dyn_hosts
+    .catch Ljava/lang/Throwable; {:try_start_dyn_hosts .. :try_end_dyn_hosts} :catch_dyn_hosts
     :hosts_ready
 
-    if-eqz p1, :check_abp
-    invoke-virtual {p1}, Ljava/lang/String;->length()I
+    if-eqz p2, :check_abp
+    invoke-virtual {p2}, Ljava/lang/String;->length()I
     move-result v0
     if-eqz v0, :check_abp
 
     sget-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->Y:Ljava/util/concurrent/ConcurrentHashMap$KeySetView;
     if-eqz v0, :check_abp
 
-    move-object v1, p1
+    move-object v1, p2
 
-    :host_loop
+    :dyn_host_loop
     invoke-virtual {v0, v1}, Ljava/util/concurrent/ConcurrentHashMap$KeySetView;->contains(Ljava/lang/Object;)Z
     move-result v2
     if-nez v2, :blocked
@@ -636,17 +585,40 @@
     invoke-virtual {v1, v2}, Ljava/lang/String;->indexOf(I)I
     move-result v2
     if-eq v2, v4, :check_abp
-    goto :host_loop
+    goto :dyn_host_loop
 
+    # 3. EasyList/ABP matcher (AppSingleton.Z Ln3)
     :check_abp
     sget-object v0, Ldhp/vkn/tpl/sporitduck/AppSingleton;->Z:Ln3;
     if-eqz v0, :not_blocked
-    if-nez p1, :have_host
-    const-string p1, ""
+    if-eqz p0, :not_blocked
+
+    :try_start_abp
+    if-nez p2, :have_host
+    const-string p2, ""
     :have_host
-    invoke-virtual {v0, p0, p1}, Ln3;->e(Ljava/lang/String;Ljava/lang/String;)Z
-    move-result v0
-    if-nez v0, :blocked
+    invoke-virtual {v0, p0, p2}, Ln3;->g(Landroid/net/Uri;Ljava/lang/String;)Z
+    move-result v1
+    if-nez v1, :blocked
+
+    iget-object v1, v0, Ln3;->a:Ljava/util/regex/Pattern;
+    if-eqz v1, :not_blocked
+    if-eqz p1, :not_blocked
+    invoke-virtual {v1, p1}, Ljava/util/regex/Pattern;->matcher(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;
+    move-result-object v1
+    invoke-virtual {v1}, Ljava/util/regex/Matcher;->find()Z
+    move-result v1
+    if-nez v1, :blocked
+    :try_end_abp
+    .catch Ljava/lang/Throwable; {:try_start_abp .. :try_end_abp} :catch_abp
+    goto :not_blocked
+
+    :catch_dyn_hosts
+    move-exception v0
+    goto :check_abp
+
+    :catch_abp
+    move-exception v0
 
     :not_blocked
     const/4 v0, 0x0
@@ -658,9 +630,11 @@
 .end method
 
 
-# Candidate audio stream URL check for "legacy" mode (c91.smali lines 6447-6622)
+# Candidate audio stream URL check for "legacy" mode matching c91.smali lines 6599-6713
 .method public static isAudioStreamCandidate(Ljava/lang/String;)Z
     .locals 2
+
+    if-eqz p0, :not_candidate
 
     const-string v0, ".net/audio/"
     invoke-virtual {p0, v0}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
@@ -737,6 +711,7 @@
     move-result v0
     if-nez v0, :candidate
 
+    :not_candidate
     const/4 v0, 0x0
     return v0
 
@@ -746,7 +721,7 @@
 .end method
 
 
-# Legacy Connection-Verified audio ad check matching c91.smali lines 6624-7238:
+# Legacy Connection-Verified audio ad check matching c91.smali lines 6715-6860:
 # Opens an HttpURLConnection (2000ms timeout) with the request's method and headers,
 # inspects Content-Type, and returns true if it starts with "audio/mpeg" (and URL
 # does not contain "podz-content" or "gew4-spclient").
@@ -872,13 +847,27 @@
     invoke-virtual {v2, v3}, Ljava/lang/String;->toLowerCase(Ljava/util/Locale;)Ljava/lang/String;
     move-result-object v4
 
-    # Skip static UI assets (.jpg, .png, .js, .css, .woff2, etc.)
-    invoke-static {v4}, Ldhp/vkn/tpl/sporitduck/AdBlockList;->isStaticAsset(Ljava/lang/String;)Z
+    # Skip static UI assets (.jpg, .png, .js, .css, .woff2, etc.) based on path
+    invoke-static {v1}, Ldhp/vkn/tpl/sporitduck/AdBlockList;->isStaticAsset(Landroid/net/Uri;)Z
     move-result v5
-    if-eqz v5, :check_headers
-    return-object v0
+    if-nez v5, :return_null
 
-    :check_headers
+    # Whitelist critical Spotify Web Player endpoints that must NEVER be intercepted
+    const-string v5, "events.spotify.com"
+    invoke-virtual {v4, v5}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+    move-result v5
+    if-nez v5, :return_null
+
+    const-string v5, "log.spotify.com"
+    invoke-virtual {v4, v5}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+    move-result v5
+    if-nez v5, :return_null
+
+    const-string v5, "analytics.spotify.com"
+    invoke-virtual {v4, v5}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+    move-result v5
+    if-nez v5, :return_null
+
     invoke-interface {p1}, Landroid/webkit/WebResourceRequest;->getRequestHeaders()Ljava/util/Map;
     move-result-object v5
     if-nez v5, :have_headers
@@ -898,15 +887,15 @@
     if-eqz v8, :check_instant
 
     invoke-virtual {v1}, Landroid/net/Uri;->getHost()Ljava/lang/String;
-    move-result-object v1
-    if-eqz v1, :dyn_no_host
-    invoke-virtual {v1, v3}, Ljava/lang/String;->toLowerCase(Ljava/util/Locale;)Ljava/lang/String;
-    move-result-object v1
+    move-result-object v8
+    if-eqz v8, :dyn_no_host
+    invoke-virtual {v8, v3}, Ljava/lang/String;->toLowerCase(Ljava/util/Locale;)Ljava/lang/String;
+    move-result-object v8
     goto :dyn_check
     :dyn_no_host
-    const-string v1, ""
+    const-string v8, ""
     :dyn_check
-    invoke-static {v4, v1}, Ldhp/vkn/tpl/sporitduck/AdBlockList;->isDynamicBlocked(Ljava/lang/String;Ljava/lang/String;)Z
+    invoke-static {v1, v4, v8}, Ldhp/vkn/tpl/sporitduck/AdBlockList;->isDynamicBlocked(Landroid/net/Uri;Ljava/lang/String;Ljava/lang/String;)Z
     move-result v1
     if-eqz v1, :return_null
     goto :block_request
@@ -927,7 +916,7 @@
     :mode_legacy
     invoke-static {v4}, Ldhp/vkn/tpl/sporitduck/AdBlockList;->isBlocked(Ljava/lang/String;)Z
     move-result v1
-    if-nez v1, :block_request
+    if-nez v1, :legacy_empty_200
 
     invoke-static {v4}, Ldhp/vkn/tpl/sporitduck/AdBlockList;->isAudioStreamCandidate(Ljava/lang/String;)Z
     move-result v1
@@ -939,6 +928,11 @@
 
     # Confirmed audio/mpeg ad stream via HttpURLConnection -> return silent.mp3!
     invoke-static {p0, v5}, Lc91;->a(Landroid/webkit/WebView;Ljava/util/Map;)Landroid/webkit/WebResourceResponse;
+    move-result-object v0
+    return-object v0
+
+    :legacy_empty_200
+    invoke-static {}, Ldhp/vkn/tpl/sporitduck/AdBlockList;->createEmpty200Response()Landroid/webkit/WebResourceResponse;
     move-result-object v0
     return-object v0
 
@@ -965,7 +959,7 @@
 
 # DNS-level domain check used by DnsAdBlock (InetAddress.getAllByName hook).
 # Respects AdBlockEnabled and AdBlockMode (including dynamic hostlist lookup),
-# while safeguarding shared Spotify/CDN hosts that also serve normal music/UI.
+# while safeguarding Spotify playback, telemetry, auth, and CDN hosts.
 .method public static isDnsBlocked(Landroid/content/Context;Ljava/lang/String;)Z
     .locals 4
 
@@ -982,13 +976,33 @@
     invoke-virtual {p1, v1}, Ljava/lang/String;->toLowerCase(Ljava/util/Locale;)Ljava/lang/String;
     move-result-object v1
 
-    # Never DNS-block core Spotify playback/login/CDN hosts
+    # 1. Never DNS-block Spotify playback, login, events, telemetry, or CDN hosts
     const-string v2, "open.spotify.com"
     invoke-virtual {v1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
     move-result v2
     if-nez v2, :return_false
 
     const-string v2, "accounts.spotify.com"
+    invoke-virtual {v1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    move-result v2
+    if-nez v2, :return_false
+
+    const-string v2, "events.spotify.com"
+    invoke-virtual {v1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    move-result v2
+    if-nez v2, :return_false
+
+    const-string v2, "log.spotify.com"
+    invoke-virtual {v1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    move-result v2
+    if-nez v2, :return_false
+
+    const-string v2, "analytics.spotify.com"
+    invoke-virtual {v1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    move-result v2
+    if-nez v2, :return_false
+
+    const-string v2, "api.spotify.com"
     invoke-virtual {v1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
     move-result v2
     if-nez v2, :return_false
@@ -1018,13 +1032,45 @@
     move-result v2
     if-nez v2, :return_false
 
+    # 2. Spotify first-party domains check: only block if it matches explicit ad subdomain
+    const-string v2, "spotify.com"
+    invoke-virtual {v1, v2}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+    move-result v2
+    if-eqz v2, :check_scdn
+
+    invoke-static {v1}, Ldhp/vkn/tpl/sporitduck/AdBlockList;->isCoreSpotifyAdUrl(Ljava/lang/String;)Z
+    move-result v0
+    return v0
+
+    :check_scdn
+    const-string v2, "scdn.co"
+    invoke-virtual {v1, v2}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+    move-result v2
+    if-eqz v2, :check_spotifycdn
+
+    invoke-static {v1}, Ldhp/vkn/tpl/sporitduck/AdBlockList;->isCoreSpotifyAdUrl(Ljava/lang/String;)Z
+    move-result v0
+    return v0
+
+    :check_spotifycdn
+    const-string v2, "spotifycdn.com"
+    invoke-virtual {v1, v2}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+    move-result v2
+    if-eqz v2, :check_modes
+
+    invoke-static {v1}, Ldhp/vkn/tpl/sporitduck/AdBlockList;->isCoreSpotifyAdUrl(Ljava/lang/String;)Z
+    move-result v0
+    return v0
+
+    # 3. Third-party domains: in dynamic mode, check host blocklist
+    :check_modes
     sget-object v2, Ldhp/vkn/tpl/sporitduck/AdBlockList;->sAdBlockMode:Ljava/lang/String;
     const-string v3, "dynamic"
     invoke-virtual {v3, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
     move-result v2
     if-eqz v2, :check_curated
 
-    invoke-static {v1, v1}, Ldhp/vkn/tpl/sporitduck/AdBlockList;->isDynamicBlocked(Ljava/lang/String;Ljava/lang/String;)Z
+    invoke-static {v1}, Ldhp/vkn/tpl/sporitduck/AdBlockList;->isDnsDynamicBlocked(Ljava/lang/String;)Z
     move-result v2
     if-nez v2, :return_true
 
