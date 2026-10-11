@@ -13,7 +13,7 @@
 
 
 .method public handleLoadPackage(Lde/robv/android/xposed/callbacks/XC_LoadPackage$LoadPackageParam;)V
-    .registers 12
+    .registers 13
     .annotation system Ldalvik/annotation/Throws;
         value = {
             Ljava/lang/Throwable;
@@ -85,6 +85,24 @@
 
     const-class v4, Landroid/app/Activity;
     const-string v5, "onDestroy"
+    invoke-static {v4, v5, v0}, Lde/robv/android/xposed/XposedHelpers;->findAndHookMethod(Ljava/lang/Class;Ljava/lang/String;[Ljava/lang/Object;)Lde/robv/android/xposed/XC_MethodHook$Unhook;
+
+    # --- Hook MediaSession.setPlaybackState to force local device volume ---
+    const/4 v0, 0x2
+    new-array v0, v0, [Ljava/lang/Object;
+
+    new-instance v1, Ldhp/vkn/tpl/sporitduck/XposedInit$MediaSessionVolumeHook;
+    invoke-direct {v1}, Ldhp/vkn/tpl/sporitduck/XposedInit$MediaSessionVolumeHook;-><init>()V
+
+    const-class v2, Landroid/media/session/PlaybackState;
+    const/4 v3, 0x0
+    aput-object v2, v0, v3
+
+    const/4 v3, 0x1
+    aput-object v1, v0, v3
+
+    const-class v4, Landroid/media/session/MediaSession;
+    const-string v5, "setPlaybackState"
     invoke-static {v4, v5, v0}, Lde/robv/android/xposed/XposedHelpers;->findAndHookMethod(Ljava/lang/Class;Ljava/lang/String;[Ljava/lang/Object;)Lde/robv/android/xposed/XC_MethodHook$Unhook;
 
     # --- Read prefs for optional feature flags ---
