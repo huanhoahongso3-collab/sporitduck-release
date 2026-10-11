@@ -20,7 +20,7 @@
 
 
 .method protected afterHookedMethod(Lde/robv/android/xposed/XC_MethodHook$MethodHookParam;)V
-    .registers 5
+    .registers 4
     .annotation system Ldalvik/annotation/Throws;
         value = { Ljava/lang/Throwable; }
     .end annotation
@@ -29,12 +29,7 @@
     iget-object v0, p1, Lde/robv/android/xposed/XC_MethodHook$MethodHookParam;->thisObject:Ljava/lang/Object;
     check-cast v0, Landroid/app/Activity;
 
-    invoke-virtual {v0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
-    move-result-object v1
-    invoke-virtual {v1}, Ljava/lang/Class;->getName()Ljava/lang/String;
-    move-result-object v1
-    const-string v2, "com.spotify.music.MainActivity"
-    invoke-virtual {v1, v2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+    invoke-virtual {v0}, Landroid/app/Activity;->isTaskRoot()Z
     move-result v1
     if-eqz v1, :skip
 
