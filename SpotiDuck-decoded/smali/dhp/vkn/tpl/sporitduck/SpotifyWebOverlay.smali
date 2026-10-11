@@ -13,6 +13,27 @@
 .end method
 
 
+# Called from XposedInit$ActivityDestroyHook when Spotify's MainActivity is destroyed.
+.method public static destroy()V
+    .registers 2
+
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sDialog:Landroid/app/Dialog;
+    if-eqz v0, :clear
+
+    :try_start_0
+    invoke-virtual {v0}, Landroid/app/Dialog;->dismiss()V
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :catch_0
+
+    :clear
+    const/4 v0, 0x0
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sDialog:Landroid/app/Dialog;
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sWebView:Landroid/webkit/WebView;
+    return-void
+.end method
+
+
 # Called from XposedInit$ActivityResumeHook after Spotify's MainActivity.onResume.
 # Re-shows the dialog if it was created but hidden (e.g. user backgrounded Spotify).
 .method public static onResume(Landroid/app/Activity;)V
