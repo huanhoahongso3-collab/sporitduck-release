@@ -38,8 +38,9 @@ jobs:
             -o output/SpotiDuck-module-unsigned.apk
 
       - name: Decode keystore
-        run: |
-          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > output/release.keystore
+        env:
+          KEYSTORE_B64: ${{ secrets.KEYSTORE_BASE64 }}
+        run: printf '%s' "$KEYSTORE_B64" | base64 -d > output/release.keystore
 
       - name: Sign APK
         run: |
