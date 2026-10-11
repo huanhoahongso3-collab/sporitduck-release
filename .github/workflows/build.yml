@@ -43,13 +43,18 @@ jobs:
         run: printf '%s' "$KEYSTORE_B64" | base64 -di > output/release.keystore
 
       - name: Sign APK
+        env:
+          KS_PASS: ${{ secrets.PASS }}
+          KS_ALIAS: ${{ secrets.ALIAS }}
         run: |
           BTOOLS="$ANDROID_HOME/build-tools/35.0.0"
+          P="$(printf '%s' "$KS_PASS")"
+          A="$(printf '%s' "$KS_ALIAS")"
           "$BTOOLS/apksigner" sign \
             --ks output/release.keystore \
-            --ks-pass pass:${{ secrets.PASS }} \
-            --key-pass pass:${{ secrets.PASS }} \
-            --ks-key-alias ${{ secrets.ALIAS }} \
+            --ks-pass "pass:${P}" \
+            --key-pass "pass:${P}" \
+            --ks-key-alias "${A}" \
             --out output/dhpOS-Sporitduck-signed.apk \
             output/SpotiDuck-module-unsigned.apk
 
