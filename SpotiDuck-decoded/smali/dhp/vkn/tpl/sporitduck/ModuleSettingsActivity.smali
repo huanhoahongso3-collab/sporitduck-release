@@ -327,6 +327,10 @@
     # to clear its own WebView cookies and force the login overlay to appear
     invoke-virtual {p0}, Landroid/app/Activity;->getFilesDir()Ljava/io/File;
     move-result-object v1
+    # Make the files/ dir world-executable so Spotify's UID can traverse it to find the flag file
+    const/4 v2, 0x1
+    const/4 v0, 0x0
+    invoke-virtual {v1, v2, v0}, Ljava/io/File;->setExecutable(ZZ)Z
     const-string v2, "force_relogin"
     new-instance v3, Ljava/io/File;
     invoke-direct {v3, v1, v2}, Ljava/io/File;-><init>(Ljava/io/File;Ljava/lang/String;)V
