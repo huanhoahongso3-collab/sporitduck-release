@@ -37,23 +37,18 @@ jobs:
           java -jar output/apktool.jar b SpotiDuck-decoded \
             -o output/SpotiDuck-module-unsigned.apk
 
-      - name: Generate debug keystore
+      - name: Decode keystore
         run: |
-          keytool -genkeypair -v \
-            -keystore output/debug.keystore \
-            -alias androiddebugkey \
-            -keyalg RSA -keysize 2048 -validity 10000 \
-            -storepass android -keypass android \
-            -dname "CN=Android Debug,O=Android,C=US"
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > output/release.keystore
 
       - name: Sign APK
         run: |
           BTOOLS="$ANDROID_HOME/build-tools/35.0.0"
           "$BTOOLS/apksigner" sign \
-            --ks output/debug.keystore \
-            --ks-pass pass:android \
-            --key-pass pass:android \
-            --ks-key-alias androiddebugkey \
+            --ks output/release.keystore \
+            --ks-pass pass:${{ secrets.PASS }} \
+            --key-pass pass:${{ secrets.PASS }} \
+            --ks-key-alias ${{ secrets.ALIAS }} \
             --out output/dhpOS-Sporitduck-signed.apk \
             output/SpotiDuck-module-unsigned.apk
 
