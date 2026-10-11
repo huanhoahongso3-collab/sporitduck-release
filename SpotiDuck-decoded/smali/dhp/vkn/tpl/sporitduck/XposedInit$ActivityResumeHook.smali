@@ -38,6 +38,7 @@
     move-result v1
     if-eqz v1, :skip
 
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/WebPlayerAutoSwitch;->activity:Landroid/app/Activity;
     invoke-static {v0}, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->onResume(Landroid/app/Activity;)V
 
     :skip

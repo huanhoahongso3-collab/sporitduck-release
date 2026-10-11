@@ -105,6 +105,26 @@
     const-string v5, "setPlaybackState"
     invoke-static {v4, v5, v0}, Lde/robv/android/xposed/XposedHelpers;->findAndHookMethod(Ljava/lang/Class;Ljava/lang/String;[Ljava/lang/Object;)Lde/robv/android/xposed/XC_MethodHook$Unhook;
 
+    # --- Hook MediaSession.setMetadata to drive the auto web-player-switch. Registered
+    #     unconditionally like the DNS hook; WebPlayerAutoSwitch checks WebPlayerEnabled
+    #     itself (via PrefsProvider) on every track change. ---
+    const/4 v0, 0x2
+    new-array v0, v0, [Ljava/lang/Object;
+
+    new-instance v1, Ldhp/vkn/tpl/sporitduck/XposedInit$MetadataHook;
+    invoke-direct {v1}, Ldhp/vkn/tpl/sporitduck/XposedInit$MetadataHook;-><init>()V
+
+    const-class v2, Landroid/media/MediaMetadata;
+    const/4 v3, 0x0
+    aput-object v2, v0, v3
+
+    const/4 v3, 0x1
+    aput-object v1, v0, v3
+
+    const-class v4, Landroid/media/session/MediaSession;
+    const-string v5, "setMetadata"
+    invoke-static {v4, v5, v0}, Lde/robv/android/xposed/XposedHelpers;->findAndHookMethod(Ljava/lang/Class;Ljava/lang/String;[Ljava/lang/Object;)Lde/robv/android/xposed/XC_MethodHook$Unhook;
+
     # --- Always register the DNS blocker hook; it checks AdBlockEnabled itself on every
     #     call (via PrefsProvider) since no Activity/Application context is available yet
     #     at this point to query it just once here. ---

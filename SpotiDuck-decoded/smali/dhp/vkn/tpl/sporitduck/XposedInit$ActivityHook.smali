@@ -28,6 +28,7 @@
     :try_start_0
     iget-object v0, p1, Lde/robv/android/xposed/XC_MethodHook$MethodHookParam;->thisObject:Ljava/lang/Object;
     check-cast v0, Landroid/app/Activity;
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/WebPlayerAutoSwitch;->activity:Landroid/app/Activity;
     invoke-static {v0}, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->create(Landroid/app/Activity;)V
     :try_end_0
     .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
