@@ -29,10 +29,19 @@ jobs:
             https://github.com/iBotPeaches/Apktool/releases/download/v2.12.1/apktool_2.12.1.jar
 
       - name: Download latest SpotiDuck beta APK
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          curl -fL \
-            -o tmp/SpotiDuck-upstream.apk \
-            https://github.com/23fpsz/SpotiDuck-Releases/releases/download/latest-beta/SpotiDuck.apk
+          # The release asset filename embeds a version+commit hash that changes every
+          # release (e.g. SpotiDuck-v1.2.2-3d2c473.apk), so it can't be hardcoded —
+          # resolve whatever *.apk is actually attached to the latest-beta tag instead.
+          mkdir -p tmp
+          gh release download latest-beta \
+            --repo 23fpsz/SpotiDuck-Releases \
+            --pattern '*.apk' \
+            --dir tmp \
+            --clobber
+          mv tmp/*.apk tmp/SpotiDuck-upstream.apk
 
       - name: Decode upstream APK
         run: |
@@ -68,10 +77,22 @@ jobs:
             tmp/SpotiDuck-upstream-decoded/smali/ \
             SpotiDuck-decoded/smali/
 
-          # Sync resources and root files that may also change
-          rsync -a --exclude="smali/" \
+          # Sync resources and root files that may also change. AndroidManifest.xml is
+          # excluded: it's a single shared file where our own Xposed module declarations
+          # (meta-data, the ModuleSettingsActivity/PrefsProvider entries, DnsAdBlock's
+          # permissions, etc.) live alongside Spotify's own — an unconditional overwrite
+          # would silently delete all of that. It's copied aside instead so a maintainer
+          # can diff and merge it by hand when upstream actually changes it.
+          rsync -a --exclude="smali/" --exclude="AndroidManifest.xml" \
             tmp/SpotiDuck-upstream-decoded/ \
             SpotiDuck-decoded/
+
+          if ! diff -q tmp/SpotiDuck-upstream-decoded/AndroidManifest.xml \
+                       SpotiDuck-decoded/AndroidManifest.xml > /dev/null 2>&1; then
+            cp tmp/SpotiDuck-upstream-decoded/AndroidManifest.xml \
+               SpotiDuck-decoded/AndroidManifest.xml.upstream
+            echo "manifest_changed=true" >> "$GITHUB_ENV"
+          fi
 
       - name: Commit updated base
         if: steps.diff_check.outputs.changed == 'true'
@@ -79,5 +100,12 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add SpotiDuck-decoded/
-          git commit -m "chore: bump SpotiDuck base APK (auto-bump $(date -u +%Y-%m-%d))"
+          MSG="chore: bump SpotiDuck base APK (auto-bump $(date -u +%Y-%m-%d))"
+          if [ "${manifest_changed:-}" = "true" ]; then
+            MSG="$MSG
+
+upstream AndroidManifest.xml changed — left as AndroidManifest.xml.upstream
+for manual review/merge, our own copy was NOT overwritten."
+          fi
+          git commit -m "$MSG"
           git push
