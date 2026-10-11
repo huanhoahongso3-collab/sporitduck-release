@@ -59,6 +59,20 @@
     const-string v5, "onCreate"
     invoke-static {v4, v5, v0}, Lde/robv/android/xposed/XposedHelpers;->findAndHookMethod(Ljava/lang/Class;Ljava/lang/String;[Ljava/lang/Object;)Lde/robv/android/xposed/XC_MethodHook$Unhook;
 
+    # --- Hook Activity.onResume to re-show overlay when user returns to Spotify ---
+    const/4 v0, 0x1
+    new-array v0, v0, [Ljava/lang/Object;
+
+    new-instance v1, Ldhp/vkn/tpl/sporitduck/XposedInit$ActivityResumeHook;
+    invoke-direct {v1}, Ldhp/vkn/tpl/sporitduck/XposedInit$ActivityResumeHook;-><init>()V
+
+    const/4 v2, 0x0
+    aput-object v1, v0, v2
+
+    const-class v4, Landroid/app/Activity;
+    const-string v5, "onResume"
+    invoke-static {v4, v5, v0}, Lde/robv/android/xposed/XposedHelpers;->findAndHookMethod(Ljava/lang/Class;Ljava/lang/String;[Ljava/lang/Object;)Lde/robv/android/xposed/XC_MethodHook$Unhook;
+
     # --- Read prefs for optional feature flags ---
     new-instance v5, Lde/robv/android/xposed/XSharedPreferences;
     const-string v6, "dhp.vkn.tpl.sporitduck"

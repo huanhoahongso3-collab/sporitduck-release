@@ -13,6 +13,29 @@
 .end method
 
 
+# Called from XposedInit$ActivityResumeHook after Spotify's MainActivity.onResume.
+# Re-shows the dialog if it was created but hidden (e.g. user backgrounded Spotify).
+.method public static onResume(Landroid/app/Activity;)V
+    .registers 3
+
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sDialog:Landroid/app/Dialog;
+    if-eqz v0, :create_new
+
+    invoke-virtual {v0}, Landroid/app/Dialog;->isShowing()Z
+    move-result v1
+    if-nez v1, :done
+
+    invoke-virtual {v0}, Landroid/app/Dialog;->show()V
+    goto :done
+
+    :create_new
+    invoke-static {p0}, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->create(Landroid/app/Activity;)V
+
+    :done
+    return-void
+.end method
+
+
 # Called from XposedInit$ActivityHook after Spotify's MainActivity.onCreate.
 # Creates the WebView overlay Dialog once (guarded by sDialog null-check).
 .method public static create(Landroid/app/Activity;)V
