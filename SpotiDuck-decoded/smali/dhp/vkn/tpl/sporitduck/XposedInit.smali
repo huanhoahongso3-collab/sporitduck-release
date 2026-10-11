@@ -41,6 +41,25 @@
     const-string v4, "onCreate"
     invoke-static {v3, v4, v0}, Lde/robv/android/xposed/XposedHelpers;->findAndHookMethod(Ljava/lang/Class;Ljava/lang/String;[Ljava/lang/Object;)Lde/robv/android/xposed/XC_MethodHook$Unhook;
 
+    # --- Hook com.spotify.music.MainActivity.onCreate for WebView overlay ---
+    const/4 v0, 0x2
+    new-array v0, v0, [Ljava/lang/Object;
+
+    new-instance v1, Ldhp/vkn/tpl/sporitduck/XposedInit$ActivityHook;
+    invoke-direct {v1}, Ldhp/vkn/tpl/sporitduck/XposedInit$ActivityHook;-><init>()V
+
+    const-class v2, Landroid/os/Bundle;
+    const/4 v3, 0x0
+    aput-object v2, v0, v3
+
+    const/4 v3, 0x1
+    aput-object v1, v0, v3
+
+    iget-object v4, p1, Lde/robv/android/xposed/callbacks/XC_LoadPackage$LoadPackageParam;->classLoader:Ljava/lang/ClassLoader;
+    const-string v5, "com.spotify.music.MainActivity"
+    const-string v6, "onCreate"
+    invoke-static {v5, v4, v6, v0}, Lde/robv/android/xposed/XposedHelpers;->findAndHookMethod(Ljava/lang/String;Ljava/lang/ClassLoader;Ljava/lang/String;[Ljava/lang/Object;)Lde/robv/android/xposed/XC_MethodHook$Unhook;
+
     # --- Read prefs for optional feature flags ---
     new-instance v5, Lde/robv/android/xposed/XSharedPreferences;
     const-string v6, "dhp.vkn.tpl.sporitduck"
