@@ -37,7 +37,7 @@
     const/4 v2, 0x0
     aput-object v1, v0, v2
 
-    sget-object v3, Landroid/app/Application;->class:Ljava/lang/Class;
+    const-class v3, Landroid/app/Application;
     const-string v4, "onCreate"
     invoke-static {v3, v4, v0}, Lde/robv/android/xposed/XposedHelpers;->findAndHookMethod(Ljava/lang/Class;Ljava/lang/String;[Ljava/lang/Object;)Lde/robv/android/xposed/XC_MethodHook$Unhook;
 
