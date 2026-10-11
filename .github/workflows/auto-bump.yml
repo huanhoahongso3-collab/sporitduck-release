@@ -1,0 +1,83 @@
+name: Auto-bump SpotiDuck base APK
+
+on:
+  schedule:
+    - cron: '0 3 * * 1'   # Every Monday 03:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Download apktool
+        run: |
+          mkdir -p tmp
+          curl -fL -o tmp/apktool.jar \
+            https://github.com/iBotPeaches/Apktool/releases/download/v2.12.1/apktool_2.12.1.jar
+
+      - name: Download latest SpotiDuck beta APK
+        run: |
+          curl -fL \
+            -o tmp/SpotiDuck-upstream.apk \
+            https://github.com/23fpsz/SpotiDuck-Releases/releases/download/latest-beta/SpotiDuck.apk
+
+      - name: Decode upstream APK
+        run: |
+          java -jar tmp/apktool.jar d tmp/SpotiDuck-upstream.apk \
+            -o tmp/SpotiDuck-upstream-decoded \
+            --force
+
+      - name: Check for upstream smali changes (excluding our patch package)
+        id: diff_check
+        run: |
+          # Hash all smali files except our own patch package
+          find tmp/SpotiDuck-upstream-decoded/smali \
+            -name "*.smali" \
+            ! -path "*/dhp/vkn/tpl/sporitduck/*" \
+            | sort | xargs md5sum > tmp/upstream.md5
+
+          find SpotiDuck-decoded/smali \
+            -name "*.smali" \
+            ! -path "*/dhp/vkn/tpl/sporitduck/*" \
+            | sort | xargs md5sum > tmp/current.md5
+
+          if diff -q tmp/upstream.md5 tmp/current.md5 > /dev/null 2>&1; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Overlay upstream smali onto our decoded tree
+        if: steps.diff_check.outputs.changed == 'true'
+        run: |
+          # Copy every non-patch file from upstream over the current decoded tree
+          rsync -a --exclude="dhp/vkn/tpl/sporitduck/" \
+            tmp/SpotiDuck-upstream-decoded/smali/ \
+            SpotiDuck-decoded/smali/
+
+          # Sync resources and root files that may also change
+          rsync -a --exclude="smali/" \
+            tmp/SpotiDuck-upstream-decoded/ \
+            SpotiDuck-decoded/
+
+      - name: Commit updated base
+        if: steps.diff_check.outputs.changed == 'true'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add SpotiDuck-decoded/
+          git commit -m "chore: bump SpotiDuck base APK (auto-bump $(date -u +%Y-%m-%d))"
+          git push
