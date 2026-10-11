@@ -149,8 +149,42 @@
 
 
 .method public update(Landroid/net/Uri;Landroid/content/ContentValues;Ljava/lang/String;[Ljava/lang/String;)I
-    .registers 5
+    .registers 10
 
+    if-eqz p2, :fail
+
+    invoke-virtual {p0}, Landroid/content/ContentProvider;->getContext()Landroid/content/Context;
+    move-result-object v0
+    if-eqz v0, :fail
+
+    const-string v1, "dhp.vkn.tpl.sporitduck_preferences"
+    const/4 v2, 0x0
+    invoke-virtual {v0, v1, v2}, Landroid/content/Context;->getSharedPreferences(Ljava/lang/String;I)Landroid/content/SharedPreferences;
+    move-result-object v0
+    invoke-interface {v0}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences$Editor;
+    move-result-object v0
+
+    # Written by Spotify's own process (via SpotifyWebOverlay$Client) when the web
+    # overlay actually authenticates, so the settings screen can show the real status.
+    const-string v1, "WebLoggedIn"
+    invoke-virtual {p2, v1}, Landroid/content/ContentValues;->containsKey(Ljava/lang/String;)Z
+    move-result v2
+    if-eqz v2, :commit
+
+    invoke-virtual {p2, v1}, Landroid/content/ContentValues;->getAsBoolean(Ljava/lang/String;)Ljava/lang/Boolean;
+    move-result-object v2
+    if-eqz v2, :commit
+    invoke-virtual {v2}, Ljava/lang/Boolean;->booleanValue()Z
+    move-result v2
+    invoke-interface {v0, v1, v2}, Landroid/content/SharedPreferences$Editor;->putBoolean(Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;
+
+    :commit
+    invoke-interface {v0}, Landroid/content/SharedPreferences$Editor;->commit()Z
+
+    const/4 v0, 0x1
+    return v0
+
+    :fail
     const/4 v0, 0x0
     return v0
 .end method

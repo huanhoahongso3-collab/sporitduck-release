@@ -34,10 +34,14 @@
     invoke-direct {p0}, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->chmodPrefs()V
 
     # Read relevant booleans
-    const-string v1, "LoggedIn"
+    # WebLoggedIn is set by SpotifyWebOverlay$Client (running inside Spotify's process)
+    # when the web overlay actually authenticates — this reflects whether SpotiDuck's
+    # Spotify login is really working, unlike the old "LoggedIn" flag which belongs to
+    # a separate, unrelated native account flow that most users never trigger.
+    const-string v1, "WebLoggedIn"
     const/4 v2, 0x0
     invoke-interface {v0, v1, v2}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
-    move-result v1    # v1 = loggedIn (set by SpotiDuck's own auth)
+    move-result v1    # v1 = loggedIn
 
     const-string v2, "AdBlockEnabled"
     const/4 v3, 0x0
@@ -77,14 +81,15 @@
     invoke-virtual {v5, v6}, Landroid/widget/TextView;->setTextSize(F)V
     invoke-virtual {v4, v5}, Landroid/view/ViewGroup;->addView(Landroid/view/View;)V
 
-    # Login status (read-only, managed by SpotiDuck's own auth)
+    # Login status (read-only; reflects whether the Spotify web overlay has actually
+    # authenticated — see WebLoggedIn above)
     new-instance v5, Landroid/widget/TextView;
     invoke-direct {v5, p0}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
     if-eqz v1, :status_off
     const-string v6, "SpotiDuck: Logged in ✓  —  module active"
     goto :status_set
     :status_off
-    const-string v6, "SpotiDuck: Not logged in  —  log in via SpotiDuck first"
+    const-string v6, "SpotiDuck: Not logged in  —  open Spotify to log in"
     :status_set
     invoke-virtual {v5, v6}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
     const v6, 0x41800000    # 16.0f
@@ -335,6 +340,9 @@
     move-result-object v0
     const-string v1, "LoggedIn"
     const/4 v3, 0x0
+    invoke-interface {v0, v1, v3}, Landroid/content/SharedPreferences$Editor;->putBoolean(Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;
+    move-result-object v0
+    const-string v1, "WebLoggedIn"
     invoke-interface {v0, v1, v3}, Landroid/content/SharedPreferences$Editor;->putBoolean(Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;
     move-result-object v0
     invoke-interface {v0}, Landroid/content/SharedPreferences$Editor;->commit()Z

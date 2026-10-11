@@ -63,7 +63,7 @@
 
 # open.spotify.com loaded → dismiss overlay, persist cookies
 .method public onPageFinished(Landroid/webkit/WebView;Ljava/lang/String;)V
-    .registers 6
+    .registers 9
 
     invoke-super {p0, p1, p2}, Landroid/webkit/WebViewClient;->onPageFinished(Landroid/webkit/WebView;Ljava/lang/String;)V
 
@@ -99,6 +99,35 @@
     const/4 v3, 0x1
     invoke-interface {v0, v2, v3}, Landroid/content/SharedPreferences$Editor;->putBoolean(Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;
     invoke-interface {v0}, Landroid/content/SharedPreferences$Editor;->apply()V
+
+    # Also tell our own module (via its ContentProvider) that web login succeeded, so
+    # the settings screen can show the real status instead of the unrelated native
+    # SpotiDuck account flag, which may never get set in normal usage.
+    :try_start_1
+    iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay$Client;->activity:Landroid/app/Activity;
+    invoke-virtual {v0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
+    move-result-object v0
+    const-string v3, "content://dhp.vkn.tpl.sporitduck.prefsprovider/state"
+    invoke-static {v3}, Landroid/net/Uri;->parse(Ljava/lang/String;)Landroid/net/Uri;
+    move-result-object v3
+    new-instance v4, Landroid/content/ContentValues;
+    invoke-direct {v4}, Landroid/content/ContentValues;-><init>()V
+    const-string v5, "WebLoggedIn"
+    const/4 v6, 0x1
+    invoke-static {v6}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+    move-result-object v6
+    invoke-virtual {v4, v5, v6}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Boolean;)V
+    const/4 v5, 0x0
+    invoke-virtual {v0, v3, v4, v5, v5}, Landroid/content/ContentResolver;->update(Landroid/net/Uri;Landroid/content/ContentValues;Ljava/lang/String;[Ljava/lang/String;)I
+    :try_end_1
+    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
+    goto :weblogin_done
+
+    :catch_1
+    move-exception v0
+    invoke-static {v0}, Lde/robv/android/xposed/XposedBridge;->log(Ljava/lang/Throwable;)V
+
+    :weblogin_done
 
     # Dismiss overlay unless ShowWebView is enabled.
     # Uses the cached value create()/refresh() just computed instead of a fresh
