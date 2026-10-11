@@ -41,12 +41,113 @@
 
     sget-object v0, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sDialog:Landroid/app/Dialog;
     if-eqz v0, :create_new
+    invoke-static {p0}, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->refresh(Landroid/app/Activity;)V
     goto :done
 
     :create_new
     invoke-static {p0}, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->create(Landroid/app/Activity;)V
 
     :done
+    return-void
+.end method
+
+
+# Called every onResume once the overlay already exists (process wasn't killed).
+# Re-checks clear_count/ShowWebView so Clear Data and the ShowWebView toggle take
+# effect immediately instead of requiring Spotify's process to be fully killed.
+.method public static refresh(Landroid/app/Activity;)V
+    .registers 10
+
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sDialog:Landroid/app/Dialog;
+    if-eqz v0, :return
+    sget-object v1, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sWebView:Landroid/webkit/WebView;
+    if-eqz v1, :return
+
+    :try_start_0
+    # Read module's clear_count
+    new-instance v2, Lde/robv/android/xposed/XSharedPreferences;
+    const-string v3, "dhp.vkn.tpl.sporitduck"
+    const-string v4, "dhp.vkn.tpl.sporitduck_preferences"
+    invoke-direct {v2, v3, v4}, Lde/robv/android/xposed/XSharedPreferences;-><init>(Ljava/lang/String;Ljava/lang/String;)V
+    invoke-virtual {v2}, Lde/robv/android/xposed/XSharedPreferences;->reload()V
+    const-string v3, "clear_count"
+    const/4 v4, 0x0
+    invoke-interface {v2, v3, v4}, Landroid/content/SharedPreferences;->getInt(Ljava/lang/String;I)I
+    move-result v2    # v2 = module clear_count
+
+    const-string v3, "spotiduck_overlay"
+    const/4 v4, 0x0
+    invoke-virtual {p0, v3, v4}, Landroid/app/Activity;->getSharedPreferences(Ljava/lang/String;I)Landroid/content/SharedPreferences;
+    move-result-object v3    # v3 = Spotify's own spotiduck_overlay prefs
+    const-string v4, "last_handled_count"
+    const/4 v5, 0x0
+    invoke-interface {v3, v4, v5}, Landroid/content/SharedPreferences;->getInt(Ljava/lang/String;I)I
+    move-result v4    # v4 = last_handled_count
+
+    if-eq v2, v4, :check_showwebview    # no pending clear
+
+    # Pending clear request: persist handled count, reset logged_in, wipe WebView session
+    invoke-interface {v3}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences$Editor;
+    move-result-object v3
+    const-string v4, "last_handled_count"
+    invoke-interface {v3, v4, v2}, Landroid/content/SharedPreferences$Editor;->putInt(Ljava/lang/String;I)Landroid/content/SharedPreferences$Editor;
+    const-string v4, "logged_in"
+    const/4 v5, 0x0
+    invoke-interface {v3, v4, v5}, Landroid/content/SharedPreferences$Editor;->putBoolean(Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;
+    invoke-interface {v3}, Landroid/content/SharedPreferences$Editor;->apply()V
+
+    invoke-static {}, Landroid/webkit/CookieManager;->getInstance()Landroid/webkit/CookieManager;
+    move-result-object v3
+    const/4 v4, 0x0
+    invoke-virtual {v3, v4}, Landroid/webkit/CookieManager;->removeAllCookies(Landroid/webkit/ValueCallback;)V
+    invoke-virtual {v3}, Landroid/webkit/CookieManager;->flush()V
+
+    const/4 v3, 0x1
+    invoke-virtual {v1, v3}, Landroid/webkit/WebView;->clearCache(Z)V
+    invoke-virtual {v1}, Landroid/webkit/WebView;->clearFormData()V
+    invoke-virtual {v1}, Landroid/webkit/WebView;->clearHistory()V
+
+    const-string v3, "https://accounts.spotify.com/login"
+    invoke-virtual {v1, v3}, Landroid/webkit/WebView;->loadUrl(Ljava/lang/String;)V
+    invoke-virtual {v0}, Landroid/app/Dialog;->show()V
+    goto :return
+
+    :check_showwebview
+    new-instance v2, Lde/robv/android/xposed/XSharedPreferences;
+    const-string v3, "dhp.vkn.tpl.sporitduck"
+    const-string v4, "dhp.vkn.tpl.sporitduck_preferences"
+    invoke-direct {v2, v3, v4}, Lde/robv/android/xposed/XSharedPreferences;-><init>(Ljava/lang/String;Ljava/lang/String;)V
+    invoke-virtual {v2}, Lde/robv/android/xposed/XSharedPreferences;->reload()V
+    const-string v3, "ShowWebView"
+    const/4 v4, 0x0
+    invoke-interface {v2, v3, v4}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
+    move-result v3
+    if-eqz v3, :check_hide
+    invoke-virtual {v0}, Landroid/app/Dialog;->show()V
+    goto :return
+
+    :check_hide
+    # ShowWebView off: if the dialog is only showing because of a previous ShowWebView session
+    # and the user is already logged in, hide it again (player keeps running in background).
+    const-string v2, "spotiduck_overlay"
+    const/4 v3, 0x0
+    invoke-virtual {p0, v2, v3}, Landroid/app/Activity;->getSharedPreferences(Ljava/lang/String;I)Landroid/content/SharedPreferences;
+    move-result-object v2
+    const-string v3, "logged_in"
+    const/4 v4, 0x0
+    invoke-interface {v2, v3, v4}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
+    move-result v3
+    if-eqz v3, :return
+    invoke-virtual {v0}, Landroid/app/Dialog;->dismiss()V
+
+    :return
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    return-void
+
+    :catch_0
+    move-exception v0
+    invoke-static {v0}, Lde/robv/android/xposed/XposedBridge;->log(Ljava/lang/Throwable;)V
     return-void
 .end method
 
