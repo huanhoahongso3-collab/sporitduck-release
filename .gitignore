@@ -2,3 +2,5 @@ output/
 tools/debug.keystore
 tools/apktool.jar
 *.apk
+SpotiDuck-decoded/build/
+patches/
