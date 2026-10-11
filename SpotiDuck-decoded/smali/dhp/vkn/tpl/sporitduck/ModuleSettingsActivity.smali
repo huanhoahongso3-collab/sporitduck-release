@@ -8,6 +8,7 @@
 .field private btnClear:Landroid/widget/Button;
 .field private btnDebug:Landroid/widget/Button;
 .field private btnShowWebView:Landroid/widget/Button;
+.field private btnForceStop:Landroid/widget/Button;
 
 
 .method public constructor <init>()V
@@ -225,6 +226,22 @@
     iput-object v5, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->btnClear:Landroid/widget/Button;
     invoke-virtual {v4, v5}, Landroid/view/ViewGroup;->addView(Landroid/view/View;)V
 
+    new-instance v5, Landroid/widget/TextView;
+    invoke-direct {v5, p0}, Landroid/widget/TextView;-><init>(Landroid/content/Context;)V
+    const-string v6, "Force-stopping Spotify fully resets its process (hidden Web Player included). Opens Spotify\'s own App info; tap Force stop there."
+    invoke-virtual {v5, v6}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+    const v6, 0x41600000    # 14.0f
+    invoke-virtual {v5, v6}, Landroid/widget/TextView;->setTextSize(F)V
+    invoke-virtual {v4, v5}, Landroid/view/ViewGroup;->addView(Landroid/view/View;)V
+
+    new-instance v5, Landroid/widget/Button;
+    invoke-direct {v5, p0}, Landroid/widget/Button;-><init>(Landroid/content/Context;)V
+    const-string v6, "Force Stop Spotify (open settings)"
+    invoke-virtual {v5, v6}, Landroid/widget/Button;->setText(Ljava/lang/CharSequence;)V
+    invoke-virtual {v5, p0}, Landroid/view/View;->setOnClickListener(Landroid/view/View$OnClickListener;)V
+    iput-object v5, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->btnForceStop:Landroid/widget/Button;
+    invoke-virtual {v4, v5}, Landroid/view/ViewGroup;->addView(Landroid/view/View;)V
+
     # setContentView(root)
     invoke-virtual {p0, v4}, Landroid/app/Activity;->setContentView(Landroid/view/View;)V
 
@@ -251,6 +268,28 @@
     iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->btnShowWebView:Landroid/widget/Button;
     if-eq p1, v0, :handle_showwebview
 
+    iget-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->btnForceStop:Landroid/widget/Button;
+    if-eq p1, v0, :handle_forcestop
+
+    return-void
+
+    # ---- Open Spotify's own App info screen so the user can tap Force stop there ----
+    :handle_forcestop
+    new-instance v0, Landroid/content/Intent;
+    const-string v1, "android.settings.APPLICATION_DETAILS_SETTINGS"
+    invoke-direct {v0, v1}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
+
+    const-string v1, "package:com.spotify.music"
+    invoke-static {v1}, Landroid/net/Uri;->parse(Ljava/lang/String;)Landroid/net/Uri;
+    move-result-object v1
+    invoke-virtual {v0, v1}, Landroid/content/Intent;->setData(Landroid/net/Uri;)Landroid/content/Intent;
+    move-result-object v0
+
+    const/high16 v1, 0x10000000    # FLAG_ACTIVITY_NEW_TASK
+    invoke-virtual {v0, v1}, Landroid/content/Intent;->addFlags(I)Landroid/content/Intent;
+    move-result-object v0
+
+    invoke-virtual {p0, v0}, Landroid/app/Activity;->startActivity(Landroid/content/Intent;)V
     return-void
 
     # ---- Toggle AdBlockEnabled ----

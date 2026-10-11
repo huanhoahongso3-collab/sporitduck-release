@@ -39,18 +39,19 @@
     if-eqz v0, :return
     check-cast v0, Ljava/lang/String;
 
-    # Check each blocked domain
+    # Check each blocked domain.
+    # NOTE: *.spotify.com ad/log/analytics subdomains are safe to block, but audio2 (audio
+    # delivery), spclient (core API client — playback/library/etc.) and dealer (real-time
+    # playback/track-state websocket) and anything with "sg" in it must NEVER be blocked:
+    # blocking any of those broke the web player entirely (pitch-black WebView) or killed
+    # playback outright. Spotify's own web player apparently resolves some of its core
+    # requests through a path that ends up hitting this same hooked InetAddress.getAllByName.
     const-string v1, "log.spotify.com"
     invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
     move-result v2
     if-nez v2, :block
 
     const-string v1, "ads.spotify.com"
-    invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
-    move-result v2
-    if-nez v2, :block
-
-    const-string v1, "audio2.spotify.com"
     invoke-virtual {v0, v1}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
     move-result v2
     if-nez v2, :block

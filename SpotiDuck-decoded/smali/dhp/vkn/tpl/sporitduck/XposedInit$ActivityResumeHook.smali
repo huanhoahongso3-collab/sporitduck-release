@@ -41,6 +41,16 @@
     sput-object v0, Ldhp/vkn/tpl/sporitduck/WebPlayerAutoSwitch;->activity:Landroid/app/Activity;
     invoke-static {v0}, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->onResume(Landroid/app/Activity;)V
 
+    # Re-arm the hidden Web Player and trigger the Connect auto-switch on every resume of
+    # the main activity — not just on a fresh process start or a track change — so both
+    # work right away on a plain launcher open (no playback yet) and after a warm reopen
+    # (process survived a Recents close, so Application.onCreate never re-fires).
+    invoke-virtual {v0}, Landroid/app/Activity;->getApplication()Landroid/app/Application;
+    move-result-object v3
+    invoke-static {v3}, Ldhp/vkn/tpl/sporitduck/WebPlayerCapture;->ensureRunning(Landroid/app/Application;)V
+
+    invoke-static {}, Ldhp/vkn/tpl/sporitduck/WebPlayerAutoSwitch;->switchToWebPlayer()V
+
     :skip
     :try_end_0
     .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0

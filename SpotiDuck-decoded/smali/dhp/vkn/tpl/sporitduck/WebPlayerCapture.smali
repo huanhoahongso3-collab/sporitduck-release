@@ -96,3 +96,46 @@
     sput-object v0, Ldhp/vkn/tpl/sporitduck/WebPlayerCapture;->sWebView:Landroid/webkit/WebView;
     return-void
 .end method
+
+
+# Called from XposedInit$ActivityHook/ActivityResumeHook on every create/resume, not just
+# from Application.onCreate. Application.onCreate only runs once per process, so after
+# Spotify's task is removed (which calls destroy() above) and the app is reopened from the
+# launcher WITHOUT the process having been killed, Application.onCreate never fires again
+# and the hidden Web Player would otherwise never come back — this makes a warm reopen
+# behave the same as a cold start. No-ops if already running or WebPlayerEnabled is off.
+.method public static ensureRunning(Landroid/app/Application;)V
+    .registers 6
+
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/WebPlayerCapture;->sWebView:Landroid/webkit/WebView;
+    if-nez v0, :return
+    if-eqz p0, :return
+
+    :try_start_2
+    invoke-static {p0}, Ldhp/vkn/tpl/sporitduck/PrefsClient;->readAll(Landroid/content/Context;)Landroid/os/Bundle;
+    move-result-object v1
+    const-string v2, "WebPlayerEnabled"
+    const/4 v3, 0x0
+    invoke-virtual {v1, v2, v3}, Landroid/os/Bundle;->getBoolean(Ljava/lang/String;Z)Z
+    move-result v1
+    if-eqz v1, :return
+
+    new-instance v1, Landroid/os/Handler;
+    invoke-static {}, Landroid/os/Looper;->getMainLooper()Landroid/os/Looper;
+    move-result-object v2
+    invoke-direct {v1, v2}, Landroid/os/Handler;-><init>(Landroid/os/Looper;)V
+
+    new-instance v2, Ldhp/vkn/tpl/sporitduck/WebPlayerCapture;
+    invoke-direct {v2, p0}, Ldhp/vkn/tpl/sporitduck/WebPlayerCapture;-><init>(Landroid/app/Application;)V
+    invoke-virtual {v1, v2}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
+    :try_end_2
+    .catch Ljava/lang/Exception; {:try_start_2 .. :try_end_2} :catch_2
+
+    :return
+    return-void
+
+    :catch_2
+    move-exception v0
+    invoke-static {v0}, Lde/robv/android/xposed/XposedBridge;->log(Ljava/lang/Throwable;)V
+    return-void
+.end method
