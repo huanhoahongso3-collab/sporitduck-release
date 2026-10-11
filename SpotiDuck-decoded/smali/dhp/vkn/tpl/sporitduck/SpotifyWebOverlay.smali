@@ -57,11 +57,11 @@
     const/4 v1, 0x1
     invoke-virtual {v0, v1}, Landroid/app/Dialog;->requestWindowFeature(I)Z
 
-    # Set fullscreen window flag
+    # Set fullscreen + hardware-accelerated window flags
     invoke-virtual {v0}, Landroid/app/Dialog;->getWindow()Landroid/view/Window;
     move-result-object v1
     if-eqz v1, :window_done
-    const v2, 0x400
+    const v2, 0x1000400    # FLAG_HARDWARE_ACCELERATED | FLAG_FULLSCREEN
     invoke-virtual {v1, v2, v2}, Landroid/view/Window;->setFlags(II)V
     :window_done
 
@@ -83,6 +83,9 @@
     const/4 v3, 0x0
     invoke-virtual {v2, v3}, Landroid/webkit/WebSettings;->setMediaPlaybackRequiresUserGesture(Z)V
 
+    # Allow mixed content (needed for Spotify CDN)
+    invoke-virtual {v2, v3}, Landroid/webkit/WebSettings;->setMixedContentMode(I)V
+
     # Accept third-party cookies (API 21+)
     sget v2, Landroid/os/Build$VERSION;->SDK_INT:I
     const/16 v3, 0x15
@@ -97,6 +100,11 @@
     new-instance v2, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay$Client;
     invoke-direct {v2, p0}, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay$Client;-><init>(Landroid/app/Activity;)V
     invoke-virtual {v1, v2}, Landroid/webkit/WebView;->setWebViewClient(Landroid/webkit/WebViewClient;)V
+
+    # Attach WebChromeClient — grants DRM/EME permission requests
+    new-instance v2, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay$ChromeClient;
+    invoke-direct {v2}, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay$ChromeClient;-><init>()V
+    invoke-virtual {v1, v2}, Landroid/webkit/WebView;->setWebChromeClient(Landroid/webkit/WebChromeClient;)V
 
     # Attach JS interface "__spd"
     new-instance v2, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay$JsInterface;
