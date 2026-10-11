@@ -31,7 +31,7 @@
     invoke-virtual {p0, v0, v1}, Landroid/app/Activity;->getSharedPreferences(Ljava/lang/String;I)Landroid/content/SharedPreferences;
     move-result-object v0
     iput-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->prefs:Landroid/content/SharedPreferences;
-    invoke-virtual {p0}, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->chmodPrefs()V
+    invoke-direct {p0}, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->chmodPrefs()V
 
     # Read relevant booleans
     const-string v1, "LoggedIn"
@@ -268,7 +268,7 @@
     const-string v3, "AdBlockEnabled"
     invoke-interface {v2, v3, v4}, Landroid/content/SharedPreferences$Editor;->putBoolean(Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;
     invoke-interface {v2}, Landroid/content/SharedPreferences$Editor;->commit()Z
-    invoke-virtual {p0}, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->chmodPrefs()V
+    invoke-direct {p0}, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->chmodPrefs()V
 
     if-nez v1, :adb_was_on
     const-string v2, "DNS Ad Blocker enabled! Restart Spotify to apply."
@@ -303,7 +303,7 @@
     const-string v3, "WebPlayerEnabled"
     invoke-interface {v2, v3, v4}, Landroid/content/SharedPreferences$Editor;->putBoolean(Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;
     invoke-interface {v2}, Landroid/content/SharedPreferences$Editor;->commit()Z
-    invoke-virtual {p0}, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->chmodPrefs()V
+    invoke-direct {p0}, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->chmodPrefs()V
 
     if-nez v1, :wp_was_on
     const-string v2, "Web Player enabled! Restart Spotify to apply."
@@ -335,7 +335,7 @@
     const-string v1, "clear_count"
     invoke-interface {v0, v1, v2}, Landroid/content/SharedPreferences$Editor;->putInt(Ljava/lang/String;I)Landroid/content/SharedPreferences$Editor;
     invoke-interface {v0}, Landroid/content/SharedPreferences$Editor;->commit()Z
-    invoke-virtual {p0}, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->chmodPrefs()V
+    invoke-direct {p0}, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->chmodPrefs()V
 
     const-string v1, "SpotiDuck data cleared. Restart Spotify to re-login."
     const/4 v2, 0x0
@@ -365,7 +365,7 @@
     const-string v3, "DebugEnabled"
     invoke-interface {v2, v3, v4}, Landroid/content/SharedPreferences$Editor;->putBoolean(Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;
     invoke-interface {v2}, Landroid/content/SharedPreferences$Editor;->commit()Z
-    invoke-virtual {p0}, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->chmodPrefs()V
+    invoke-direct {p0}, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->chmodPrefs()V
 
     if-nez v1, :dbg_was_on
     const-string v2, "Debug toasts enabled! Restart Spotify."
@@ -400,7 +400,7 @@
     const-string v3, "ShowWebView"
     invoke-interface {v2, v3, v4}, Landroid/content/SharedPreferences$Editor;->putBoolean(Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;
     invoke-interface {v2}, Landroid/content/SharedPreferences$Editor;->commit()Z
-    invoke-virtual {p0}, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->chmodPrefs()V
+    invoke-direct {p0}, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->chmodPrefs()V
 
     if-nez v1, :swv_was_on
     const-string v2, "Show WebView enabled! Restart Spotify to apply."
