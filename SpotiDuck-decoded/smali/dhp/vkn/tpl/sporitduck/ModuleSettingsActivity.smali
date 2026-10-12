@@ -647,7 +647,7 @@
 # into synchronously on every resume -- if Samsung freezes it, that Binder call stalls,
 # which can make the whole module (and the WebView depending on it) feel dead.
 .method private requestBatteryExemption()V
-    .registers 5
+    .registers 6
 
     :try_start_0
     const-string v0, "power"
