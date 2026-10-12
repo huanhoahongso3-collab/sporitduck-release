@@ -25,9 +25,9 @@
 
 
 .method public query(Landroid/net/Uri;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;
-    .locals 13
+    .locals 14
 
-    const/4 v0, 0x7
+    const/16 v0, 0x8
     new-array v0, v0, [Ljava/lang/String;
     const/4 v1, 0x0
     const-string v2, "ShowWebView"
@@ -49,6 +49,9 @@
     aput-object v2, v0, v1
     const/4 v1, 0x6
     const-string v2, "AdBlockMode"
+    aput-object v2, v0, v1
+    const/4 v1, 0x7
+    const-string v2, "ForceStopOnRecentsClose"
     aput-object v2, v0, v1
 
     new-instance v1, Landroid/database/MatrixCursor;
@@ -92,7 +95,11 @@
     invoke-interface {v2, v3, v12}, Landroid/content/SharedPreferences;->getString(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
     move-result-object v12
 
-    const/4 v0, 0x7
+    const-string v3, "ForceStopOnRecentsClose"
+    invoke-interface {v2, v3, v4}, Landroid/content/SharedPreferences;->getBoolean(Ljava/lang/String;Z)Z
+    move-result v13
+
+    const/16 v0, 0x8
     new-array v0, v0, [Ljava/lang/Object;
 
     invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -127,6 +134,11 @@
 
     const/4 v11, 0x6
     aput-object v12, v0, v11
+
+    invoke-static {v13}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+    move-result-object v3
+    const/4 v11, 0x7
+    aput-object v3, v0, v11
 
     invoke-virtual {v1, v0}, Landroid/database/MatrixCursor;->addRow([Ljava/lang/Object;)V
 

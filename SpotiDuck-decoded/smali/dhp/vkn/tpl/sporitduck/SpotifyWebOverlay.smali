@@ -96,6 +96,24 @@
     sget-object v1, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sWebView:Landroid/webkit/WebView;
     if-eqz v1, :return
 
+    # Wake the WebView back up on every resume. It never got its own onPause()/onResume()
+    # lifecycle forwarded from the Activity, so once Spotify's process is backgrounded
+    # without an active foreground service (e.g. music paused, user switched to another
+    # app for a while), Android throttles/freezes it along with the rest of the process —
+    # its JS timers stop and it stops responding to postMessage, which is why the overlay
+    # felt "laggy"/stale (play/pause button not reflecting real state) after coming back.
+    :try_start_wake
+    invoke-virtual {v1}, Landroid/webkit/WebView;->onResume()V
+    invoke-virtual {v1}, Landroid/webkit/WebView;->resumeTimers()V
+    :try_end_wake
+    .catch Ljava/lang/Exception; {:try_start_wake .. :try_end_wake} :catch_wake
+    goto :wake_done
+
+    :catch_wake
+    move-exception v2
+    invoke-static {v2}, Lde/robv/android/xposed/XposedBridge;->log(Ljava/lang/Throwable;)V
+
+    :wake_done
     :try_start_0
     # Fetch module settings via PrefsProvider (Binder IPC) instead of XSharedPreferences,
     # which cannot read across the app sandbox boundary on modern Android.

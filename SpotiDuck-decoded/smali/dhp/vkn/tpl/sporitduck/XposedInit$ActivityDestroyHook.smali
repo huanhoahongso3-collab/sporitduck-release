@@ -20,7 +20,7 @@
 
 
 .method protected afterHookedMethod(Lde/robv/android/xposed/XC_MethodHook$MethodHookParam;)V
-    .registers 4
+    .registers 9
     .annotation system Ldalvik/annotation/Throws;
         value = { Ljava/lang/Throwable; }
     .end annotation
@@ -35,6 +35,25 @@
 
     invoke-static {}, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->destroy()V
     invoke-static {}, Ldhp/vkn/tpl/sporitduck/WebPlayerCapture;->destroy()V
+
+    # Optional: fully terminate the host app's own process once its task is actually
+    # removed from Recents, gated by ForceStopOnRecentsClose. We're already running
+    # inside that process ourselves (that's how Xposed hooks work), so
+    # Process.killProcess(myPid()) ends it directly -- no hardcoded package name, works
+    # whatever app this module happens to be injected into.
+    invoke-virtual {v0}, Landroid/app/Activity;->getApplication()Landroid/app/Application;
+    move-result-object v2
+    invoke-static {v2}, Ldhp/vkn/tpl/sporitduck/PrefsClient;->readAll(Landroid/content/Context;)Landroid/os/Bundle;
+    move-result-object v2
+    const-string v3, "ForceStopOnRecentsClose"
+    const/4 v4, 0x0
+    invoke-virtual {v2, v3, v4}, Landroid/os/Bundle;->getBoolean(Ljava/lang/String;Z)Z
+    move-result v2
+    if-eqz v2, :skip
+
+    invoke-static {}, Landroid/os/Process;->myPid()I
+    move-result v2
+    invoke-static {v2}, Landroid/os/Process;->killProcess(I)V
 
     :skip
     :try_end_0

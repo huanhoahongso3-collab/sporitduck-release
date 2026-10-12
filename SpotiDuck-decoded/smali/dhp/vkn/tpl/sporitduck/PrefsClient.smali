@@ -38,6 +38,8 @@
     const-string v2, "AdBlockMode"
     const-string v3, "legacy"
     invoke-virtual {v0, v2, v3}, Landroid/os/Bundle;->putString(Ljava/lang/String;Ljava/lang/String;)V
+    const-string v2, "ForceStopOnRecentsClose"
+    invoke-virtual {v0, v2, v1}, Landroid/os/Bundle;->putBoolean(Ljava/lang/String;Z)V
 
     if-eqz p0, :return
 
@@ -111,6 +113,14 @@
     move-result-object v8
     if-eqz v8, :do_close
     invoke-virtual {v0, v7, v8}, Landroid/os/Bundle;->putString(Ljava/lang/String;Ljava/lang/String;)V
+
+    const-string v7, "ForceStopOnRecentsClose"
+    invoke-interface {v5, v7}, Landroid/database/Cursor;->getColumnIndex(Ljava/lang/String;)I
+    move-result v8
+    if-ltz v8, :do_close
+    invoke-interface {v5, v8}, Landroid/database/Cursor;->getInt(I)I
+    move-result v8
+    invoke-virtual {v0, v7, v8}, Landroid/os/Bundle;->putBoolean(Ljava/lang/String;Z)V
 
     :do_close
     invoke-interface {v5}, Landroid/database/Cursor;->close()V
