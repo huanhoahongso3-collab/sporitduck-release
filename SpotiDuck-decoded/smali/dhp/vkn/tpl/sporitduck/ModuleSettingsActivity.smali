@@ -35,6 +35,7 @@
     move-result-object v0
     iput-object v0, p0, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->prefs:Landroid/content/SharedPreferences;
     invoke-direct {p0}, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->chmodPrefs()V
+    invoke-direct {p0}, Ldhp/vkn/tpl/sporitduck/ModuleSettingsActivity;->requestBatteryExemption()V
 
     # Read relevant booleans & AdBlockMode
     const-string v1, "WebLoggedIn"
@@ -628,6 +629,66 @@
     move-result-object v2
     invoke-virtual {v2}, Landroid/widget/Toast;->show()V
     invoke-virtual {p0}, Landroid/app/Activity;->recreate()V
+    return-void
+.end method
+
+
+# Prompts for standard Android battery-optimization exemption if not already granted
+# (does nothing if already exempted -- only shows the system dialog once, the user still
+# has to tap Allow). REQUEST_IGNORE_BATTERY_OPTIMIZATIONS is already in the manifest but
+# holding the permission alone does nothing; the exemption has to actually be requested.
+#
+# NOTE: this only reaches standard Android Doze/App Standby. OEM-specific background
+# killers (e.g. Samsung's own "Freecess" app-freezing, seen freezing this very app's
+# process in logcat) are a separate restriction list with no public API to exempt from
+# programmatically -- the user has to allow it manually (Settings > Apps > dhpOS
+# Sporitduck > Battery > Unrestricted, or equivalent "put to sleep"/deep-sleep exclusion
+# on Samsung). This app's own process hosts PrefsProvider, which Spotify's process calls
+# into synchronously on every resume -- if Samsung freezes it, that Binder call stalls,
+# which can make the whole module (and the WebView depending on it) feel dead.
+.method private requestBatteryExemption()V
+    .registers 5
+
+    :try_start_0
+    const-string v0, "power"
+    invoke-virtual {p0, v0}, Landroid/app/Activity;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+    move-result-object v0
+    check-cast v0, Landroid/os/PowerManager;
+
+    invoke-virtual {p0}, Landroid/app/Activity;->getPackageName()Ljava/lang/String;
+    move-result-object v1
+
+    invoke-virtual {v0, v1}, Landroid/os/PowerManager;->isIgnoringBatteryOptimizations(Ljava/lang/String;)Z
+    move-result v0
+    if-nez v0, :return
+
+    new-instance v2, Landroid/content/Intent;
+    const-string v3, "android.settings.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"
+    invoke-direct {v2, v3}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
+
+    new-instance v3, Ljava/lang/StringBuilder;
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+    const-string v4, "package:"
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v3, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+    move-result-object v3
+
+    invoke-static {v3}, Landroid/net/Uri;->parse(Ljava/lang/String;)Landroid/net/Uri;
+    move-result-object v3
+    invoke-virtual {v2, v3}, Landroid/content/Intent;->setData(Landroid/net/Uri;)Landroid/content/Intent;
+    move-result-object v2
+
+    invoke-virtual {p0, v2}, Landroid/app/Activity;->startActivity(Landroid/content/Intent;)V
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+
+    :return
+    return-void
+
+    :catch_0
+    move-exception v0
+    invoke-static {v0}, Lde/robv/android/xposed/XposedBridge;->log(Ljava/lang/Throwable;)V
     return-void
 .end method
 
