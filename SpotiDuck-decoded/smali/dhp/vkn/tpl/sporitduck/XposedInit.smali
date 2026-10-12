@@ -125,6 +125,57 @@
     const-string v5, "setMetadata"
     invoke-static {v4, v5, v0}, Lde/robv/android/xposed/XposedHelpers;->findAndHookMethod(Ljava/lang/Class;Ljava/lang/String;[Ljava/lang/Object;)Lde/robv/android/xposed/XC_MethodHook$Unhook;
 
+    # --- Suppress Service.stopForeground() while our WebView is alive, so whichever
+    #     foreground service Spotify already runs keeps the process at elevated priority
+    #     instead of downgrading on pause and letting Android kill/freeze the background
+    #     process (and our WebView with it). Two overloads exist across API levels; each
+    #     registered independently so a missing one on this API level doesn't stop the
+    #     other from being hooked. ---
+    :try_start_sfh_bool
+    const/4 v0, 0x2
+    new-array v0, v0, [Ljava/lang/Object;
+    sget-object v2, Ljava/lang/Boolean;->TYPE:Ljava/lang/Class;
+    const/4 v3, 0x0
+    aput-object v2, v0, v3
+    new-instance v1, Ldhp/vkn/tpl/sporitduck/XposedInit$StopForegroundHook;
+    invoke-direct {v1}, Ldhp/vkn/tpl/sporitduck/XposedInit$StopForegroundHook;-><init>()V
+    const/4 v3, 0x1
+    aput-object v1, v0, v3
+    const-class v4, Landroid/app/Service;
+    const-string v5, "stopForeground"
+    invoke-static {v4, v5, v0}, Lde/robv/android/xposed/XposedHelpers;->findAndHookMethod(Ljava/lang/Class;Ljava/lang/String;[Ljava/lang/Object;)Lde/robv/android/xposed/XC_MethodHook$Unhook;
+    :try_end_sfh_bool
+    .catch Ljava/lang/Throwable; {:try_start_sfh_bool .. :try_end_sfh_bool} :catch_sfh_bool
+    goto :sfh_int
+
+    :catch_sfh_bool
+    move-exception v0
+    invoke-static {v0}, Lde/robv/android/xposed/XposedBridge;->log(Ljava/lang/Throwable;)V
+
+    :sfh_int
+    :try_start_sfh_int
+    const/4 v0, 0x2
+    new-array v0, v0, [Ljava/lang/Object;
+    sget-object v2, Ljava/lang/Integer;->TYPE:Ljava/lang/Class;
+    const/4 v3, 0x0
+    aput-object v2, v0, v3
+    new-instance v1, Ldhp/vkn/tpl/sporitduck/XposedInit$StopForegroundHook;
+    invoke-direct {v1}, Ldhp/vkn/tpl/sporitduck/XposedInit$StopForegroundHook;-><init>()V
+    const/4 v3, 0x1
+    aput-object v1, v0, v3
+    const-class v4, Landroid/app/Service;
+    const-string v5, "stopForeground"
+    invoke-static {v4, v5, v0}, Lde/robv/android/xposed/XposedHelpers;->findAndHookMethod(Ljava/lang/Class;Ljava/lang/String;[Ljava/lang/Object;)Lde/robv/android/xposed/XC_MethodHook$Unhook;
+    :try_end_sfh_int
+    .catch Ljava/lang/Throwable; {:try_start_sfh_int .. :try_end_sfh_int} :catch_sfh_int
+    goto :sfh_done
+
+    :catch_sfh_int
+    move-exception v0
+    invoke-static {v0}, Lde/robv/android/xposed/XposedBridge;->log(Ljava/lang/Throwable;)V
+
+    :sfh_done
+
     # --- Always register the DNS blocker hook; it checks AdBlockEnabled itself on every
     #     call (via PrefsProvider) since no Activity/Application context is available yet
     #     at this point to query it just once here. ---

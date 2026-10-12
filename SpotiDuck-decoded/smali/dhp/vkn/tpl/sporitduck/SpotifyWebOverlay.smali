@@ -4,6 +4,12 @@
 .field public static sDialog:Landroid/app/Dialog;
 .field public static sWebView:Landroid/webkit/WebView;
 
+# Held while the WebView is alive so the process doesn't fully sleep/get CPU-throttled in
+# the background even when nothing is playing (StopForegroundHook handles process-priority
+# survival; this covers CPU/Doze throttling on top of that). Re-acquired with a fresh
+# timeout on every resume rather than indefinitely, so a missed release() can't leak it.
+.field public static sWakeLock:Landroid/os/PowerManager$WakeLock;
+
 # Cached result of the last ShowWebView read done by create()/refresh(), so Client's
 # onPageFinished dismiss-check uses the exact same decision instead of re-reading
 # XSharedPreferences a second time (which was observed to disagree and dismiss the
@@ -46,9 +52,61 @@
 .end method
 
 
+# Acquires (or renews) a PARTIAL_WAKE_LOCK so the process doesn't get fully CPU-throttled
+# in the background while our WebView needs to keep running. Re-acquired with a fresh
+# 10-minute timeout on every call instead of held indefinitely, so this is self-healing if
+# a release() is ever missed -- it just expires on its own instead of draining battery
+# forever.
+.method public static acquireWakeLock(Landroid/content/Context;)V
+    .registers 8
+
+    if-eqz p0, :return
+
+    sget-object v0, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sWakeLock:Landroid/os/PowerManager$WakeLock;
+    if-eqz v0, :need_new
+
+    :try_start_renew
+    const-wide/32 v1, 0x927c0    # 600000ms = 10 minutes
+    invoke-virtual {v0, v1, v2}, Landroid/os/PowerManager$WakeLock;->acquire(J)V
+    :try_end_renew
+    .catch Ljava/lang/Exception; {:try_start_renew .. :try_end_renew} :catch_wake
+    return-void
+
+    :need_new
+    :try_start_0
+    const-string v1, "power"
+    invoke-virtual {p0, v1}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+    move-result-object v1
+    check-cast v1, Landroid/os/PowerManager;
+
+    const/4 v2, 0x1    # PARTIAL_WAKE_LOCK
+    const-string v3, "dhp.vkn.tpl.sporitduck:webview_keepalive"
+    invoke-virtual {v1, v2, v3}, Landroid/os/PowerManager;->newWakeLock(ILjava/lang/String;)Landroid/os/PowerManager$WakeLock;
+    move-result-object v1
+
+    const/4 v2, 0x0
+    invoke-virtual {v1, v2}, Landroid/os/PowerManager$WakeLock;->setReferenceCounted(Z)V
+
+    sput-object v1, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sWakeLock:Landroid/os/PowerManager$WakeLock;
+
+    const-wide/32 v2, 0x927c0
+    invoke-virtual {v1, v2, v3}, Landroid/os/PowerManager$WakeLock;->acquire(J)V
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_wake
+
+    :return
+    return-void
+
+    :catch_wake
+    move-exception v0
+    invoke-static {v0}, Lde/robv/android/xposed/XposedBridge;->log(Ljava/lang/Throwable;)V
+    return-void
+.end method
+
+
 # Called from XposedInit$ActivityDestroyHook when Spotify's MainActivity is destroyed.
 .method public static destroy()V
-    .registers 2
+    .registers 4
 
     sget-object v0, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sDialog:Landroid/app/Dialog;
     if-eqz v0, :clear
@@ -63,6 +121,20 @@
     const/4 v0, 0x0
     sput-object v0, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sDialog:Landroid/app/Dialog;
     sput-object v0, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sWebView:Landroid/webkit/WebView;
+
+    sget-object v1, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sWakeLock:Landroid/os/PowerManager$WakeLock;
+    if-eqz v1, :wake_cleared
+    :try_start_1
+    invoke-virtual {v1}, Landroid/os/PowerManager$WakeLock;->isHeld()Z
+    move-result v2
+    if-eqz v2, :wake_cleared
+    invoke-virtual {v1}, Landroid/os/PowerManager$WakeLock;->release()V
+    :try_end_1
+    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
+    :catch_1
+
+    :wake_cleared
+    sput-object v0, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->sWakeLock:Landroid/os/PowerManager$WakeLock;
     return-void
 .end method
 
@@ -114,6 +186,8 @@
     invoke-static {v2}, Lde/robv/android/xposed/XposedBridge;->log(Ljava/lang/Throwable;)V
 
     :wake_done
+    invoke-static {p0}, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->acquireWakeLock(Landroid/content/Context;)V
+
     :try_start_0
     # Fetch module settings via PrefsProvider (Binder IPC) instead of XSharedPreferences,
     # which cannot read across the app sandbox boundary on modern Android.
@@ -211,6 +285,8 @@
     return-void
 
     :do_create
+    invoke-static {p0}, Ldhp/vkn/tpl/sporitduck/SpotifyWebOverlay;->acquireWakeLock(Landroid/content/Context;)V
+
     :try_start_0
 
     # v0 = new Dialog(activity)
